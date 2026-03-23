@@ -1,8 +1,8 @@
 # 🛠️ Software Design Document (SDD)
 
-**Projeto:** [Nome do Projeto]
+**Projeto:** Secret Santa App
 **Versão:** 1.0.0  
-**Status:** ⚪ Aguardando Geração de Especificações.
+**Status:** 🟡 Em elaboração inicial.
 
 ## 🤖 1. Orquestração e Contexto de IA (MCP)
 > Configuração dos servidores Model Context Protocol para a IDE Agêntica.
