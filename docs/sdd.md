@@ -7,7 +7,7 @@
 ## 🤖 1. Orquestração e Contexto de IA (MCP)
 > Configuração dos servidores Model Context Protocol para a IDE Agêntica.
 
-* **Figma/Stitch MCP:** `https://www.figma.com/proto/XAi2US0lA1xmbCKOxtJYRX/Design-System?node-id=12-2&t=yRumzplKOKaEPUps-1` (Ler design tokens, cores e hierarquia visual).
+* **Figma/Stitch MCP:** `https://www.figma.com/design/XAi2US0lA1xmbCKOxtJYRX/Design-System?node-id=0-1&t=YObsJj0CGCA9A0fp-1` (Ler design tokens, cores e hierarquia visual).
 * **Supabase MCP:** Contexto do banco de dados real e políticas de RLS.
 * **GitHub MCP:** Leitura das Issues do Kanban para orientar a implementação (Spec-Driven).
 
