@@ -29,14 +29,6 @@ O projeto utiliza as tecnologias mais recentes do ecossistema web:
 - **Backend as a Service:** [Supabase](https://supabase.com/) (Auth & Banco de Dados)
 - **Linguagem:** TypeScript
 
-## 📐 Arquitetura
-
-A estrutura do projeto segue as melhores práticas de modularização do Angular:
-
-- `src/app/core/`: Serviços globais, interceptors e guards.
-- `src/app/features/`: Componentes de página e lógica de negócio específica.
-- `src/app/shared/`: Componentes de UI reutilizáveis (Dumb components), pipes e diretivas.
-
 ## 🛡️ Regras de Negócio
 
 1. Mínimo de **3 participantes** por grupo.
