@@ -1,0 +1,36 @@
+<main class="min-h-screen bg-background font-body flex flex-col items-center justify-center p-8">
+  <div class="text-center space-y-12">
+    <!-- 1. Título Centralizado -->
+    <h1
+      class="text-5xl font-headline font-black uppercase tracking-tighter text-black border-brand p-8 bg-white neo-shadow-lg">
+      Teste Visual: Amigo Secreto
+    </h1>
+
+    <!-- 2. Três botões lado a lado -->
+    <div class="flex flex-wrap justify-center gap-8">
+      <!-- Botão Primário (puxa cor primária e arredondamento 0px) -->
+      <button
+        class="bg-primary text-white font-headline font-black uppercase py-6 px-10 border-brand-sm rounded-brand neo-shadow hover:translate-x-1 hover:translate-y-1 hover:shadow-none transition-all outline-none">
+        Primário
+      </button>
+
+      <!-- Botão Secundário (puxa cor secundária e arredondamento 0px) -->
+      <button
+        class="bg-secondary text-black font-headline font-black uppercase py-6 px-10 border-brand-sm rounded-brand neo-shadow hover:translate-x-1 hover:translate-y-1 hover:shadow-none transition-all outline-none">
+        Secundário
+      </button>
+
+      <!-- Botão Extra (puxa cor de destaque/accent e arredondamento 0px) -->
+      <button
+        class="bg-accent text-black font-headline font-black uppercase py-6 px-10 border-brand-sm rounded-brand neo-shadow hover:translate-x-1 hover:translate-y-1 hover:shadow-none transition-all outline-none">
+        Highlight
+      </button>
+    </div>
+
+    <p class="text-zinc-500 font-bold uppercase tracking-widest text-sm">
+      Design System: Neo-Fun | Rounding: 0px | Borders: 4px
+    </p>
+  </div>
+</main>
+
+<router-outlet />
