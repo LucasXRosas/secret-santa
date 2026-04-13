@@ -1,7 +1,3 @@
----
-permalink: src/index.html
----
-
 # Wish Draw
 
 **Status do Sistema:**
