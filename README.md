@@ -49,7 +49,7 @@ Para detalhes mais técnicos e especificações de produto, consulte a pasta `do
 ---
 
 
-## 🚀 4. Quick Start (Como Executar)
+## 🚀 Quick Start (Como Executar)
 
 **1. Clone o repositório:**
 
@@ -57,19 +57,14 @@ Para detalhes mais técnicos e especificações de produto, consulte a pasta `do
     cd secret-santa
 
 **2. Instale as dependências:**
-Como é um Monorepo, você precisa instalar os pacotes em cada camada:
 
-    # Terminal 2 - Iniciar o Frontend Angular
-    cd apps/web
     npm install
-    npm run start
 
-    # Terminal 3 - Compilar a Extensão
-    cd apps/extension
-    npm install
-    npm run build
+**3. Inicie o servidor de desenvolvimento:**
 
-**3. Variáveis de Ambiente:**
-Não esqueça de copiar o arquivo `.env.example` para `.env` dentro da pasta `apps/api` e configurar a `DATABASE_URL` do seu PostgreSQL.
+    npm start
+
+A aplicação estará disponível em `http://localhost:4200/`.
+
 
 Desenvolvido com ❤️ para facilitar suas festas de final de ano.
