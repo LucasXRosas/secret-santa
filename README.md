@@ -1,7 +1,7 @@
 # Wish Draw
 
 **Status do Sistema:**
-![CI - Develop (Laboratório](https://img.shields.io/badge/status-%F0%9F%9F%A1%20Em%20Desenvolvimento-yellow)
+[![CI - Develop (Laboratório](https://img.shields.io/badge/status-%F0%9F%9F%A1%20Em%20Desenvolvimento-yellow)(https://github.com/LucasXRosas/secret-santa/edit/develop)]
 ![CI - Main (Produção)](https://img.shields.io/badge/version-1.0.0-blue)
 
 👨‍💻 **Autores:** [Felipe Da Silva Fadel, Lucas Rosa]
