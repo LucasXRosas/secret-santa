@@ -2,12 +2,16 @@
   "name": "secret-santa",
   "version": "0.0.0",
   "scripts": {
+    "dev:web": "npm run start -w apps/web",
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
   },
+  "workspaces": [
+    "apps/*"
+  ],
   "private": true,
   "packageManager": "npm@10.9.3",
   "dependencies": {
