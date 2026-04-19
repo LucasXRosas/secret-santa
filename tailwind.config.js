@@ -1,18 +1,16 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
+  presets: [require('@spartan-ng/brain/hlm-tailwind-preset')],
   content: [
     "./src/**/*.{html,ts}",
+    "./components/**/*.{html,ts}",
   ],
   theme: {
     extend: {
       colors: {
-        primary: "#635388",
         'on-primary': "#FFFFFF",
         'primary-container': "#D6C2FF",
         'on-primary-container': "#000000",
-        secondary: "#A7FFB5",
-        accent: "#FFD700",
-        background: "#F6F6F6",
         surface: "#FFFFFF",
       },
       fontFamily: {
