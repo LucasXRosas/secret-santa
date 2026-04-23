@@ -16,8 +16,8 @@ module.exports = {
     },
   extend: {
       fontFamily: {
-        headline: ["Space Grotesk", "sans-serif"],
-        body: ["Public Sans", "sans-serif"],
+        headline: ["'Space Grotesk'", "sans-serif"],
+        body: ["'Public Sans'", "sans-serif"],
       },
       borderRadius: {
         brand: "0px",
