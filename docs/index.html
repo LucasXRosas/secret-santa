@@ -598,16 +598,74 @@
         --sidebar-foreground: 0 0% 4%;
         --sidebar-accent: 0 0% 96%;
         --sidebar-accent-foreground: 0 0% 9%;
-        --sidebar-border: 0 0% 90%;
         --sidebar-ring: 0 0% 63%;
       }
+      .min-h-screen { min-height: 100vh; }
+      .bg-background { background-color: hsl(var(--background)); }
+      .font-headline { font-family: 'Space Grotesk', sans-serif; }
+      .flex { display: flex; }
+      .flex-col { flex-direction: column; }
+      .items-center { align-items: center; }
+      .justify-center { justify-content: center; }
+      .p-8 { padding: 2rem; }
+      .text-center { text-align: center; }
+      .space-y-12 > * + * { margin-top: 3rem; }
+      .text-5xl { font-size: 3rem; line-height: 1; }
+      .font-black { font-weight: 900; }
+      .uppercase { text-transform: uppercase; }
+      .tracking-tighter { letter-spacing: -0.05em; }
+      .text-black { color: #000; }
+      .border-brand { border: 4px solid #000; }
+      .bg-white { background-color: #fff; }
+      .neo-shadow-lg { box-shadow: 8px 8px 0px 0px #000; }
+      .flex-wrap { flex-wrap: wrap; }
+      .gap-8 { gap: 2rem; }
+      .bg-primary { background-color: var(--primary); }
+      .bg-secondary { background-color: var(--secondary); }
+      .bg-accent { background-color: var(--accent); }
+      .font-bold { font-weight: 700; }
+      .py-6 { padding-top: 1.5rem; padding-bottom: 1.5rem; }
+      .px-10 { padding-left: 2.5rem; padding-right: 2.5rem; }
+      .border-brand-sm { border: 2px solid #000; }
+      .rounded-brand { border-radius: 0px; }
+      .neo-shadow { box-shadow: 4px 4px 0px 0px #000; }
+      .transition-all { transition: all 0.15s ease-in-out; }
+      .hover\:translate-x-1:hover { transform: translateX(0.25rem); }
+      .hover\:translate-y-1:hover { transform: translateY(0.25rem); }
+      .hover\:shadow-none:hover { box-shadow: 0 0 #0000; }
+      .outline-none { outline: 2px solid transparent; outline-offset: 2px; }
+      .text-zinc-500 { color: #71717a; }
+      .tracking-widest { letter-spacing: 0.1em; }
+      .text-sm { font-size: 0.875rem; }
     </style>
     <link rel="stylesheet" href="styles-6JD7DDBV.css" media="print" onload="this.media = 'all'" />
     <noscript><link rel="stylesheet" href="styles-6JD7DDBV.css" /></noscript>
   </head>
 
   <body>
-    <app-root></app-root>
+    <app-root>
+      <main class="min-h-screen bg-background font-headline flex flex-col items-center justify-center p-8">
+        <div class="text-center space-y-12">
+          <h1 class="text-5xl font-headline font-black uppercase tracking-tighter text-black border-brand p-8 bg-white neo-shadow-lg">
+            Wish Draw
+          </h1>
+          <div class="flex flex-wrap justify-center gap-8">
+            <button class="bg-primary text-black font-headline font-bold uppercase py-6 px-10 border-brand-sm rounded-brand neo-shadow hover:translate-x-1 hover:translate-y-1 hover:shadow-none transition-all outline-none">
+              Primary
+            </button>
+            <button class="bg-secondary text-black font-headline font-bold uppercase py-6 px-10 border-brand-sm rounded-brand neo-shadow hover:translate-x-1 hover:translate-y-1 hover:shadow-none transition-all outline-none">
+              Secondary
+            </button>
+            <button class="bg-accent text-black font-headline font-bold uppercase py-6 px-10 border-brand-sm rounded-brand neo-shadow hover:translate-x-1 hover:translate-y-1 hover:shadow-none transition-all outline-none">
+              Highlight
+            </button>
+          </div>
+          <p class="text-zinc-500 font-headline font-bold uppercase tracking-widest text-sm">
+            Design System: Neo-Fun | Rounding: 0px | Borders: 4px
+          </p>
+        </div>
+      </main>
+    </app-root>
     <script src="main-KOLKAT56.js" type="module"></script>
   </body>
 </html>
