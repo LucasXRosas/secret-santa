@@ -5,14 +5,16 @@ module.exports = {
     "src/**/*.{html,ts}",
     "components/**/*.{html,ts}",
   ],
-  theme: {
-    extend: {
-      colors: {
-        'on-primary': "#FFFFFF",
-        'primary-container': "#D6C2FF",
-        'on-primary-container': "#000000",
-        surface: "#FFFFFF",
+    theme: {
+      extend: {
+        colors: {
+          primary: '#D6C2FF',
+          secondary: '#FFD700',
+          accent: '#A7FFB5',
+        },
       },
+    },
+  extend: {
       fontFamily: {
         headline: ["Space Grotesk", "sans-serif"],
         body: ["Public Sans", "sans-serif"],
@@ -21,6 +23,5 @@ module.exports = {
         brand: "0px",
       }
     },
-  },
   plugins: [],
 }
