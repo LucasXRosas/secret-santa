@@ -22,12 +22,20 @@
 ## 🗄️ 3. Arquitetura de Dados
 
 ### 📖 3.1. Glossário Técnico (Mapeamento)
-| Termo PRD (PT-BR) | Entidade Técnica (EN) | Atributos Principais |
-| :--- | :--- | :--- |
-| Ex: Sorteio | `draw` | `id`, `group_id`, `drawer_id` |
+| Termo PRD (PT-BR) | Entidade Técnica (EN) | Atributos Principais                         |
+| :---------------- | :-------------------- | :------------------------------------------- |
+| Usuário           | `user`                | `id`, `email`, `name`, `avatar_url`          |
+| Grupo             | `group`               | `id`, `name`, `owner_id`, `created_at`       |
+| Participante      | `group_member`        | `id`, `group_id`, `user_id`, `role`          |
+| Sorteio           | `draw`                | `id`, `group_id`, `created_at`, `status`     |
+| Resultado         | `draw_result`         | `id`, `draw_id`, `giver_id`, `receiver_id`   |
+| Lista de Desejos  | `wishlist`            | `id`, `user_id`, `group_id`                  |
+| Item de Desejo    | `wishlist_item`       | `id`, `wishlist_id`, `title`, `url`, `notes` |
+| Restrição         | `draw_restriction`    | `id`, `group_id`, `user_a`, `user_b`         |
+
 
 ### 📊 3.2. Diagrama ER (Mermaid)
-> [O Código do Diagrama Mermaid será inserido aqui no próximo passo]
+> <img width="6069" height="6665" alt="mermaid" src="https://github.com/user-attachments/assets/7cbbccb2-c11d-49c8-9194-0e9977f49417" />
 
 ## 📑 4. Contratos Globais (Interfaces & Types)
 > Tipagem TypeScript baseada no banco de dados.
