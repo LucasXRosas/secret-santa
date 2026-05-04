@@ -16,7 +16,7 @@
 
 * **Core:** Angular 21+ (Standalone / Signals).
 * **BaaS & Auth:** Supabase-js.
-* **Estilização & UI:** Tailwind CSS, Spartan UI (HLM), Lucide Angular (Ícones).
+* **Estilização & UI:** Tailwind V4, Spartan UI (HLM), Lucide Angular (Ícones).
 * **Utilitários:** [Ex: date-fns para datas, zod para schemas].
 
 ## 🗄️ 3. Arquitetura de Dados
@@ -37,29 +37,46 @@
 ### 📊 3.2. Diagrama ER (Mermaid)
 > <img width="6069" height="6665" alt="mermaid" src="https://github.com/user-attachments/assets/7cbbccb2-c11d-49c8-9194-0e9977f49417" />
 
-## 📑 4. Contratos Globais (Interfaces & Types)
+## 🚀 4. Módulos do Negócio (Features)
+> Definição das funcionalidades principais do sistema.
+
+* **Autenticação & Perfil:** Cadastro, login e gestão de perfil do usuário.
+* **Dashboard de Sorteios:** Visualização de todos os grupos/sorteios que o usuário participa ou administra.
+* **Gerenciamento de Sorteio (Admin):** Criação de sorteios, definição de regras, datas e convite de membros.
+* **Painel do Sorteio (Individual):** Visualização do "Amigo Secreto" sorteado, status do evento e interações.
+* **Lista de Desejos (Wishlist):** Gestão de itens de presente do próprio usuário e visualização da lista do amigo sorteado.
+
+## 📑 5. Contratos Globais (Interfaces & Types)
 > Tipagem TypeScript baseada no banco de dados.
 
 > [Interfaces TypeScript globais serão inseridas aqui]
 
-## 🏗️ 5. Scaffolding Macro (Arquitetura Frontend)
+## 🏗️ 6. Scaffolding Macro (Arquitetura Frontend)
 
-### 📂 5.1. Estrutura de Pastas Base
+### 📂 6.1. Estrutura de Pastas Base
 * **`src/app/core/`**: Services globais singleton, Interceptors, Functional Guards.
 * **`src/app/features/`**: Smart Components (Páginas) que gerenciam rotas e consomem services.
 * **`src/app/shared/`**: UI Components (Dumb), pipes e diretivas puros e reutilizáveis.
 
-### 🚦 5.2. Mapa de Rotas e Páginas (Features)
-| Rota | Page Component | Functional Guard |
+### 🚦 6.2. Mapa de Rotas e Páginas (Features)
+| Rota | Page Component | Responsabilidade |
 | :--- | :--- | :--- |
-| `/login` | `src/app/features/login/login.page.ts` | Público |
+| `/login` | `src/app/features/login/login.page.ts` | Autenticação do usuário. |
+| `/dashboard` | `src/app/features/dashboard/dashboard.page.ts` | Lista de todos os sorteios (Dashboard Geral). |
+| `/draw/create` | `src/app/features/draw/create/create.page.ts` | Formulário de criação de novo sorteio. |
+| `/draw/:id` | `src/app/features/draw/details/details.page.ts` | Dashboard do sorteio X (específico). |
+| `/draw/:id/invite` | `src/app/features/draw/invite/invite.page.ts` | Convidar pessoas para o sorteio. |
+| `/wishlist` | `src/app/features/wishlist/wishlist.page.ts` | Ver e editar minha lista de presentes. |
+| `/wishlist/:user_id` | `src/app/features/wishlist/view/view.page.ts` | Ver lista de presente do sorteado. |
 
-### 🧠 5.3. Core Services (Singleton)
+### 🧠 6.3. Core Services (Singleton)
 | Service | Arquivo | Responsabilidade Macro |
 | :--- | :--- | :--- |
 | `AuthService` | `core/services/auth.service.ts` | Gerenciar sessão Supabase e estado do usuário logado. |
+| `DrawService` | `core/services/draw.service.ts` | CRUD de sorteios e lógica de convites. |
+| `WishlistService` | `core/services/wishlist.service.ts` | Gestão de itens da lista de desejos. |
 
-## 🛡️ 6. Segurança (Supabase RLS)
+## 🛡️ 7. Segurança (Supabase RLS)
 > Políticas de acesso a nível de banco de dados.
 
 | Tabela | Política (RLS) |
