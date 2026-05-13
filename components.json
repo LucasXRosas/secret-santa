@@ -5,7 +5,7 @@
 	"buildable": true,
 	"generateAs": "library",
 	"tailwind": {
-		"config": "tailwind.config.js"
+		"config": "spartan-tailwind.config.js"
 	},
 	"css": {
 		"prefix": "hlm",
