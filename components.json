@@ -1,6 +1,15 @@
 {
+	"$schema": "https://components.ai/schemas/components.schema.json",
 	"componentsPath": "libs/ui",
 	"importAlias": "@spartan-ng/helm",
 	"buildable": true,
-	"generateAs": "library"
+	"generateAs": "library",
+	"tailwind": {
+		"config": "tailwind.config.js"
+	},
+	"css": {
+		"prefix": "hlm",
+		"includeCustomProperty": true
+	},
+	"framework": "angular"
 }
