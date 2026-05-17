@@ -1,6 +1,6 @@
 ---
 trigger: glob
-globs: apps/web/src/**/*.ts
+globs: apps/web/src/**/*
 ---
 
 # 01 - ANGULAR 21 & TAILWIND STRICT RULES
