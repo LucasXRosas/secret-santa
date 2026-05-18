@@ -4,8 +4,6 @@
 **Versão:** 1.0.0
 **Status:** 🟡 Em Definição (MVP)
 
----
-
 ## 🎯 1. Visão Geral e Objetivo
 
 O **WishDraw** é uma aplicação web/mobile para organizar sorteios de amigo oculto de forma simples, rápida e divertida.
@@ -24,8 +22,6 @@ Permitir que usuários:
 - Compartilhem resultados de forma privada
 - Gerenciem listas de desejos
 
----
-
 ## 📖 2. Glossário Ubíquo
 
 - **Grupo:** Conjunto de pessoas participando de um amigo oculto
@@ -34,8 +30,6 @@ Permitir que usuários:
 - **Amigo Oculto:** Pessoa sorteada por um participante
 - **Lista de Desejos (Wish):** Itens que o participante gostaria de ganhar
 - **Restrição:** Regra que impede certas combinações no sorteio (ex: não tirar a si mesmo ou parceiros)
-
----
 
 ## 👤 3. Atores e Permissões
 
@@ -53,8 +47,6 @@ Permitir que usuários:
 - Preencher lista de desejos
 - Visualizar quem tirou (apenas após sorteio)
 - Editar perfil
-
----
 
 ## 📝 4. Escopo Funcional (User Stories)
 
@@ -91,8 +83,6 @@ Permitir que usuários:
 
 - Como usuário, quero ser notificado quando o sorteio acontecer
 
----
-
 ## 🛡️ 5. Regras de Negócio (Constraints)
 
 - Um grupo deve ter **mínimo de 3 participantes**
@@ -106,15 +96,11 @@ Permitir que usuários:
   - Quem ele tirou
   - Lista de desejos dessa pessoa
 
----
-
 ## 🚫 6. Fora de Escopo (Non-goals)
 
 - ❌ Pagamentos
 - ❌ Marketplace de presentes
 - ❌ Versão offline
-
----
 
 ## ⚙️ 7. Requisitos Não Funcionais (Qualidade)
 
@@ -123,8 +109,6 @@ Permitir que usuários:
 - Responsivo
 - ⚡ 1s para ações principais
 - Escalável para grupos grandes (1000+ usuários)
-
----
 
 ## 🛠️ 8. Tech Stack Principal (Diretrizes)
 
