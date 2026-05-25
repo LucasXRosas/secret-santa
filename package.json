@@ -7,7 +7,8 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "serve:ssr:recipe-box": "node dist/recipe-box/server/server.mjs"
+    "serve:ssr:recipe-box": "node dist/recipe-box/server/server.mjs",
+    "backend": "json-server --watch db.json"
   },
   "private": true,
   "packageManager": "npm@11.6.3",
@@ -30,8 +31,12 @@
     "@angular/compiler-cli": "^21.2.0",
     "@types/express": "^5.0.1",
     "@types/node": "^20.17.19",
+    "autoprefixer": "^10.5.0",
     "jsdom": "^28.0.0",
+    "json-server": "^1.0.0-beta.15",
+    "postcss": "^8.5.15",
     "prettier": "^3.8.1",
+    "tailwindcss": "^4.3.0",
     "typescript": "~5.9.2",
     "vitest": "^4.0.8"
   }

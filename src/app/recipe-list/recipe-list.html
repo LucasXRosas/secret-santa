@@ -1,0 +1,59 @@
+<div class="app-layout">
+  <div class="sidebar">
+    <div class="sidebar-header">
+      <h2>My Recipe Box</h2>
+      <p>Discover & Customize Recipes</p>
+      
+      <div style="margin-top: 1.5rem;">
+        <input 
+          type="text" 
+          [ngModel]="searchTerm()" 
+          (ngModelChange)="searchTerm.set($event)" 
+          placeholder="Search recipes..." 
+          style="width: 100%; padding: 0.75rem 1rem; border: 1px solid #cbd5e1; border-radius: 12px; box-sizing: border-box; background: #f8fafc;"
+        />
+      </div>
+      <div style="margin-top: 1rem;">
+        <a routerLink="/add-recipe" class="btn-add-recipe" style="display: block; text-align: center; background: #0f172a; color: white; padding: 0.75rem; border-radius: 12px; text-decoration: none; font-weight: 600;">+ Add New Recipe</a>
+      </div>
+    </div>
+    
+    <div class="recipes-menu">
+      @if (recipeService.loading()) {
+        <p style="text-align: center; color: #64748b; padding: 1rem;">Loading recipes...</p>
+      } @else if (recipeService.error()) {
+        <p style="text-align: center; color: #ef4444; padding: 1rem;">{{ recipeService.error() }}</p>
+      } @else if (filteredRecipes().length === 0) {
+        <p style="text-align: center; color: #64748b; padding: 1rem;">No recipes found.</p>
+      } @else {
+        @for (recipe of filteredRecipes(); track recipe.id) {
+          <a 
+            [routerLink]="['/recipes', recipe.id]"
+            routerLinkActive="active"
+            class="recipe-tab" 
+            style="text-decoration: none;"
+          >
+            <div class="tab-content">
+              <span class="recipe-tab-name">
+                {{ recipe.name }}
+                @if (recipe.isFavorite) {
+                  <span class="fav-star" aria-label="Favorite">★</span>
+                }
+              </span>
+              <span class="recipe-tab-desc">{{ recipe.description }}</span>
+              <div class="recipe-tags" style="margin-top: 0.5rem; font-size: 0.8rem;">
+                <span class="difficulty-tag" style="background: rgba(0,0,0,0.05); padding: 0.2rem 0.5rem; border-radius: 4px;">
+                  {{ recipe.difficulty | difficultyBadge }}
+                </span>
+              </div>
+            </div>
+          </a>
+        }
+      }
+    </div>
+  </div>
+
+  <main class="main-content">
+    <router-outlet></router-outlet>
+  </main>
+</div>

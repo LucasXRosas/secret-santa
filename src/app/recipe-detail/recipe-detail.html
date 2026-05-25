@@ -1,0 +1,34 @@
+<div class="detail-container">
+  @if (error()) {
+    <div style="text-align: center; padding: 2rem;">
+      <p style="color: #ef4444; font-size: 1.1rem; margin-bottom: 1rem;">{{ error() }}</p>
+      <a routerLink="/recipes" style="color: #0f172a; font-weight: 600; text-decoration: underline;">Back to recipes</a>
+    </div>
+  } @else if (recipe()) {
+    <div class="recipe-header">
+      <img [src]="recipe()!.imgUrl" [alt]="recipe()!.name" class="recipe-image" />
+      <div class="recipe-info">
+        <h2>{{ recipe()!.name }}</h2>
+        <p class="recipe-description">{{ recipe()!.description }}</p>
+        
+        <div class="servings-control">
+          <span>Servings: <strong>{{ servings() }}</strong></span>
+          <button (click)="decrementServings()" class="servings-btn" aria-label="Decrease servings">-</button>
+          <button (click)="incrementServings()" class="servings-btn" aria-label="Increase servings">+</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="ingredients-section">
+      <h3>Ingredients</h3>
+      <ul class="ingredients-list">
+        @for (ing of adjustedIngredients(); track ing.name) {
+          <li class="ingredient-item">
+            <span class="ingredient-name">{{ ing.name }}</span>
+            <span class="ingredient-quantity">{{ ing.quantity }} {{ ing.unit }}</span>
+          </li>
+        }
+      </ul>
+    </div>
+  }
+</div>
