@@ -6,29 +6,27 @@
 
 ## 🤖 1. Orquestração e Contexto de IA (MCP)
 
-* **Figma/Stitch MCP:** `[A DEFINIR - Design System / Logo + UI baseado no conceito dark/light]`
-* **Supabase MCP:** Conexão com projeto Supabase (schemas públicos + RLS policies)
-* **GitHub MCP:** Integração com repositório (issues → user stories do PRD)
+- **Figma/Stitch MCP:** `[A DEFINIR - Design System / Logo + UI baseado no conceito dark/light]`
+- **Supabase MCP:** Conexão com projeto Supabase (schemas públicos + RLS policies)
+- **GitHub MCP:** Integração com repositório (issues → user stories do PRD)
 
 ---
 
 ## 📦 2. Stack Tecnológica e Bibliotecas
 
-* **Core:** Angular 21+ (Standalone Components + Signals)
+- **Core:** Angular 21+ (Standalone Components + Signals)
 
-* **BaaS & Auth:** Supabase (`@supabase/supabase-js`)
+- **BaaS & Auth:** Supabase (`@supabase/supabase-js`)
 
-* **Estilização & UI:**
+- **Estilização & UI:**
+  - Tailwind CSS 4.3.0
+  - Spartan UI (HLM)
+  - Lucide Angular (ícones)
 
-  * Tailwind CSS 4.3.0
-  * Spartan UI (HLM)
-  * Lucide Angular (ícones)
-
-* **Utilitários:**
-
-  * `date-fns` (datas)
-  * `zod` (validação e schemas)
-  * `uuid` (geração de IDs client-side quando necessário)
+- **Utilitários:**
+  - `date-fns` (datas)
+  - `zod` (validação e schemas)
+  - `uuid` (geração de IDs client-side quando necessário)
 
 ---
 
@@ -101,8 +99,8 @@ src/app/
 
 ### Regras:
 
-* Não pode tirar a si mesmo
-* Deve respeitar restrições
+- Não pode tirar a si mesmo
+- Deve respeitar restrições
 
 ## 🛡️ 6. Segurança (Supabase RLS)
 
@@ -128,31 +126,30 @@ USING (giver_id = auth.uid());
 
 ## 🔐 7. Considerações de Segurança
 
-* JWT via Supabase
-* RLS obrigatório (não confiar no frontend)
-* IDs UUID (evitar enumeração)
-* Proteção contra replay de sorteio
-* Logs de auditoria (futuro)
+- JWT via Supabase
+- RLS obrigatório (não confiar no frontend)
+- IDs UUID (evitar enumeração)
+- Proteção contra replay de sorteio
+- Logs de auditoria (futuro)
 
 ---
 
 ## ⚡ 8. Estratégias de Performance
 
-* Lazy loading de rotas
-* Cache local com Signals
-* Realtime Supabase (para atualização de sorteio)
-* Indexação:
-
-  * `group_id`
-  * `user_id`
-  * `draw_id`
+- Lazy loading de rotas
+- Cache local com Signals
+- Realtime Supabase (para atualização de sorteio)
+- Indexação:
+  - `group_id`
+  - `user_id`
+  - `draw_id`
 
 ---
 
 ## 🚀 9. Extensibilidade (Futuro)
 
-* 🎁 Sugestão de presentes (IA)
-* 💬 Chat por grupo
-* 📅 Integração com calendário
-* 🔔 Push notifications
-* 🎨 Temas (dark/light – já alinhado com logo)
+- 🎁 Sugestão de presentes (IA)
+- 💬 Chat por grupo
+- 📅 Integração com calendário
+- 🔔 Push notifications
+- 🎨 Temas (dark/light – já alinhado com logo)

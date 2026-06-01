@@ -48,7 +48,6 @@ Para detalhes mais técnicos e especificações de produto, consulte a pasta `do
 
 ---
 
-
 ## 🚀 Quick Start (Como Executar)
 
 **1. Clone o repositório:**
@@ -65,6 +64,5 @@ Para detalhes mais técnicos e especificações de produto, consulte a pasta `do
     npm start
 
 A aplicação estará disponível em `http://localhost:4200/`.
-
 
 Desenvolvido com ❤️ para facilitar suas festas de final de ano.
