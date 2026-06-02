@@ -1,37 +1,50 @@
 <!-- Backdrop Overlay (escurece o fundo e permite clicar para fechar) -->
 @if (isOpen) {
-<div 
-  class="fixed inset-0 bg-black/50 z-40 transition-opacity lg:hidden"
-  (click)="onClose()"
-  aria-hidden="true">
-</div>
+  <div
+    class="fixed inset-0 bg-black/50 z-40 transition-opacity lg:hidden"
+    (click)="onClose()"
+    aria-hidden="true"
+  ></div>
 }
 
 <!-- Menu Lateral (Drawer) -->
-<aside 
+<aside
   class="fixed top-0 left-0 w-64 h-full bg-secondary border-r-4 border-black z-50 transform transition-transform duration-300 ease-in-out lg:hidden neo-shadow-lg"
   [class.-translate-x-full]="!isOpen"
-  [class.translate-x-0]="isOpen">
-  
+  [class.translate-x-0]="isOpen"
+>
   <div class="flex items-center justify-between p-4 border-b-4 border-black bg-white">
     <span class="text-xl font-headline font-black uppercase tracking-tighter text-black">Menu</span>
     <!-- Botão Fechar -->
-    <button 
+    <button
       (click)="onClose()"
       class="p-2 bg-primary border-2 border-black neo-shadow-sm hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-none transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-black w-8 h-8 flex items-center justify-center font-bold"
-      aria-label="Fechar menu">
+      aria-label="Fechar menu"
+    >
       X
     </button>
   </div>
 
   <nav class="flex flex-col p-4 gap-4">
-    <a routerLink="/" (click)="onClose()" class="text-black font-headline font-bold uppercase border-2 border-black bg-white py-3 px-4 hover:bg-primary hover:-translate-y-1 neo-shadow-sm transition-all focus:outline-none">
+    <a
+      routerLink="/"
+      (click)="onClose()"
+      class="text-black font-headline font-bold uppercase border-2 border-black bg-white py-3 px-4 hover:bg-primary hover:-translate-y-1 neo-shadow-sm transition-all focus:outline-none"
+    >
       Início
     </a>
-    <a routerLink="/sorteio" (click)="onClose()" class="text-black font-headline font-bold uppercase border-2 border-black bg-white py-3 px-4 hover:bg-primary hover:-translate-y-1 neo-shadow-sm transition-all focus:outline-none">
+    <a
+      routerLink="/sorteio"
+      (click)="onClose()"
+      class="text-black font-headline font-bold uppercase border-2 border-black bg-white py-3 px-4 hover:bg-primary hover:-translate-y-1 neo-shadow-sm transition-all focus:outline-none"
+    >
       Sorteio
     </a>
-    <a routerLink="/sobre" (click)="onClose()" class="text-black font-headline font-bold uppercase border-2 border-black bg-white py-3 px-4 hover:bg-primary hover:-translate-y-1 neo-shadow-sm transition-all focus:outline-none">
+    <a
+      routerLink="/sobre"
+      (click)="onClose()"
+      class="text-black font-headline font-bold uppercase border-2 border-black bg-white py-3 px-4 hover:bg-primary hover:-translate-y-1 neo-shadow-sm transition-all focus:outline-none"
+    >
       Sobre
     </a>
   </nav>

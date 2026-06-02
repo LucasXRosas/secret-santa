@@ -1,0 +1,226 @@
+<!-- Login Container -->
+<div class="bg-pattern min-h-screen w-full flex flex-col items-center justify-center p-4">
+  <main class="w-full max-w-md relative">
+    <!-- Animated Decorative Stickers (Asymmetry) -->
+    <div class="absolute -top-12 -left-12 w-24 h-24 rotate-[-12deg] z-10 hidden md:block">
+      <div
+        class="bg-accent border-4 border-foreground p-4 neo-shadow-sm flex items-center justify-center rounded-xl animate-float">
+        <!-- Ícone de Presente SVG -->
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 text-foreground" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-14L4 7m8 4v10M4 7v10l8 4" />
+        </svg>
+      </div>
+    </div>
+    <div class="absolute -bottom-8 -right-8 w-20 h-20 rotate-[15deg] z-10 hidden md:block">
+      <div
+        class="bg-primary border-4 border-foreground p-4 neo-shadow-sm flex items-center justify-center rounded-full animate-float-delayed">
+        <!-- Ícone de Comemoração SVG -->
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-primary-foreground" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
+        </svg>
+      </div>
+    </div>
+
+    <!-- Main Login Card -->
+    <div class="bg-card border-4 border-foreground p-6 md:p-10 neo-shadow rounded-xl relative overflow-hidden">
+      <!-- Logo Section -->
+      <div class="flex justify-center mb-5">
+        <div class="w-24 h-24 rounded-lg">
+          <img alt="Santa Rápido Logo" class="w-full h-full object-contain" src="/logo.png" />
+        </div>
+      </div>
+
+      <!-- Title -->
+      <header class="text-center mb-6">
+        <h1 class="font-headline font-black text-3xl md:text-4xl uppercase tracking-tighter leading-none mb-1">
+          ENTRAR NA FESTA
+        </h1>
+        <p class="text-muted-foreground text-sm font-medium">O seu amigo secreto sem enrolação.</p>
+      </header>
+
+      <!-- Form -->
+      <form class="space-y-5" (submit)="onLogin()">
+        <div>
+          <label class="block font-headline font-bold text-xs uppercase mb-1.5" for="email">EMAIL</label>
+          <input
+            class="w-full px-4 py-3.5 bg-background border-[3px] border-foreground rounded-lg focus:outline-none focus:bg-primary/20 transition-colors font-medium placeholder:text-muted-foreground text-sm"
+            id="email" name="email" [ngModel]="email()" (ngModelChange)="email.set($event)" placeholder="seu@email.com"
+            required type="email" />
+        </div>
+
+        <div class="relative">
+          <div class="flex justify-between items-center mb-1.5">
+            <label class="block font-headline font-bold text-xs uppercase" for="password">SENHA</label>
+            <a class="text-xs font-bold uppercase hover:underline decoration-2" href="#">Esqueceu?</a>
+          </div>
+          <input
+            class="w-full px-4 py-3.5 bg-background border-[3px] border-foreground rounded-lg focus:outline-none focus:bg-primary/20 transition-colors font-medium placeholder:text-muted-foreground text-sm"
+            id="password" name="password" [ngModel]="password()" (ngModelChange)="password.set($event)"
+            placeholder="••••••••" required type="password" />
+        </div>
+
+        <button
+          class="w-full py-4.5 bg-accent border-4 border-foreground font-headline font-black text-xl uppercase neo-shadow-sm hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none btn-press transition-all flex items-center justify-center gap-3"
+          type="submit" [disabled]="isLoggingIn()">
+          {{ isLoggingIn() ? 'CARREGANDO...' : 'ENTRAR' }}
+          <span class="font-black">→</span>
+        </button>
+      </form>
+
+      <!-- Footer Links -->
+      <footer class="mt-8 pt-6 border-t-4 border-foreground flex flex-col items-center gap-2">
+        <p class="font-medium text-xs text-center">Ainda não tem conta?</p>
+        <button
+          class="font-headline font-black text-lg uppercase underline decoration-4 hover:text-primary transition-colors cursor-pointer"
+          (click)="toggleRegisterModal()">
+          CADASTRAR AGORA
+        </button>
+      </footer>
+    </div>
+
+    <!-- Branding Footer -->
+    <div class="mt-4 text-center">
+      <span class="font-display font-black text-xs text-muted-foreground uppercase italic opacity-50">Santa Rápido © 2026 - NO
+        BLA BLA BLA</span>
+    </div>
+  </main>
+
+  <!-- Register Modal -->
+  @if (isRegisterModalOpen()) {
+  <div class="fixed inset-0 z-[100] bg-black/40 backdrop-blur-md flex items-center justify-center p-4">
+    <div class="absolute inset-0" (click)="toggleRegisterModal()"></div>
+    
+    <!-- Modal: Registration Card -->
+    <section class="relative w-full max-w-lg bg-card border-[6px] border-foreground neo-shadow-lg animate-in fade-in zoom-in duration-300 z-10 rounded-none">
+      
+      <!-- Close Button -->
+      <button class="absolute -top-6 -right-6 bg-destructive border-4 border-foreground p-3 neo-shadow hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none active:translate-x-[4px] active:translate-y-[4px] transition-all group" (click)="toggleRegisterModal()">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-destructive-foreground font-black block group-hover:rotate-90 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+        </svg>
+      </button>
+      
+      <!-- Header Sticker -->
+      <div class="absolute -top-10 left-8 bg-primary border-4 border-foreground px-6 py-3 neo-shadow transform -rotate-3 z-20">
+        <h2 class="text-2xl font-black uppercase tracking-tight text-primary-foreground">CRIAR MINHA CONTA</h2>
+      </div>
+      
+      <!-- Modal Content -->
+      <div class="p-8 md:p-12 pt-16">
+        <p class="text-muted-foreground font-medium mb-8 text-base">Junte-se à diversão! Sem frescuras, apenas sorteios rápidos.</p>
+        
+        <form class="space-y-6" (submit)="onRegister()">
+          <!-- Name Field -->
+          <div class="space-y-2">
+            <label class="font-headline font-bold uppercase tracking-wide text-sm flex items-center gap-2" for="registerName">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+              </svg>
+              Nome Completo
+            </label>
+            <input 
+              class="w-full bg-background border-4 border-foreground px-5 py-4 font-bold text-lg focus:bg-primary/20 focus:ring-0 focus:outline-none transition-colors placeholder:text-muted-foreground/45 rounded-none" 
+              id="registerName" 
+              name="registerName"
+              [ngModel]="registerName()"
+              (ngModelChange)="registerName.set($event)"
+              placeholder="Como te chamam?" 
+              required 
+              type="text"
+            />
+          </div>
+          
+          <!-- Email Field -->
+          <div class="space-y-2">
+            <label class="font-headline font-bold uppercase tracking-wide text-sm flex items-center gap-2" for="registerEmail">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+              </svg>
+              E-mail
+            </label>
+            <input 
+              class="w-full bg-background border-4 border-foreground px-5 py-4 font-bold text-lg focus:bg-primary/20 focus:ring-0 focus:outline-none transition-colors placeholder:text-muted-foreground/45 rounded-none" 
+              id="registerEmail" 
+              name="registerEmail"
+              [ngModel]="registerEmail()"
+              (ngModelChange)="registerEmail.set($event)"
+              placeholder="seu@email.com" 
+              required 
+              type="email"
+            />
+          </div>
+          
+          <!-- Password fields side-by-side to save space and fit nicely -->
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <!-- Password Field -->
+            <div class="space-y-2">
+              <label class="font-headline font-bold uppercase tracking-wide text-sm flex items-center gap-2" for="registerPassword">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                </svg>
+                Senha Secreta
+              </label>
+              <input 
+                class="w-full bg-background border-4 border-foreground px-5 py-4 font-bold text-lg focus:bg-primary/20 focus:ring-0 focus:outline-none transition-colors placeholder:text-muted-foreground/45 rounded-none" 
+                id="registerPassword" 
+                name="registerPassword"
+                [ngModel]="registerPassword()"
+                (ngModelChange)="registerPassword.set($event)"
+                placeholder="••••••••" 
+                required 
+                type="password"
+              />
+            </div>
+
+            <!-- Confirm Password Field -->
+            <div class="space-y-2">
+              <label class="font-headline font-bold uppercase tracking-wide text-sm flex items-center gap-2" for="registerConfirmPassword">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                </svg>
+                Confirmar Senha
+              </label>
+              <input 
+                class="w-full bg-background border-4 border-foreground px-5 py-4 font-bold text-lg focus:bg-primary/20 focus:ring-0 focus:outline-none transition-colors placeholder:text-muted-foreground/45 rounded-none" 
+                id="registerConfirmPassword" 
+                name="registerConfirmPassword"
+                [ngModel]="registerConfirmPassword()"
+                (ngModelChange)="registerConfirmPassword.set($event)"
+                placeholder="••••••••" 
+                required 
+                type="password"
+              />
+            </div>
+          </div>
+          
+          <!-- Submit Button -->
+          <div class="pt-4">
+            <button 
+              class="w-full bg-accent border-4 border-foreground py-5 px-8 font-black text-2xl uppercase tracking-tighter neo-shadow hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] active:translate-x-[4px] active:translate-y-[4px] active:shadow-none transition-all flex items-center justify-center gap-3 rounded-none" 
+              type="submit"
+              [disabled]="isRegistering()"
+            >
+              {{ isRegistering() ? 'CADASTRANDO...' : 'CADASTRAR' }}
+              <span class="font-black">→</span>
+            </button>
+          </div>
+        </form>
+        
+        <!-- Footer Link -->
+        <div class="mt-8 pt-6 border-t-4 border-foreground/10 flex justify-center">
+          <p class="text-sm font-bold uppercase tracking-wider text-muted-foreground">
+            Já tem conta? <button class="text-primary underline decoration-2 underline-offset-2 hover:text-primary/80 transition-colors" (click)="toggleRegisterModal()">Fazer Login</button>
+          </p>
+        </div>
+      </div>
+      
+      <!-- Decorative Sticker (Bottom Left) -->
+      <div class="absolute -bottom-6 -left-6 w-20 h-20 bg-secondary border-4 border-foreground neo-shadow rounded-full flex items-center justify-center rotate-12 z-20">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 text-foreground" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-14L4 7m8 4v10M4 7v10l8 4" />
+        </svg>
+      </div>
+    </section>
+  </div>
+  }
+</div>
