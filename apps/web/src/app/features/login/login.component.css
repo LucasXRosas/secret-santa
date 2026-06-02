@@ -1,0 +1,30 @@
+@keyframes float {
+  0% { transform: translateY(0px) rotate(-12deg); }
+  50% { transform: translateY(-10px) rotate(-12deg); }
+  100% { transform: translateY(0px) rotate(-12deg); }
+}
+
+@keyframes float-delayed {
+  0% { transform: translateY(0px) rotate(15deg); }
+  50% { transform: translateY(-10px) rotate(15deg); }
+  100% { transform: translateY(0px) rotate(15deg); }
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+.animate-float-delayed {
+  animation: float-delayed 3.5s ease-in-out infinite;
+}
+
+.btn-press:active {
+  transform: translate(2px, 2px);
+  box-shadow: 0px 0px 0px 0px black;
+}
+
+.bg-pattern {
+  background-color: #ffd709;
+  background-image: radial-gradient(#000000 1.5px, transparent 1.5px);
+  background-size: 32px 32px;
+}
