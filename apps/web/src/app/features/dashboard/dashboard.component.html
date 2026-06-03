@@ -1,0 +1,11 @@
+<div class="min-h-screen flex flex-col items-center justify-center bg-background p-6">
+  <h1 class="text-3xl font-black mb-6 uppercase tracking-tight text-center">
+    Usuário {{ authService.currentUser()?.email }} logado
+  </h1>
+  
+  <button 
+    (click)="logout()" 
+    class="px-6 py-3 bg-destructive border-4 border-foreground font-headline font-black text-lg uppercase neo-shadow-sm hover:translate-x-[2px] hover:translate-y-[2px] active:translate-x-[4px] active:translate-y-[4px] hover:shadow-none btn-press transition-all cursor-pointer">
+    Sair
+  </button>
+</div>

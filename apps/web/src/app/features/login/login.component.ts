@@ -1,15 +1,20 @@
-import { Component, signal } from '@angular/core';
+import { Component, signal, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
+import { AuthService } from '../../core/services/auth.service';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [FormsModule],
+  imports: [CommonModule, FormsModule],
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
+  private authService = inject(AuthService);
+  private router = inject(Router);
+
   email = signal('');
   password = signal('');
   
@@ -30,30 +35,41 @@ export class LoginComponent {
     this.isRegisterModalOpen.update(v => !v);
   }
 
-  onLogin() {
-    if (!this.email() || !this.password()) return;
+  async onLogin() {
+    const emailValue = this.email().trim();
+    const passwordValue = this.password();
+    if (!emailValue || !passwordValue) return;
     
     this.isLoggingIn.set(true);
-    // Simulação temporária (frontend apenas por enquanto)
-    setTimeout(() => {
+    try {
+      await this.authService.signIn(emailValue, passwordValue);
+      this.router.navigate(['/dashboard']);
+    } catch (error: any) {
+      console.error('Erro ao realizar login:', error);
+    } finally {
       this.isLoggingIn.set(false);
-      alert('Login simulado com sucesso (apenas frontend por enquanto)!');
-    }, 1500);
+    }
   }
 
-  onRegister() {
-    if (!this.registerName() || !this.registerEmail() || !this.registerPassword()) return;
-    if (this.registerPassword() !== this.registerConfirmPassword()) {
-      alert('As senhas não coincidem!');
+  async onRegister() {
+    const emailValue = this.registerEmail().trim();
+    const nameValue = this.registerName().trim();
+    const passwordValue = this.registerPassword();
+    
+    if (!nameValue || !emailValue || !passwordValue) return;
+    if (passwordValue !== this.registerConfirmPassword()) {
       return;
     }
 
     this.isRegistering.set(true);
-    // Simulação temporária (frontend apenas por enquanto)
-    setTimeout(() => {
-      this.isRegistering.set(false);
+    try {
+      await this.authService.signUp(emailValue, passwordValue, nameValue);
       this.isRegisterModalOpen.set(false);
-      alert('Cadastro simulado com sucesso! Agora você pode fazer login.');
-    }, 1500);
+      this.router.navigate(['/dashboard']);
+    } catch (error: any) {
+      console.error('Erro ao realizar cadastro:', error);
+    } finally {
+      this.isRegistering.set(false);
+    }
   }
 }
