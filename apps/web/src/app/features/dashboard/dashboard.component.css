@@ -1,1 +1,12 @@
 /* Estilos do Dashboard */
+
+/* Efeito "pressionar" neo-brutalista: o card afunda na direção da sombra. */
+.active-press:active {
+  transform: translate(2px, 2px);
+  box-shadow: 0 0 0 0 black;
+}
+
+/* Sombra dura amarela (variação da neo-shadow para o botão "Ver Dashboard"). */
+.neo-shadow-yellow {
+  box-shadow: 4px 4px 0 0 #ffd700;
+}
