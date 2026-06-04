@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["apps/web/src/app/features/login/login.component.css"],
+  "sourcesContent": ["@keyframes float {\r\n  0% { transform: translateY(0px) rotate(-12deg); }\r\n  50% { transform: translateY(-10px) rotate(-12deg); }\r\n  100% { transform: translateY(0px) rotate(-12deg); }\r\n}\r\n\r\n@keyframes float-delayed {\r\n  0% { transform: translateY(0px) rotate(15deg); }\r\n  50% { transform: translateY(-10px) rotate(15deg); }\r\n  100% { transform: translateY(0px) rotate(15deg); }\r\n}\r\n\r\n.animate-float {\r\n  animation: float 3s ease-in-out infinite;\r\n}\r\n\r\n.animate-float-delayed {\r\n  animation: float-delayed 3.5s ease-in-out infinite;\r\n}\r\n\r\n.btn-press:active {\r\n  transform: translate(2px, 2px);\r\n  box-shadow: 0px 0px 0px 0px black;\r\n}\r\n\r\n.bg-pattern {\r\n  background-color: #ffd709;\r\n  background-image: radial-gradient(#000000 1.5px, transparent 1.5px);\r\n  background-size: 32px 32px;\r\n}\r\n"],
+  "mappings": ";AAAA,WAAA;AACE;AAAK,eAAA,WAAA,KAAA,OAAA;AAA2C;AAChD;AAAM,eAAA,WAAA,OAAA,OAAA;AAA6C;AACnD;AAAO,eAAA,WAAA,KAAA,OAAA;AAA2C;AACpD;AAEA,WAAA;AACE;AAAK,eAAA,WAAA,KAAA,OAAA;AAA0C;AAC/C;AAAM,eAAA,WAAA,OAAA,OAAA;AAA4C;AAClD;AAAO,eAAA,WAAA,KAAA,OAAA;AAA0C;AACnD;AAEA,CAAA;AACE,aAAA,MAAA,GAAA,YAAA;AACF;AAEA,CAAA;AACE,aAAA,cAAA,KAAA,YAAA;AACF;AAEA,CAAA,SAAA;AACE,aAAA,UAAA,GAAA,EAAA;AACA,cAAA,IAAA,IAAA,IAAA,IAAA;AACF;AAEA,CAAA;AACE,oBAAA;AACA,oBAAA,gBAAA,QAAA,KAAA,EAAA,YAAA;AACA,mBAAA,KAAA;AACF;",
+  "names": []
+}

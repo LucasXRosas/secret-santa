@@ -36,7 +36,14 @@ export class AuthService {
 
     try {
       // Cliente público (para login, sessão, etc.)
-      this.supabase = createClient(url, key);
+      // persistSession: false => a sessão NÃO é gravada no localStorage,
+      // então ao recarregar a página (F5) o usuário precisa logar de novo.
+      this.supabase = createClient(url, key, {
+        auth: {
+          persistSession: false,
+          autoRefreshToken: false,
+        },
+      });
       
       // Cliente admin (para criação de usuários com e-mail auto-confirmado)
       if (serviceRoleKey && serviceRoleKey !== 'INSERIR_SUPABASE_SERVICE_ROLE_KEY') {
