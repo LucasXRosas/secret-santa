@@ -163,7 +163,7 @@ function EventDetailComponent_Conditional_5_Template(rf, ctx) {
 }
 function EventDetailComponent_Conditional_6_Conditional_15_Template(rf, ctx) {
   if (rf & 1) {
-    \u0275\u0275elementStart(0, "span", 14)(1, "span", 26);
+    \u0275\u0275elementStart(0, "span", 15)(1, "span", 27);
     \u0275\u0275text(2, "calendar_today");
     \u0275\u0275elementEnd();
     \u0275\u0275text(3);
@@ -178,7 +178,7 @@ function EventDetailComponent_Conditional_6_Conditional_15_Template(rf, ctx) {
 }
 function EventDetailComponent_Conditional_6_Conditional_16_Template(rf, ctx) {
   if (rf & 1) {
-    \u0275\u0275elementStart(0, "span", 14)(1, "span", 26);
+    \u0275\u0275elementStart(0, "span", 15)(1, "span", 27);
     \u0275\u0275text(2, "payments");
     \u0275\u0275elementEnd();
     \u0275\u0275text(3);
@@ -193,14 +193,14 @@ function EventDetailComponent_Conditional_6_Conditional_16_Template(rf, ctx) {
 }
 function EventDetailComponent_Conditional_6_Conditional_19_Conditional_11_Template(rf, ctx) {
   if (rf & 1) {
-    \u0275\u0275elementStart(0, "p", 33);
+    \u0275\u0275elementStart(0, "p", 34);
     \u0275\u0275text(1, "Informe um e-mail v\xE1lido.");
     \u0275\u0275elementEnd();
   }
 }
 function EventDetailComponent_Conditional_6_Conditional_19_Conditional_12_Template(rf, ctx) {
   if (rf & 1) {
-    \u0275\u0275elementStart(0, "p", 34);
+    \u0275\u0275elementStart(0, "p", 35);
     \u0275\u0275text(1);
     \u0275\u0275elementEnd();
   }
@@ -213,49 +213,49 @@ function EventDetailComponent_Conditional_6_Conditional_19_Conditional_12_Templa
 function EventDetailComponent_Conditional_6_Conditional_19_Template(rf, ctx) {
   if (rf & 1) {
     const _r4 = \u0275\u0275getCurrentView();
-    \u0275\u0275elementStart(0, "div", 27)(1, "div", 28)(2, "span", 29);
+    \u0275\u0275elementStart(0, "div", 28)(1, "div", 29)(2, "span", 30);
     \u0275\u0275text(3, "mail");
     \u0275\u0275elementEnd();
-    \u0275\u0275elementStart(4, "h2", 20);
+    \u0275\u0275elementStart(4, "h2", 21);
     \u0275\u0275text(5, "Convite Direto");
     \u0275\u0275elementEnd()();
-    \u0275\u0275elementStart(6, "form", 30);
+    \u0275\u0275elementStart(6, "form", 31);
     \u0275\u0275listener("ngSubmit", function EventDetailComponent_Conditional_6_Conditional_19_Template_form_ngSubmit_6_listener() {
       \u0275\u0275restoreView(_r4);
       const ctx_r0 = \u0275\u0275nextContext(2);
       return \u0275\u0275resetView(ctx_r0.addParticipant());
     });
-    \u0275\u0275elementStart(7, "div")(8, "label", 31);
+    \u0275\u0275elementStart(7, "div")(8, "label", 32);
     \u0275\u0275text(9, "E-mail");
     \u0275\u0275elementEnd();
-    \u0275\u0275element(10, "input", 32);
-    \u0275\u0275conditionalCreate(11, EventDetailComponent_Conditional_6_Conditional_19_Conditional_11_Template, 2, 0, "p", 33);
+    \u0275\u0275element(10, "input", 33);
+    \u0275\u0275conditionalCreate(11, EventDetailComponent_Conditional_6_Conditional_19_Conditional_11_Template, 2, 0, "p", 34);
     \u0275\u0275elementEnd();
-    \u0275\u0275conditionalCreate(12, EventDetailComponent_Conditional_6_Conditional_19_Conditional_12_Template, 2, 1, "p", 34);
-    \u0275\u0275elementStart(13, "button", 35)(14, "span", 36);
+    \u0275\u0275conditionalCreate(12, EventDetailComponent_Conditional_6_Conditional_19_Conditional_12_Template, 2, 1, "p", 35);
+    \u0275\u0275elementStart(13, "button", 36)(14, "span", 37);
     \u0275\u0275text(15, "person_add");
     \u0275\u0275elementEnd();
     \u0275\u0275text(16);
     \u0275\u0275elementEnd()()();
-    \u0275\u0275elementStart(17, "div", 37)(18, "div", 38)(19, "span", 39);
+    \u0275\u0275elementStart(17, "div", 38)(18, "div", 39)(19, "span", 40);
     \u0275\u0275text(20, "auto_awesome");
     \u0275\u0275elementEnd();
-    \u0275\u0275elementStart(21, "h2", 20);
+    \u0275\u0275elementStart(21, "h2", 21);
     \u0275\u0275text(22, "Link M\xE1gico");
     \u0275\u0275elementEnd()();
-    \u0275\u0275elementStart(23, "p", 40);
+    \u0275\u0275elementStart(23, "p", 41);
     \u0275\u0275text(24, " Compartilhe este link para a galera entrar no sorteio. ");
     \u0275\u0275elementEnd();
-    \u0275\u0275elementStart(25, "div", 41)(26, "div", 42);
+    \u0275\u0275elementStart(25, "div", 42)(26, "div", 43);
     \u0275\u0275text(27);
     \u0275\u0275elementEnd();
-    \u0275\u0275elementStart(28, "button", 43);
+    \u0275\u0275elementStart(28, "button", 44);
     \u0275\u0275listener("click", function EventDetailComponent_Conditional_6_Conditional_19_Template_button_click_28_listener() {
       \u0275\u0275restoreView(_r4);
       const ctx_r0 = \u0275\u0275nextContext(2);
       return \u0275\u0275resetView(ctx_r0.copyMagicLink());
     });
-    \u0275\u0275elementStart(29, "span", 36);
+    \u0275\u0275elementStart(29, "span", 37);
     \u0275\u0275text(30);
     \u0275\u0275elementEnd()()()();
   }
@@ -281,84 +281,88 @@ function EventDetailComponent_Conditional_6_Conditional_19_Template(rf, ctx) {
 }
 function EventDetailComponent_Conditional_6_Conditional_20_Template(rf, ctx) {
   if (rf & 1) {
-    \u0275\u0275elementStart(0, "div", 17)(1, "span", 44);
+    \u0275\u0275elementStart(0, "div", 18)(1, "span", 45);
     \u0275\u0275text(2, "celebration");
     \u0275\u0275elementEnd();
-    \u0275\u0275elementStart(3, "h2", 45);
+    \u0275\u0275elementStart(3, "h2", 46);
     \u0275\u0275text(4, "Sorteio Realizado!");
     \u0275\u0275elementEnd();
-    \u0275\u0275elementStart(5, "p", 46);
+    \u0275\u0275elementStart(5, "p", 47);
     \u0275\u0275text(6, " Os participantes j\xE1 foram sorteados e n\xE3o \xE9 mais poss\xEDvel alterar o grupo. ");
     \u0275\u0275elementEnd()();
   }
 }
 function EventDetailComponent_Conditional_6_Conditional_27_Template(rf, ctx) {
   if (rf & 1) {
-    \u0275\u0275elementStart(0, "div", 22)(1, "p", 47);
+    \u0275\u0275elementStart(0, "div", 23)(1, "p", 48);
     \u0275\u0275text(2, " Ningu\xE9m por aqui ainda. Convide a galera acima! ");
     \u0275\u0275elementEnd()();
   }
 }
 function EventDetailComponent_Conditional_6_Conditional_28_For_2_Conditional_10_Template(rf, ctx) {
   if (rf & 1) {
-    \u0275\u0275elementStart(0, "div", 55);
-    \u0275\u0275text(1);
+    const _r5 = \u0275\u0275getCurrentView();
+    \u0275\u0275elementStart(0, "button", 58);
+    \u0275\u0275listener("click", function EventDetailComponent_Conditional_6_Conditional_28_For_2_Conditional_10_Template_button_click_0_listener() {
+      \u0275\u0275restoreView(_r5);
+      const p_r6 = \u0275\u0275nextContext().$implicit;
+      const ctx_r0 = \u0275\u0275nextContext(3);
+      return \u0275\u0275resetView(ctx_r0.openRevealModal(p_r6));
+    });
+    \u0275\u0275elementStart(1, "span", 27);
+    \u0275\u0275text(2, "visibility");
     \u0275\u0275elementEnd();
-  }
-  if (rf & 2) {
-    const p_r5 = \u0275\u0275nextContext().$implicit;
-    const ctx_r0 = \u0275\u0275nextContext(3);
-    \u0275\u0275advance();
-    \u0275\u0275textInterpolate1(" \u{1F449} Tirou: ", ctx_r0.getDrawnEmail(p_r5.drawn_participant_id), " ");
+    \u0275\u0275text(3, " Revelar ");
+    \u0275\u0275elementEnd();
   }
 }
 function EventDetailComponent_Conditional_6_Conditional_28_For_2_Conditional_11_Template(rf, ctx) {
   if (rf & 1) {
-    const _r6 = \u0275\u0275getCurrentView();
-    \u0275\u0275elementStart(0, "button", 57);
+    const _r7 = \u0275\u0275getCurrentView();
+    \u0275\u0275elementStart(0, "button", 59);
     \u0275\u0275listener("click", function EventDetailComponent_Conditional_6_Conditional_28_For_2_Conditional_11_Template_button_click_0_listener() {
-      \u0275\u0275restoreView(_r6);
-      const p_r5 = \u0275\u0275nextContext().$implicit;
+      \u0275\u0275restoreView(_r7);
+      const p_r6 = \u0275\u0275nextContext().$implicit;
       const ctx_r0 = \u0275\u0275nextContext(3);
-      return \u0275\u0275resetView(ctx_r0.removeParticipant(p_r5));
+      return \u0275\u0275resetView(ctx_r0.removeParticipant(p_r6));
     });
-    \u0275\u0275elementStart(1, "span", 58);
+    \u0275\u0275elementStart(1, "span", 60);
     \u0275\u0275text(2, "cancel");
     \u0275\u0275elementEnd()();
   }
 }
 function EventDetailComponent_Conditional_6_Conditional_28_For_2_Template(rf, ctx) {
   if (rf & 1) {
-    \u0275\u0275elementStart(0, "div", 48)(1, "div", 49)(2, "div", 50);
+    \u0275\u0275elementStart(0, "div", 49)(1, "div", 50)(2, "div", 51);
     \u0275\u0275text(3);
     \u0275\u0275elementEnd();
-    \u0275\u0275elementStart(4, "div", 51)(5, "p", 52);
+    \u0275\u0275elementStart(4, "div", 52)(5, "p", 53);
     \u0275\u0275text(6);
     \u0275\u0275elementEnd();
-    \u0275\u0275elementStart(7, "p", 53);
+    \u0275\u0275elementStart(7, "p", 54);
     \u0275\u0275text(8);
     \u0275\u0275elementEnd()()();
-    \u0275\u0275elementStart(9, "div", 54);
-    \u0275\u0275conditionalCreate(10, EventDetailComponent_Conditional_6_Conditional_28_For_2_Conditional_10_Template, 2, 1, "div", 55)(11, EventDetailComponent_Conditional_6_Conditional_28_For_2_Conditional_11_Template, 3, 0, "button", 56);
+    \u0275\u0275elementStart(9, "div", 55);
+    \u0275\u0275conditionalCreate(10, EventDetailComponent_Conditional_6_Conditional_28_For_2_Conditional_10_Template, 4, 0, "button", 56)(11, EventDetailComponent_Conditional_6_Conditional_28_For_2_Conditional_11_Template, 3, 0, "button", 57);
     \u0275\u0275elementEnd()();
   }
   if (rf & 2) {
-    const p_r5 = ctx.$implicit;
+    const p_r6 = ctx.$implicit;
     const ctx_r0 = \u0275\u0275nextContext(3);
     \u0275\u0275advance(3);
-    \u0275\u0275textInterpolate1(" ", p_r5.email.charAt(0), " ");
+    \u0275\u0275textInterpolate1(" ", p_r6.email.charAt(0), " ");
     \u0275\u0275advance(3);
-    \u0275\u0275textInterpolate(p_r5.email);
+    \u0275\u0275textInterpolate(p_r6.email);
     \u0275\u0275advance(2);
-    \u0275\u0275textInterpolate1(" ", p_r5.status === "joined" ? "Entrou" : "Pendente", " ");
+    \u0275\u0275textInterpolate1(" ", p_r6.status === "joined" ? "Entrou" : "Pendente", " ");
     \u0275\u0275advance(2);
     \u0275\u0275conditional(ctx_r0.hasDrawn() ? 10 : 11);
   }
 }
 function EventDetailComponent_Conditional_6_Conditional_28_Template(rf, ctx) {
   if (rf & 1) {
-    \u0275\u0275elementStart(0, "div", 23);
-    \u0275\u0275repeaterCreate(1, EventDetailComponent_Conditional_6_Conditional_28_For_2_Template, 12, 4, "div", 48, _forTrack0);
+    \u0275\u0275elementStart(0, "div", 24);
+    \u0275\u0275repeaterCreate(1, EventDetailComponent_Conditional_6_Conditional_28_For_2_Template, 12, 4, "div", 49, _forTrack0);
     \u0275\u0275elementEnd();
   }
   if (rf & 2) {
@@ -369,14 +373,14 @@ function EventDetailComponent_Conditional_6_Conditional_28_Template(rf, ctx) {
 }
 function EventDetailComponent_Conditional_6_Conditional_29_Template(rf, ctx) {
   if (rf & 1) {
-    const _r7 = \u0275\u0275getCurrentView();
-    \u0275\u0275elementStart(0, "button", 59);
+    const _r8 = \u0275\u0275getCurrentView();
+    \u0275\u0275elementStart(0, "button", 61);
     \u0275\u0275listener("click", function EventDetailComponent_Conditional_6_Conditional_29_Template_button_click_0_listener() {
-      \u0275\u0275restoreView(_r7);
+      \u0275\u0275restoreView(_r8);
       const ctx_r0 = \u0275\u0275nextContext(2);
       return \u0275\u0275resetView(ctx_r0.fazerSorteio());
     });
-    \u0275\u0275elementStart(1, "span", 36);
+    \u0275\u0275elementStart(1, "span", 37);
     \u0275\u0275text(2, "shuffle");
     \u0275\u0275elementEnd();
     \u0275\u0275text(3);
@@ -391,7 +395,7 @@ function EventDetailComponent_Conditional_6_Conditional_29_Template(rf, ctx) {
 }
 function EventDetailComponent_Conditional_6_Conditional_30_Template(rf, ctx) {
   if (rf & 1) {
-    \u0275\u0275elementStart(0, "p", 25);
+    \u0275\u0275elementStart(0, "p", 26);
     \u0275\u0275text(1, " Adicione pelo menos 3 pessoas para realizar o sorteio. ");
     \u0275\u0275elementEnd();
   }
@@ -399,43 +403,43 @@ function EventDetailComponent_Conditional_6_Conditional_30_Template(rf, ctx) {
 function EventDetailComponent_Conditional_6_Template(rf, ctx) {
   if (rf & 1) {
     const _r2 = \u0275\u0275getCurrentView();
-    \u0275\u0275elementStart(0, "div", 6)(1, "div", 7)(2, "a", 8)(3, "span", 9);
+    \u0275\u0275elementStart(0, "div", 7)(1, "div", 8)(2, "a", 9)(3, "span", 10);
     \u0275\u0275text(4, "arrow_back");
     \u0275\u0275elementEnd();
     \u0275\u0275text(5, " Voltar ");
     \u0275\u0275elementEnd();
-    \u0275\u0275elementStart(6, "button", 10);
+    \u0275\u0275elementStart(6, "button", 11);
     \u0275\u0275listener("click", function EventDetailComponent_Conditional_6_Template_button_click_6_listener() {
       \u0275\u0275restoreView(_r2);
       const ctx_r0 = \u0275\u0275nextContext();
       return \u0275\u0275resetView(ctx_r0.deleteEvent());
     });
-    \u0275\u0275elementStart(7, "span", 9);
+    \u0275\u0275elementStart(7, "span", 10);
     \u0275\u0275text(8, "delete");
     \u0275\u0275elementEnd();
     \u0275\u0275text(9, " Excluir Sorteio ");
     \u0275\u0275elementEnd()();
-    \u0275\u0275elementStart(10, "h1", 11);
+    \u0275\u0275elementStart(10, "h1", 12);
     \u0275\u0275text(11);
     \u0275\u0275elementEnd();
-    \u0275\u0275elementStart(12, "p", 12);
+    \u0275\u0275elementStart(12, "p", 13);
     \u0275\u0275text(13, " Convide a galera para o grupo. Quanto mais, melhor. ");
     \u0275\u0275elementEnd();
-    \u0275\u0275elementStart(14, "div", 13);
-    \u0275\u0275conditionalCreate(15, EventDetailComponent_Conditional_6_Conditional_15_Template, 5, 3, "span", 14);
-    \u0275\u0275conditionalCreate(16, EventDetailComponent_Conditional_6_Conditional_16_Template, 5, 3, "span", 14);
+    \u0275\u0275elementStart(14, "div", 14);
+    \u0275\u0275conditionalCreate(15, EventDetailComponent_Conditional_6_Conditional_15_Template, 5, 3, "span", 15);
+    \u0275\u0275conditionalCreate(16, EventDetailComponent_Conditional_6_Conditional_16_Template, 5, 3, "span", 15);
     \u0275\u0275elementEnd()();
-    \u0275\u0275elementStart(17, "div", 15)(18, "div", 16);
-    \u0275\u0275conditionalCreate(19, EventDetailComponent_Conditional_6_Conditional_19_Template, 31, 8)(20, EventDetailComponent_Conditional_6_Conditional_20_Template, 7, 0, "div", 17);
+    \u0275\u0275elementStart(17, "div", 16)(18, "div", 17);
+    \u0275\u0275conditionalCreate(19, EventDetailComponent_Conditional_6_Conditional_19_Template, 31, 8)(20, EventDetailComponent_Conditional_6_Conditional_20_Template, 7, 0, "div", 18);
     \u0275\u0275elementEnd();
-    \u0275\u0275elementStart(21, "div", 18)(22, "div", 19)(23, "h2", 20);
+    \u0275\u0275elementStart(21, "div", 19)(22, "div", 20)(23, "h2", 21);
     \u0275\u0275text(24);
     \u0275\u0275elementEnd();
-    \u0275\u0275elementStart(25, "span", 21);
+    \u0275\u0275elementStart(25, "span", 22);
     \u0275\u0275text(26, "group");
     \u0275\u0275elementEnd()();
-    \u0275\u0275conditionalCreate(27, EventDetailComponent_Conditional_6_Conditional_27_Template, 3, 0, "div", 22)(28, EventDetailComponent_Conditional_6_Conditional_28_Template, 3, 0, "div", 23);
-    \u0275\u0275conditionalCreate(29, EventDetailComponent_Conditional_6_Conditional_29_Template, 4, 2, "button", 24)(30, EventDetailComponent_Conditional_6_Conditional_30_Template, 2, 0, "p", 25);
+    \u0275\u0275conditionalCreate(27, EventDetailComponent_Conditional_6_Conditional_27_Template, 3, 0, "div", 23)(28, EventDetailComponent_Conditional_6_Conditional_28_Template, 3, 0, "div", 24);
+    \u0275\u0275conditionalCreate(29, EventDetailComponent_Conditional_6_Conditional_29_Template, 4, 2, "button", 25)(30, EventDetailComponent_Conditional_6_Conditional_30_Template, 2, 0, "p", 26);
     \u0275\u0275elementEnd()();
   }
   if (rf & 2) {
@@ -455,6 +459,97 @@ function EventDetailComponent_Conditional_6_Template(rf, ctx) {
     \u0275\u0275conditional(ctx_r0.participants().length === 0 ? 27 : 28);
     \u0275\u0275advance(2);
     \u0275\u0275conditional(!ctx_r0.hasDrawn() && ctx_r0.participants().length >= 3 ? 29 : !ctx_r0.hasDrawn() && ctx_r0.participants().length > 0 ? 30 : -1);
+  }
+}
+function EventDetailComponent_Conditional_8_Conditional_5_Template(rf, ctx) {
+  if (rf & 1) {
+    const _r10 = \u0275\u0275getCurrentView();
+    \u0275\u0275elementStart(0, "div", 64)(1, "span", 66);
+    \u0275\u0275text(2, "warning");
+    \u0275\u0275elementEnd();
+    \u0275\u0275elementStart(3, "h2", 67);
+    \u0275\u0275text(4, "Aten\xE7\xE3o!");
+    \u0275\u0275elementEnd();
+    \u0275\u0275elementStart(5, "p", 68);
+    \u0275\u0275text(6, " Passe o dispositivo para ");
+    \u0275\u0275element(7, "br");
+    \u0275\u0275elementStart(8, "span", 69);
+    \u0275\u0275text(9);
+    \u0275\u0275elementEnd();
+    \u0275\u0275text(10, ". ");
+    \u0275\u0275element(11, "br")(12, "br");
+    \u0275\u0275text(13, " Apenas ele(a) deve ver a pr\xF3xima tela para n\xE3o estragar a surpresa! ");
+    \u0275\u0275elementEnd();
+    \u0275\u0275elementStart(14, "button", 70);
+    \u0275\u0275listener("click", function EventDetailComponent_Conditional_8_Conditional_5_Template_button_click_14_listener() {
+      \u0275\u0275restoreView(_r10);
+      const ctx_r0 = \u0275\u0275nextContext(2);
+      return \u0275\u0275resetView(ctx_r0.confirmIdentity());
+    });
+    \u0275\u0275text(15);
+    \u0275\u0275elementEnd()();
+  }
+  if (rf & 2) {
+    const p_r11 = \u0275\u0275nextContext();
+    \u0275\u0275advance(9);
+    \u0275\u0275textInterpolate(p_r11.name || p_r11.email);
+    \u0275\u0275advance(6);
+    \u0275\u0275textInterpolate1(" Eu sou o(a) ", p_r11.name || p_r11.email, " ");
+  }
+}
+function EventDetailComponent_Conditional_8_Conditional_6_Template(rf, ctx) {
+  if (rf & 1) {
+    const _r12 = \u0275\u0275getCurrentView();
+    \u0275\u0275elementStart(0, "div", 65)(1, "span", 45);
+    \u0275\u0275text(2, "visibility");
+    \u0275\u0275elementEnd();
+    \u0275\u0275elementStart(3, "h2", 71);
+    \u0275\u0275text(4, "Voc\xEA tirou:");
+    \u0275\u0275elementEnd();
+    \u0275\u0275elementStart(5, "div", 72)(6, "p", 73);
+    \u0275\u0275text(7);
+    \u0275\u0275elementEnd()();
+    \u0275\u0275elementStart(8, "p", 74);
+    \u0275\u0275text(9, " Guarde segredo! Feche esta tela antes de devolver o dispositivo. ");
+    \u0275\u0275elementEnd();
+    \u0275\u0275elementStart(10, "button", 75);
+    \u0275\u0275listener("click", function EventDetailComponent_Conditional_8_Conditional_6_Template_button_click_10_listener() {
+      \u0275\u0275restoreView(_r12);
+      const ctx_r0 = \u0275\u0275nextContext(2);
+      return \u0275\u0275resetView(ctx_r0.closeRevealModal());
+    });
+    \u0275\u0275elementStart(11, "span", 37);
+    \u0275\u0275text(12, "visibility_off");
+    \u0275\u0275elementEnd();
+    \u0275\u0275text(13, " Ocultar e Fechar ");
+    \u0275\u0275elementEnd()();
+  }
+  if (rf & 2) {
+    const p_r11 = \u0275\u0275nextContext();
+    const ctx_r0 = \u0275\u0275nextContext();
+    \u0275\u0275advance(7);
+    \u0275\u0275textInterpolate1(" ", ctx_r0.getDrawnEmail(p_r11.drawn_participant_id), " ");
+  }
+}
+function EventDetailComponent_Conditional_8_Template(rf, ctx) {
+  if (rf & 1) {
+    const _r9 = \u0275\u0275getCurrentView();
+    \u0275\u0275elementStart(0, "div", 6)(1, "div", 62)(2, "button", 63);
+    \u0275\u0275listener("click", function EventDetailComponent_Conditional_8_Template_button_click_2_listener() {
+      \u0275\u0275restoreView(_r9);
+      const ctx_r0 = \u0275\u0275nextContext();
+      return \u0275\u0275resetView(ctx_r0.closeRevealModal());
+    });
+    \u0275\u0275elementStart(3, "span", 37);
+    \u0275\u0275text(4, "close");
+    \u0275\u0275elementEnd()();
+    \u0275\u0275conditionalCreate(5, EventDetailComponent_Conditional_8_Conditional_5_Template, 16, 2, "div", 64)(6, EventDetailComponent_Conditional_8_Conditional_6_Template, 14, 1, "div", 65);
+    \u0275\u0275elementEnd()();
+  }
+  if (rf & 2) {
+    const ctx_r0 = \u0275\u0275nextContext();
+    \u0275\u0275advance(5);
+    \u0275\u0275conditional(ctx_r0.revealStep() === "warning" ? 5 : 6);
   }
 }
 var EventDetailComponent = class _EventDetailComponent {
@@ -503,6 +598,19 @@ var EventDetailComponent = class _EventDetailComponent {
   ));
   /** Estado do sorteio */
   drawing = signal(false, ...ngDevMode ? [{ debugName: "drawing" }] : (
+    /* istanbul ignore next */
+    []
+  ));
+  /** Estado do Modal de Revelação (Passa o Celular) */
+  showRevealModal = signal(false, ...ngDevMode ? [{ debugName: "showRevealModal" }] : (
+    /* istanbul ignore next */
+    []
+  ));
+  revealedParticipant = signal(null, ...ngDevMode ? [{ debugName: "revealedParticipant" }] : (
+    /* istanbul ignore next */
+    []
+  ));
+  revealStep = signal("warning", ...ngDevMode ? [{ debugName: "revealStep" }] : (
     /* istanbul ignore next */
     []
   ));
@@ -621,6 +729,21 @@ var EventDetailComponent = class _EventDetailComponent {
     const participant = this.participants().find((p) => p.id === drawnId);
     return participant ? participant.name || participant.email : "Desconhecido";
   }
+  openRevealModal(participant) {
+    this.revealedParticipant.set(participant);
+    this.revealStep.set("warning");
+    this.showRevealModal.set(true);
+  }
+  confirmIdentity() {
+    this.revealStep.set("result");
+  }
+  closeRevealModal() {
+    this.showRevealModal.set(false);
+    setTimeout(() => {
+      this.revealedParticipant.set(null);
+      this.revealStep.set("warning");
+    }, 200);
+  }
   async copyMagicLink() {
     try {
       await navigator.clipboard.writeText(this.magicLink());
@@ -633,7 +756,7 @@ var EventDetailComponent = class _EventDetailComponent {
   static \u0275fac = function EventDetailComponent_Factory(__ngFactoryType__) {
     return new (__ngFactoryType__ || _EventDetailComponent)();
   };
-  static \u0275cmp = /* @__PURE__ */ \u0275\u0275defineComponent({ type: _EventDetailComponent, selectors: [["app-event-detail"]], inputs: { id: [1, "id"] }, decls: 8, vars: 2, consts: [[1, "min-h-screen", "flex", "flex-col", "bg-background"], [3, "isOpenChange", "isOpen"], [3, "toggleSidenav"], [1, "flex-1", "w-full", "max-w-4xl", "mx-auto", "px-6", "py-12"], [1, "font-headline", "font-bold", "uppercase", "text-muted-foreground"], [1, "border-4", "border-black", "bg-destructive/10", "p-6", "font-bold", "text-destructive"], [1, "mb-10"], [1, "flex", "justify-between", "items-center", "mb-4"], ["routerLink", "/dashboard", 1, "inline-flex", "items-center", "gap-1", "font-headline", "font-bold", "uppercase", "text-sm", "text-muted-foreground", "hover:text-foreground"], [1, "material-symbols-outlined", "text-base"], [1, "inline-flex", "items-center", "gap-1", "text-sm", "font-bold", "uppercase", "text-destructive", "hover:opacity-80", "transition-opacity", 3, "click"], [1, "text-4xl", "md:text-5xl", "font-black", "font-headline", "uppercase", "tracking-tighter", "mb-2"], [1, "text-lg", "font-medium", "text-muted-foreground"], [1, "flex", "flex-wrap", "gap-3", "mt-4"], [1, "flex", "items-center", "gap-1", "bg-white", "border-2", "border-black", "px-3", "py-1", "text-xs", "font-bold", "font-headline", "uppercase"], [1, "grid", "grid-cols-1", "md:grid-cols-2", "gap-8"], [1, "space-y-8"], [1, "bg-primary/20", "border-4", "border-black", "p-6", "neo-shadow-lg", "text-center", "flex", "flex-col", "items-center"], [1, "bg-white", "border-4", "border-black", "p-6", "neo-shadow-lg", "h-fit"], [1, "flex", "justify-between", "items-center", "mb-6"], [1, "text-2xl", "font-black", "font-headline", "uppercase", "italic"], [1, "material-symbols-outlined", "text-zinc-400"], [1, "bg-zinc-100", "border-2", "border-dashed", "border-black", "p-6", "text-center"], [1, "space-y-4"], [1, "mt-6", "w-full", "bg-primary", "border-4", "border-black", "font-black", "uppercase", "py-4", "flex", "items-center", "justify-center", "gap-2", "neo-shadow", "hover:bg-accent", "transition-all", "disabled:opacity-60", "disabled:cursor-not-allowed", 3, "disabled"], [1, "mt-6", "text-center", "text-xs", "font-bold", "text-zinc-500", "uppercase"], [1, "material-symbols-outlined", "text-sm"], [1, "bg-white", "border-4", "border-black", "p-6", "neo-shadow-lg"], [1, "flex", "items-center", "gap-3", "mb-6"], [1, "material-symbols-outlined", "text-3xl", "bg-primary", "p-2", "border-2", "border-black", "neo-shadow"], [1, "space-y-4", 3, "ngSubmit", "formGroup"], ["for", "email", 1, "block", "text-xs", "font-black", "uppercase", "mb-1"], ["id", "email", "type", "email", "formControlName", "email", "placeholder", "amigo@exemplo.com", 1, "w-full", "border-4", "border-black", "p-4", "font-bold", "focus:ring-0", "focus:outline-none", "focus:bg-accent", "bg-zinc-50", "transition-colors"], [1, "text-xs", "font-bold", "text-destructive", "uppercase", "mt-1"], [1, "text-sm", "font-bold", "text-destructive"], ["type", "submit", 1, "w-full", "bg-accent", "border-4", "border-black", "font-black", "uppercase", "py-4", "flex", "items-center", "justify-center", "gap-2", "neo-shadow", "hover:translate-x-0.5", "hover:translate-y-0.5", "hover:shadow-none", "active:translate-x-1", "active:translate-y-1", "active:shadow-none", "transition-all", "disabled:opacity-60", "disabled:cursor-not-allowed", 3, "disabled"], [1, "material-symbols-outlined"], [1, "bg-secondary", "border-4", "border-black", "p-6", "neo-shadow-lg"], [1, "flex", "items-center", "gap-3", "mb-4"], [1, "material-symbols-outlined", "text-3xl"], [1, "font-bold", "text-sm", "mb-4"], [1, "flex", "gap-2"], [1, "flex-1", "bg-white", "border-2", "border-black", "p-3", "font-mono", "text-sm", "overflow-hidden", "truncate"], ["type", "button", 1, "bg-black", "text-white", "p-3", "border-2", "border-black", "flex", "items-center", "justify-center", "hover:bg-zinc-800", "active:scale-95", "transition-transform", 3, "click"], [1, "material-symbols-outlined", "text-6xl", "text-primary", "mb-4"], [1, "text-2xl", "font-black", "font-headline", "uppercase", "italic", "mb-2"], [1, "font-bold", "text-sm"], [1, "text-xs", "font-bold", "uppercase", "italic", "text-zinc-500"], [1, "flex", "items-center", "justify-between", "p-3", "border-2", "border-black", "bg-zinc-50", "hover:bg-accent", "transition-colors"], [1, "flex", "items-center", "gap-3", "min-w-0"], [1, "w-10", "h-10", "border-2", "border-black", "bg-primary", "flex", "items-center", "justify-center", "font-black", "uppercase", "shrink-0"], [1, "min-w-0"], [1, "font-black", "text-sm", "truncate"], [1, "text-[10px]", "font-bold", "uppercase", "text-zinc-500"], [1, "flex", "items-center", "gap-2"], [1, "bg-secondary", "px-3", "py-1", "border-2", "border-black", "text-xs", "font-bold", "uppercase"], ["type", "button", "aria-label", "Remover participante", 1, "text-zinc-400", "hover:text-destructive", "transition-colors", "shrink-0"], ["type", "button", "aria-label", "Remover participante", 1, "text-zinc-400", "hover:text-destructive", "transition-colors", "shrink-0", 3, "click"], [1, "material-symbols-outlined", "text-xl"], [1, "mt-6", "w-full", "bg-primary", "border-4", "border-black", "font-black", "uppercase", "py-4", "flex", "items-center", "justify-center", "gap-2", "neo-shadow", "hover:bg-accent", "transition-all", "disabled:opacity-60", "disabled:cursor-not-allowed", 3, "click", "disabled"]], template: function EventDetailComponent_Template(rf, ctx) {
+  static \u0275cmp = /* @__PURE__ */ \u0275\u0275defineComponent({ type: _EventDetailComponent, selectors: [["app-event-detail"]], inputs: { id: [1, "id"] }, decls: 9, vars: 3, consts: [[1, "min-h-screen", "flex", "flex-col", "bg-background"], [3, "isOpenChange", "isOpen"], [3, "toggleSidenav"], [1, "flex-1", "w-full", "max-w-4xl", "mx-auto", "px-6", "py-12"], [1, "font-headline", "font-bold", "uppercase", "text-muted-foreground"], [1, "border-4", "border-black", "bg-destructive/10", "p-6", "font-bold", "text-destructive"], [1, "fixed", "inset-0", "z-50", "flex", "items-center", "justify-center", "bg-black/80", "backdrop-blur-sm", "p-4"], [1, "mb-10"], [1, "flex", "justify-between", "items-center", "mb-4"], ["routerLink", "/dashboard", 1, "inline-flex", "items-center", "gap-1", "font-headline", "font-bold", "uppercase", "text-sm", "text-muted-foreground", "hover:text-foreground"], [1, "material-symbols-outlined", "text-base"], [1, "inline-flex", "items-center", "gap-1", "text-sm", "font-bold", "uppercase", "text-destructive", "hover:opacity-80", "transition-opacity", 3, "click"], [1, "text-4xl", "md:text-5xl", "font-black", "font-headline", "uppercase", "tracking-tighter", "mb-2"], [1, "text-lg", "font-medium", "text-muted-foreground"], [1, "flex", "flex-wrap", "gap-3", "mt-4"], [1, "flex", "items-center", "gap-1", "bg-white", "border-2", "border-black", "px-3", "py-1", "text-xs", "font-bold", "font-headline", "uppercase"], [1, "grid", "grid-cols-1", "md:grid-cols-2", "gap-8"], [1, "space-y-8"], [1, "bg-primary/20", "border-4", "border-black", "p-6", "neo-shadow-lg", "text-center", "flex", "flex-col", "items-center"], [1, "bg-white", "border-4", "border-black", "p-6", "neo-shadow-lg", "h-fit"], [1, "flex", "justify-between", "items-center", "mb-6"], [1, "text-2xl", "font-black", "font-headline", "uppercase", "italic"], [1, "material-symbols-outlined", "text-zinc-400"], [1, "bg-zinc-100", "border-2", "border-dashed", "border-black", "p-6", "text-center"], [1, "space-y-4"], [1, "mt-6", "w-full", "bg-primary", "border-4", "border-black", "font-black", "uppercase", "py-4", "flex", "items-center", "justify-center", "gap-2", "neo-shadow", "hover:bg-accent", "transition-all", "disabled:opacity-60", "disabled:cursor-not-allowed", 3, "disabled"], [1, "mt-6", "text-center", "text-xs", "font-bold", "text-zinc-500", "uppercase"], [1, "material-symbols-outlined", "text-sm"], [1, "bg-white", "border-4", "border-black", "p-6", "neo-shadow-lg"], [1, "flex", "items-center", "gap-3", "mb-6"], [1, "material-symbols-outlined", "text-3xl", "bg-primary", "p-2", "border-2", "border-black", "neo-shadow"], [1, "space-y-4", 3, "ngSubmit", "formGroup"], ["for", "email", 1, "block", "text-xs", "font-black", "uppercase", "mb-1"], ["id", "email", "type", "email", "formControlName", "email", "placeholder", "amigo@exemplo.com", 1, "w-full", "border-4", "border-black", "p-4", "font-bold", "focus:ring-0", "focus:outline-none", "focus:bg-accent", "bg-zinc-50", "transition-colors"], [1, "text-xs", "font-bold", "text-destructive", "uppercase", "mt-1"], [1, "text-sm", "font-bold", "text-destructive"], ["type", "submit", 1, "w-full", "bg-accent", "border-4", "border-black", "font-black", "uppercase", "py-4", "flex", "items-center", "justify-center", "gap-2", "neo-shadow", "hover:translate-x-0.5", "hover:translate-y-0.5", "hover:shadow-none", "active:translate-x-1", "active:translate-y-1", "active:shadow-none", "transition-all", "disabled:opacity-60", "disabled:cursor-not-allowed", 3, "disabled"], [1, "material-symbols-outlined"], [1, "bg-secondary", "border-4", "border-black", "p-6", "neo-shadow-lg"], [1, "flex", "items-center", "gap-3", "mb-4"], [1, "material-symbols-outlined", "text-3xl"], [1, "font-bold", "text-sm", "mb-4"], [1, "flex", "gap-2"], [1, "flex-1", "bg-white", "border-2", "border-black", "p-3", "font-mono", "text-sm", "overflow-hidden", "truncate"], ["type", "button", 1, "bg-black", "text-white", "p-3", "border-2", "border-black", "flex", "items-center", "justify-center", "hover:bg-zinc-800", "active:scale-95", "transition-transform", 3, "click"], [1, "material-symbols-outlined", "text-6xl", "text-primary", "mb-4"], [1, "text-2xl", "font-black", "font-headline", "uppercase", "italic", "mb-2"], [1, "font-bold", "text-sm"], [1, "text-xs", "font-bold", "uppercase", "italic", "text-zinc-500"], [1, "flex", "items-center", "justify-between", "p-3", "border-2", "border-black", "bg-zinc-50", "hover:bg-accent", "transition-colors"], [1, "flex", "items-center", "gap-3", "min-w-0"], [1, "w-10", "h-10", "border-2", "border-black", "bg-primary", "flex", "items-center", "justify-center", "font-black", "uppercase", "shrink-0"], [1, "min-w-0"], [1, "font-black", "text-sm", "truncate"], [1, "text-[10px]", "font-bold", "uppercase", "text-zinc-500"], [1, "flex", "items-center", "gap-2"], ["type", "button", 1, "bg-secondary", "px-3", "py-2", "border-2", "border-black", "text-xs", "font-black", "uppercase", "flex", "items-center", "gap-1", "hover:bg-black", "hover:text-white", "transition-colors"], ["type", "button", "aria-label", "Remover participante", 1, "text-zinc-400", "hover:text-destructive", "transition-colors", "shrink-0"], ["type", "button", 1, "bg-secondary", "px-3", "py-2", "border-2", "border-black", "text-xs", "font-black", "uppercase", "flex", "items-center", "gap-1", "hover:bg-black", "hover:text-white", "transition-colors", 3, "click"], ["type", "button", "aria-label", "Remover participante", 1, "text-zinc-400", "hover:text-destructive", "transition-colors", "shrink-0", 3, "click"], [1, "material-symbols-outlined", "text-xl"], [1, "mt-6", "w-full", "bg-primary", "border-4", "border-black", "font-black", "uppercase", "py-4", "flex", "items-center", "justify-center", "gap-2", "neo-shadow", "hover:bg-accent", "transition-all", "disabled:opacity-60", "disabled:cursor-not-allowed", 3, "click", "disabled"], [1, "bg-white", "border-4", "border-black", "w-full", "max-w-md", "p-8", "neo-shadow-xl", "text-center", "relative", "animate-in", "fade-in", "zoom-in", "duration-200"], ["type", "button", "aria-label", "Fechar", 1, "absolute", "top-4", "right-4", "text-zinc-400", "hover:text-black", "transition-colors", 3, "click"], [1, "flex", "flex-col", "items-center"], [1, "flex", "flex-col", "items-center", "animate-in", "fade-in", "slide-in-from-bottom-4"], [1, "material-symbols-outlined", "text-6xl", "text-destructive", "mb-4", "animate-bounce"], [1, "text-3xl", "font-black", "font-headline", "uppercase", "italic", "mb-4"], [1, "font-bold", "text-lg", "mb-8"], [1, "bg-primary", "px-2", "border-2", "border-black"], [1, "w-full", "bg-black", "text-white", "font-black", "uppercase", "py-4", "border-2", "border-black", "hover:bg-zinc-800", "transition-colors", 3, "click"], [1, "text-xl", "font-bold", "uppercase", "text-muted-foreground", "mb-2"], [1, "bg-secondary", "border-4", "border-black", "p-6", "w-full", "mb-8"], [1, "text-3xl", "font-black", "font-headline", "uppercase", "italic", "truncate"], [1, "text-sm", "font-bold", "text-zinc-500", "mb-6"], [1, "w-full", "bg-destructive", "text-white", "font-black", "uppercase", "py-4", "border-2", "border-black", "flex", "items-center", "justify-center", "gap-2", "hover:bg-red-600", "transition-colors", 3, "click"]], template: function EventDetailComponent_Template(rf, ctx) {
     if (rf & 1) {
       \u0275\u0275elementStart(0, "div", 0)(1, "app-sidenav", 1);
       \u0275\u0275twoWayListener("isOpenChange", function EventDetailComponent_Template_app_sidenav_isOpenChange_1_listener($event) {
@@ -650,14 +773,18 @@ var EventDetailComponent = class _EventDetailComponent {
       \u0275\u0275conditionalCreate(4, EventDetailComponent_Conditional_4_Template, 2, 0, "p", 4)(5, EventDetailComponent_Conditional_5_Template, 2, 1, "div", 5)(6, EventDetailComponent_Conditional_6_Template, 31, 7);
       \u0275\u0275elementEnd();
       \u0275\u0275element(7, "app-footer");
+      \u0275\u0275conditionalCreate(8, EventDetailComponent_Conditional_8_Template, 7, 1, "div", 6);
       \u0275\u0275elementEnd();
     }
     if (rf & 2) {
       let tmp_1_0;
+      let tmp_2_0;
       \u0275\u0275advance();
       \u0275\u0275twoWayProperty("isOpen", ctx.sidenavOpen);
       \u0275\u0275advance(3);
       \u0275\u0275conditional(ctx.loading() ? 4 : ctx.errorMessage() ? 5 : (tmp_1_0 = ctx.event()) ? 6 : -1, tmp_1_0);
+      \u0275\u0275advance(4);
+      \u0275\u0275conditional((tmp_2_0 = ctx.showRevealModal() && ctx.revealedParticipant()) ? 8 : -1, tmp_2_0);
     }
   }, dependencies: [ReactiveFormsModule, \u0275NgNoValidate, DefaultValueAccessor, NgControlStatus, NgControlStatusGroup, FormGroupDirective, FormControlName, RouterLink, HeaderComponent, FooterComponent, SidenavComponent, BrlCurrencyPipe, RelativeDatePipe], encapsulation: 2 });
 };
@@ -821,9 +948,13 @@ var EventDetailComponent = class _EventDetailComponent {
                 </div>\r
                 <div class="flex items-center gap-2">\r
                   @if (hasDrawn()) {\r
-                    <div class="bg-secondary px-3 py-1 border-2 border-black text-xs font-bold uppercase">\r
-                      \u{1F449} Tirou: {{ getDrawnEmail(p.drawn_participant_id) }}\r
-                    </div>\r
+                    <button\r
+                      type="button"\r
+                      (click)="openRevealModal(p)"\r
+                      class="bg-secondary px-3 py-2 border-2 border-black text-xs font-black uppercase flex items-center gap-1 hover:bg-black hover:text-white transition-colors"\r
+                    >\r
+                      <span class="material-symbols-outlined text-sm">visibility</span> Revelar\r
+                    </button>\r
                   } @else {\r
                     <button\r
                       type="button"\r
@@ -860,6 +991,64 @@ var EventDetailComponent = class _EventDetailComponent {
   </main>\r
 \r
   <app-footer></app-footer>\r
+\r
+  <!-- Modal de Revela\xE7\xE3o de Amigo Secreto ("Passa o Celular") -->\r
+  @if (showRevealModal() && revealedParticipant(); as p) {\r
+    <div class="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm p-4">\r
+      <div class="bg-white border-4 border-black w-full max-w-md p-8 neo-shadow-xl text-center relative animate-in fade-in zoom-in duration-200">\r
+        <!-- Bot\xE3o fechar discreto -->\r
+        <button\r
+          type="button"\r
+          (click)="closeRevealModal()"\r
+          class="absolute top-4 right-4 text-zinc-400 hover:text-black transition-colors"\r
+          aria-label="Fechar"\r
+        >\r
+          <span class="material-symbols-outlined">close</span>\r
+        </button>\r
+\r
+        @if (revealStep() === 'warning') {\r
+          <!-- Passo 1: Aviso -->\r
+          <div class="flex flex-col items-center">\r
+            <span class="material-symbols-outlined text-6xl text-destructive mb-4 animate-bounce">warning</span>\r
+            <h2 class="text-3xl font-black font-headline uppercase italic mb-4">Aten\xE7\xE3o!</h2>\r
+            <p class="font-bold text-lg mb-8">\r
+              Passe o dispositivo para <br>\r
+              <span class="bg-primary px-2 border-2 border-black">{{ p.name || p.email }}</span>.\r
+              <br><br>\r
+              Apenas ele(a) deve ver a pr\xF3xima tela para n\xE3o estragar a surpresa!\r
+            </p>\r
+            <button\r
+              (click)="confirmIdentity()"\r
+              class="w-full bg-black text-white font-black uppercase py-4 border-2 border-black hover:bg-zinc-800 transition-colors"\r
+            >\r
+              Eu sou o(a) {{ p.name || p.email }}\r
+            </button>\r
+          </div>\r
+        } @else {\r
+          <!-- Passo 2: Resultado -->\r
+          <div class="flex flex-col items-center animate-in fade-in slide-in-from-bottom-4">\r
+            <span class="material-symbols-outlined text-6xl text-primary mb-4">visibility</span>\r
+            <h2 class="text-xl font-bold uppercase text-muted-foreground mb-2">Voc\xEA tirou:</h2>\r
+            <div class="bg-secondary border-4 border-black p-6 w-full mb-8">\r
+              <p class="text-3xl font-black font-headline uppercase italic truncate">\r
+                {{ getDrawnEmail(p.drawn_participant_id) }}\r
+              </p>\r
+            </div>\r
+            <p class="text-sm font-bold text-zinc-500 mb-6">\r
+              Guarde segredo! Feche esta tela antes de devolver o dispositivo.\r
+            </p>\r
+            <button\r
+              (click)="closeRevealModal()"\r
+              class="w-full bg-destructive text-white font-black uppercase py-4 border-2 border-black flex items-center justify-center gap-2 hover:bg-red-600 transition-colors"\r
+            >\r
+              <span class="material-symbols-outlined">visibility_off</span>\r
+              Ocultar e Fechar\r
+            </button>\r
+          </div>\r
+        }\r
+      </div>\r
+    </div>\r
+  }\r
 </div>\r
 ` }]
   }], () => [], { id: [{ type: Input, args: [{ isSignal: true, alias: "id", required: true }] }] });
@@ -870,4 +1059,4 @@ var EventDetailComponent = class _EventDetailComponent {
 export {
   EventDetailComponent
 };
-//# sourceMappingURL=chunk-7JY7HDK5.js.map
+//# sourceMappingURL=chunk-F7JLTBOZ.js.map

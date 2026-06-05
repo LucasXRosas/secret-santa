@@ -43,6 +43,11 @@ export class EventDetailComponent {
   /** Estado do sorteio */
   drawing = signal(false);
 
+  /** Estado do Modal de Revelação (Passa o Celular) */
+  showRevealModal = signal(false);
+  revealedParticipant = signal<Participant | null>(null);
+  revealStep = signal<'warning' | 'result'>('warning');
+
   /** Quantidade de convidados (usada no título "Pendentes"). */
   pendingCount = computed(() => this.participants().length);
 
@@ -170,6 +175,25 @@ export class EventDetailComponent {
     if (!drawnId) return '';
     const participant = this.participants().find(p => p.id === drawnId);
     return participant ? (participant.name || participant.email) : 'Desconhecido';
+  }
+
+  openRevealModal(participant: Participant) {
+    this.revealedParticipant.set(participant);
+    this.revealStep.set('warning');
+    this.showRevealModal.set(true);
+  }
+
+  confirmIdentity() {
+    this.revealStep.set('result');
+  }
+
+  closeRevealModal() {
+    this.showRevealModal.set(false);
+    // Pequeno delay para limpar os dados após a animação de saída (se houver)
+    setTimeout(() => {
+      this.revealedParticipant.set(null);
+      this.revealStep.set('warning');
+    }, 200);
   }
 
   async copyMagicLink() {

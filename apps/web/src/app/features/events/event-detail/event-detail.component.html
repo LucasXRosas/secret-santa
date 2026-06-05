@@ -155,9 +155,13 @@
                 </div>
                 <div class="flex items-center gap-2">
                   @if (hasDrawn()) {
-                    <div class="bg-secondary px-3 py-1 border-2 border-black text-xs font-bold uppercase">
-                      👉 Tirou: {{ getDrawnEmail(p.drawn_participant_id) }}
-                    </div>
+                    <button
+                      type="button"
+                      (click)="openRevealModal(p)"
+                      class="bg-secondary px-3 py-2 border-2 border-black text-xs font-black uppercase flex items-center gap-1 hover:bg-black hover:text-white transition-colors"
+                    >
+                      <span class="material-symbols-outlined text-sm">visibility</span> Revelar
+                    </button>
                   } @else {
                     <button
                       type="button"
@@ -194,4 +198,62 @@
   </main>
 
   <app-footer></app-footer>
+
+  <!-- Modal de Revelação de Amigo Secreto ("Passa o Celular") -->
+  @if (showRevealModal() && revealedParticipant(); as p) {
+    <div class="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm p-4">
+      <div class="bg-white border-4 border-black w-full max-w-md p-8 neo-shadow-xl text-center relative animate-in fade-in zoom-in duration-200">
+        <!-- Botão fechar discreto -->
+        <button
+          type="button"
+          (click)="closeRevealModal()"
+          class="absolute top-4 right-4 text-zinc-400 hover:text-black transition-colors"
+          aria-label="Fechar"
+        >
+          <span class="material-symbols-outlined">close</span>
+        </button>
+
+        @if (revealStep() === 'warning') {
+          <!-- Passo 1: Aviso -->
+          <div class="flex flex-col items-center">
+            <span class="material-symbols-outlined text-6xl text-destructive mb-4 animate-bounce">warning</span>
+            <h2 class="text-3xl font-black font-headline uppercase italic mb-4">Atenção!</h2>
+            <p class="font-bold text-lg mb-8">
+              Passe o dispositivo para <br>
+              <span class="bg-primary px-2 border-2 border-black">{{ p.name || p.email }}</span>.
+              <br><br>
+              Apenas ele(a) deve ver a próxima tela para não estragar a surpresa!
+            </p>
+            <button
+              (click)="confirmIdentity()"
+              class="w-full bg-black text-white font-black uppercase py-4 border-2 border-black hover:bg-zinc-800 transition-colors"
+            >
+              Eu sou o(a) {{ p.name || p.email }}
+            </button>
+          </div>
+        } @else {
+          <!-- Passo 2: Resultado -->
+          <div class="flex flex-col items-center animate-in fade-in slide-in-from-bottom-4">
+            <span class="material-symbols-outlined text-6xl text-primary mb-4">visibility</span>
+            <h2 class="text-xl font-bold uppercase text-muted-foreground mb-2">Você tirou:</h2>
+            <div class="bg-secondary border-4 border-black p-6 w-full mb-8">
+              <p class="text-3xl font-black font-headline uppercase italic truncate">
+                {{ getDrawnEmail(p.drawn_participant_id) }}
+              </p>
+            </div>
+            <p class="text-sm font-bold text-zinc-500 mb-6">
+              Guarde segredo! Feche esta tela antes de devolver o dispositivo.
+            </p>
+            <button
+              (click)="closeRevealModal()"
+              class="w-full bg-destructive text-white font-black uppercase py-4 border-2 border-black flex items-center justify-center gap-2 hover:bg-red-600 transition-colors"
+            >
+              <span class="material-symbols-outlined">visibility_off</span>
+              Ocultar e Fechar
+            </button>
+          </div>
+        }
+      </div>
+    </div>
+  }
 </div>

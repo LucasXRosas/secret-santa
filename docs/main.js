@@ -56,7 +56,7 @@ var routes = [
   {
     path: "eventos/:id",
     canActivate: [authGuard],
-    loadComponent: () => import("./chunk-7JY7HDK5.js").then((m) => m.EventDetailComponent)
+    loadComponent: () => import("./chunk-F7JLTBOZ.js").then((m) => m.EventDetailComponent)
   }
 ];
 
