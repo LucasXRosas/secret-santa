@@ -10,11 +10,12 @@ import {
   provideRouter,
   setClassMetadata,
   signal,
+  withComponentInputBinding,
   withFetch,
   ɵsetClassDebugInfo,
   ɵɵdefineComponent,
   ɵɵelement
-} from "./chunk-SA44WC6K.js";
+} from "./chunk-PP7CZ2AI.js";
 
 // apps/web/src/app/core/guards/auth.guard.ts
 var authGuard = async () => {
@@ -31,7 +32,7 @@ var authGuard = async () => {
 var routes = [
   {
     path: "login",
-    loadComponent: () => import("./chunk-2OOZLBER.js").then((m) => m.LoginComponent)
+    loadComponent: () => import("./chunk-7WUCERO7.js").then((m) => m.LoginComponent)
   },
   {
     path: "",
@@ -40,22 +41,22 @@ var routes = [
   },
   {
     path: "home",
-    loadComponent: () => import("./chunk-XYRYLHO6.js").then((m) => m.HomeComponent)
+    loadComponent: () => import("./chunk-LMARA2L6.js").then((m) => m.HomeComponent)
   },
   {
     path: "dashboard",
     canActivate: [authGuard],
-    loadComponent: () => import("./chunk-42KW2NTP.js").then((m) => m.DashboardComponent)
+    loadComponent: () => import("./chunk-JZW6VF2E.js").then((m) => m.DashboardComponent)
   },
   {
     path: "eventos/novo",
     canActivate: [authGuard],
-    loadComponent: () => import("./chunk-E4OQMXHH.js").then((m) => m.CreateEventComponent)
+    loadComponent: () => import("./chunk-2VQ2KFF4.js").then((m) => m.CreateEventComponent)
   },
   {
     path: "eventos/:id",
     canActivate: [authGuard],
-    loadComponent: () => import("./chunk-5J5PCZAG.js").then((m) => m.EventDetailComponent)
+    loadComponent: () => import("./chunk-XOZKMUBS.js").then((m) => m.EventDetailComponent)
   }
 ];
 
@@ -63,7 +64,9 @@ var routes = [
 var appConfig = {
   providers: [
     provideBrowserGlobalErrorListeners(),
-    provideRouter(routes),
+    // [ID16] withComponentInputBinding() faz o Router injetar automaticamente
+    // os parâmetros de rota (ex: :id) diretamente como input() nos componentes.
+    provideRouter(routes, withComponentInputBinding()),
     provideHttpClient(withFetch())
   ]
 };
@@ -97,7 +100,7 @@ var App = class _App {
   }], null, null);
 })();
 (() => {
-  (typeof ngDevMode === "undefined" || ngDevMode) && \u0275setClassDebugInfo(App, { className: "App", filePath: "src/app/app.ts", lineNumber: 10 });
+  (typeof ngDevMode === "undefined" || ngDevMode) && \u0275setClassDebugInfo(App, { className: "App", filePath: "apps/web/src/app/app.ts", lineNumber: 10 });
 })();
 
 // apps/web/src/main.ts

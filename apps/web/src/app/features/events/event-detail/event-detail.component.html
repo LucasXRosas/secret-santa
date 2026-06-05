@@ -1,5 +1,6 @@
 <div class="min-h-screen flex flex-col bg-background">
-  <app-sidenav [isOpen]="sidenavOpen()" (closeSidenav)="sidenavOpen.set(false)"></app-sidenav>
+  <!-- [ID12] two-way binding via model(): [(isOpen)] sincroniza sidenavOpen bidireccionalmente -->
+  <app-sidenav [(isOpen)]="sidenavOpen"></app-sidenav>
   <app-header (toggleSidenav)="sidenavOpen.set(!sidenavOpen())"></app-header>
 
   <main class="flex-1 w-full max-w-4xl mx-auto px-6 py-12">
@@ -26,13 +27,15 @@
         </p>
         <div class="flex flex-wrap gap-3 mt-4">
           @if (ev.draw_date) {
+            <!-- [ID8] RelativeDatePipe: converte ISO date em texto relativo pt-BR -->
             <span class="flex items-center gap-1 bg-white border-2 border-black px-3 py-1 text-xs font-bold font-headline uppercase">
-              <span class="material-symbols-outlined text-sm">calendar_today</span> {{ ev.draw_date }}
+              <span class="material-symbols-outlined text-sm">calendar_today</span> {{ ev.draw_date | relativeDate }}
             </span>
           }
           @if (ev.budget != null) {
+            <!-- [ID8] BrlCurrencyPipe: formata número como R$ 00,00 via Intl.NumberFormat -->
             <span class="flex items-center gap-1 bg-white border-2 border-black px-3 py-1 text-xs font-bold font-headline uppercase">
-              <span class="material-symbols-outlined text-sm">payments</span> R$ {{ ev.budget }}
+              <span class="material-symbols-outlined text-sm">payments</span> {{ ev.budget | brlCurrency }}
             </span>
           }
         </div>

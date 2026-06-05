@@ -7,7 +7,7 @@ import {
   NgModel,
   RequiredValidator,
   ɵNgNoValidate
-} from "./chunk-FP24B2MI.js";
+} from "./chunk-D2NPQOVP.js";
 import {
   AuthService,
   CommonModule,
@@ -34,7 +34,7 @@ import {
   ɵɵrestoreView,
   ɵɵtext,
   ɵɵtextInterpolate1
-} from "./chunk-SA44WC6K.js";
+} from "./chunk-PP7CZ2AI.js";
 
 // apps/web/src/app/features/login/login.component.ts
 function LoginComponent_Conditional_43_Template(rf, ctx) {
@@ -328,7 +328,7 @@ var LoginComponent = class _LoginComponent {
       \u0275\u0275advance(11);
       \u0275\u0275conditional(ctx.isRegisterModalOpen() ? 43 : -1);
     }
-  }, dependencies: [CommonModule, FormsModule, \u0275NgNoValidate, DefaultValueAccessor, NgControlStatus, NgControlStatusGroup, RequiredValidator, NgModel, NgForm], styles: ["\n@keyframes _ngcontent-%COMP%_float {\n  0% {\n    transform: translateY(0px) rotate(-12deg);\n  }\n  50% {\n    transform: translateY(-10px) rotate(-12deg);\n  }\n  100% {\n    transform: translateY(0px) rotate(-12deg);\n  }\n}\n@keyframes _ngcontent-%COMP%_float-delayed {\n  0% {\n    transform: translateY(0px) rotate(15deg);\n  }\n  50% {\n    transform: translateY(-10px) rotate(15deg);\n  }\n  100% {\n    transform: translateY(0px) rotate(15deg);\n  }\n}\n.animate-float[_ngcontent-%COMP%] {\n  animation: _ngcontent-%COMP%_float 3s ease-in-out infinite;\n}\n.animate-float-delayed[_ngcontent-%COMP%] {\n  animation: _ngcontent-%COMP%_float-delayed 3.5s ease-in-out infinite;\n}\n.btn-press[_ngcontent-%COMP%]:active {\n  transform: translate(2px, 2px);\n  box-shadow: 0px 0px 0px 0px black;\n}\n.bg-pattern[_ngcontent-%COMP%] {\n  background-color: #ffd709;\n  background-image: radial-gradient(#000000 1.5px, transparent 1.5px);\n  background-size: 32px 32px;\n}\n/*# sourceMappingURL=login.component.css.map */"] });
+  }, dependencies: [CommonModule, FormsModule, \u0275NgNoValidate, DefaultValueAccessor, NgControlStatus, NgControlStatusGroup, RequiredValidator, NgModel, NgForm], styles: ["\n@keyframes _ngcontent-%COMP%_float {\n  0% {\n    transform: translateY(0px) rotate(-12deg);\n  }\n  50% {\n    transform: translateY(-10px) rotate(-12deg);\n  }\n  100% {\n    transform: translateY(0px) rotate(-12deg);\n  }\n}\n@keyframes _ngcontent-%COMP%_float-delayed {\n  0% {\n    transform: translateY(0px) rotate(15deg);\n  }\n  50% {\n    transform: translateY(-10px) rotate(15deg);\n  }\n  100% {\n    transform: translateY(0px) rotate(15deg);\n  }\n}\n.animate-float[_ngcontent-%COMP%] {\n  animation: _ngcontent-%COMP%_float 3s ease-in-out infinite;\n}\n.animate-float-delayed[_ngcontent-%COMP%] {\n  animation: _ngcontent-%COMP%_float-delayed 3.5s ease-in-out infinite;\n}\n.btn-press[_ngcontent-%COMP%]:active {\n  transform: translate(2px, 2px);\n  box-shadow: 0px 0px 0px 0px black;\n}\n.bg-pattern[_ngcontent-%COMP%] {\n  background-color: #ffd709;\n  background-image: radial-gradient(#000000 1.5px, transparent 1.5px);\n  background-size: 32px 32px;\n}\ninput[_ngcontent-%COMP%]:-webkit-autofill {\n  -webkit-box-shadow: 0 0 0 30px #ffffff inset !important;\n  -webkit-text-fill-color: #000000 !important;\n}\ninput[_ngcontent-%COMP%]:-webkit-autofill:focus {\n  -webkit-box-shadow: 0 0 0 30px #ffffff inset !important;\n  -webkit-text-fill-color: #000000 !important;\n}\n/*# sourceMappingURL=login.component.css.map */"] });
 };
 (() => {
   (typeof ngDevMode === "undefined" || ngDevMode) && setClassMetadata(LoginComponent, [{
@@ -557,13 +557,13 @@ var LoginComponent = class _LoginComponent {
     </section>\r
   </div>\r
   }\r
-</div>`, styles: ["/* apps/web/src/app/features/login/login.component.css */\n@keyframes float {\n  0% {\n    transform: translateY(0px) rotate(-12deg);\n  }\n  50% {\n    transform: translateY(-10px) rotate(-12deg);\n  }\n  100% {\n    transform: translateY(0px) rotate(-12deg);\n  }\n}\n@keyframes float-delayed {\n  0% {\n    transform: translateY(0px) rotate(15deg);\n  }\n  50% {\n    transform: translateY(-10px) rotate(15deg);\n  }\n  100% {\n    transform: translateY(0px) rotate(15deg);\n  }\n}\n.animate-float {\n  animation: float 3s ease-in-out infinite;\n}\n.animate-float-delayed {\n  animation: float-delayed 3.5s ease-in-out infinite;\n}\n.btn-press:active {\n  transform: translate(2px, 2px);\n  box-shadow: 0px 0px 0px 0px black;\n}\n.bg-pattern {\n  background-color: #ffd709;\n  background-image: radial-gradient(#000000 1.5px, transparent 1.5px);\n  background-size: 32px 32px;\n}\n/*# sourceMappingURL=login.component.css.map */\n"] }]
+</div>`, styles: ["/* apps/web/src/app/features/login/login.component.css */\n@keyframes float {\n  0% {\n    transform: translateY(0px) rotate(-12deg);\n  }\n  50% {\n    transform: translateY(-10px) rotate(-12deg);\n  }\n  100% {\n    transform: translateY(0px) rotate(-12deg);\n  }\n}\n@keyframes float-delayed {\n  0% {\n    transform: translateY(0px) rotate(15deg);\n  }\n  50% {\n    transform: translateY(-10px) rotate(15deg);\n  }\n  100% {\n    transform: translateY(0px) rotate(15deg);\n  }\n}\n.animate-float {\n  animation: float 3s ease-in-out infinite;\n}\n.animate-float-delayed {\n  animation: float-delayed 3.5s ease-in-out infinite;\n}\n.btn-press:active {\n  transform: translate(2px, 2px);\n  box-shadow: 0px 0px 0px 0px black;\n}\n.bg-pattern {\n  background-color: #ffd709;\n  background-image: radial-gradient(#000000 1.5px, transparent 1.5px);\n  background-size: 32px 32px;\n}\ninput:-webkit-autofill {\n  -webkit-box-shadow: 0 0 0 30px #ffffff inset !important;\n  -webkit-text-fill-color: #000000 !important;\n}\ninput:-webkit-autofill:focus {\n  -webkit-box-shadow: 0 0 0 30px #ffffff inset !important;\n  -webkit-text-fill-color: #000000 !important;\n}\n/*# sourceMappingURL=login.component.css.map */\n"] }]
   }], null, null);
 })();
 (() => {
-  (typeof ngDevMode === "undefined" || ngDevMode) && \u0275setClassDebugInfo(LoginComponent, { className: "LoginComponent", filePath: "src/app/features/login/login.component.ts", lineNumber: 14 });
+  (typeof ngDevMode === "undefined" || ngDevMode) && \u0275setClassDebugInfo(LoginComponent, { className: "LoginComponent", filePath: "apps/web/src/app/features/login/login.component.ts", lineNumber: 14 });
 })();
 export {
   LoginComponent
 };
-//# sourceMappingURL=chunk-2OOZLBER.js.map
+//# sourceMappingURL=chunk-7WUCERO7.js.map

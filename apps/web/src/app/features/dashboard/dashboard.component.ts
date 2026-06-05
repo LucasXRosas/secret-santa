@@ -5,10 +5,12 @@ import { FooterComponent } from '../../components/footer/footer.component';
 import { SidenavComponent } from '../../components/sidenav/sidenav.component';
 import { AuthService } from '../../core/services/auth.service';
 import { EventService, SecretSantaEvent } from '../../core/services/event.service';
+import { BrlCurrencyPipe } from '../../shared/pipes/brl-currency.pipe';
+import { RelativeDatePipe } from '../../shared/pipes/relative-date.pipe';
 
 @Component({
   selector: 'app-dashboard',
-  imports: [HeaderComponent, FooterComponent, SidenavComponent],
+  imports: [HeaderComponent, FooterComponent, SidenavComponent, BrlCurrencyPipe, RelativeDatePipe],
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.css'],
 })

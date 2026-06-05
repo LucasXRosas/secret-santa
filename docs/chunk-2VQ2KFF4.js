@@ -10,15 +10,15 @@ import {
   ReactiveFormsModule,
   Validators,
   ɵNgNoValidate
-} from "./chunk-FP24B2MI.js";
+} from "./chunk-D2NPQOVP.js";
 import {
   EventService
-} from "./chunk-MTUOECXP.js";
+} from "./chunk-2LLAPXEH.js";
 import {
   FooterComponent,
   HeaderComponent,
   SidenavComponent
-} from "./chunk-2RFXDO6G.js";
+} from "./chunk-4J7WXTPV.js";
 import {
   Component,
   Router,
@@ -37,8 +37,11 @@ import {
   ɵɵnextContext,
   ɵɵproperty,
   ɵɵtext,
-  ɵɵtextInterpolate1
-} from "./chunk-SA44WC6K.js";
+  ɵɵtextInterpolate1,
+  ɵɵtwoWayBindingSet,
+  ɵɵtwoWayListener,
+  ɵɵtwoWayProperty
+} from "./chunk-PP7CZ2AI.js";
 
 // apps/web/src/app/features/events/create-event/create-event.component.ts
 function CreateEventComponent_Conditional_17_Template(rf, ctx) {
@@ -117,11 +120,12 @@ var CreateEventComponent = class _CreateEventComponent {
   static \u0275fac = function CreateEventComponent_Factory(__ngFactoryType__) {
     return new (__ngFactoryType__ || _CreateEventComponent)();
   };
-  static \u0275cmp = /* @__PURE__ */ \u0275\u0275defineComponent({ type: _CreateEventComponent, selectors: [["app-create-event"]], decls: 40, vars: 6, consts: [[1, "min-h-screen", "flex", "flex-col", "bg-background"], [3, "closeSidenav", "isOpen"], [3, "toggleSidenav"], [1, "flex-1", "w-full", "max-w-3xl", "mx-auto", "px-6", "py-12"], [1, "bg-white", "border-4", "border-black", "p-8", "neo-shadow-lg", "relative", "overflow-hidden"], [1, "absolute", "top-0", "right-0", "bg-secondary", "border-l-4", "border-b-4", "border-black", "px-4", "py-1", "font-headline", "font-black", "text-xs", "uppercase"], [1, "font-headline", "font-black", "text-4xl", "mb-8", "uppercase", "tracking-tighter", "leading-none"], [1, "text-[#635388]"], [1, "space-y-8", 3, "ngSubmit", "formGroup"], [1, "space-y-2"], ["for", "name", 1, "font-headline", "font-bold", "uppercase", "text-sm", "flex", "items-center", "gap-2"], ["id", "name", "type", "text", "formControlName", "name", "placeholder", "ex: Amigo da Firma", 1, "w-full", "border-4", "border-black", "p-4", "text-xl", "font-bold", "focus:ring-0", "focus:bg-primary", "focus:outline-none", "transition-colors", "neo-inset"], [1, "text-xs", "font-bold", "text-destructive", "uppercase"], [1, "text-xs", "font-bold", "text-muted-foreground", "uppercase"], [1, "grid", "grid-cols-1", "md:grid-cols-2", "gap-8"], ["for", "budget", 1, "font-headline", "font-bold", "uppercase", "text-sm", "flex", "items-center", "gap-2"], [1, "relative"], [1, "absolute", "left-4", "top-1/2", "-translate-y-1/2", "font-black", "text-xl"], ["id", "budget", "type", "number", "min", "0", "formControlName", "budget", "placeholder", "50", 1, "w-full", "border-4", "border-black", "p-4", "pl-12", "text-xl", "font-bold", "focus:ring-0", "focus:bg-accent", "focus:outline-none", "transition-colors", "neo-inset"], ["for", "draw_date", 1, "font-headline", "font-bold", "uppercase", "text-sm", "flex", "items-center", "gap-2"], ["id", "draw_date", "type", "date", "formControlName", "draw_date", 1, "w-full", "border-4", "border-black", "p-4", "text-xl", "font-bold", "focus:ring-0", "focus:bg-secondary", "focus:outline-none", "transition-colors", "neo-inset"], [1, "border-4", "border-black", "bg-destructive/10", "p-4", "font-bold", "text-destructive"], [1, "pt-4"], ["type", "submit", 1, "w-full", "bg-primary", "border-4", "border-black", "py-6", "px-8", "text-2xl", "font-black", "uppercase", "tracking-tighter", "neo-shadow", "hover:bg-accent", "active:translate-x-1", "active:translate-y-1", "active:shadow-none", "transition-all", "flex", "justify-center", "items-center", "gap-4", "disabled:opacity-60", "disabled:cursor-not-allowed", 3, "disabled"]], template: function CreateEventComponent_Template(rf, ctx) {
+  static \u0275cmp = /* @__PURE__ */ \u0275\u0275defineComponent({ type: _CreateEventComponent, selectors: [["app-create-event"]], decls: 40, vars: 6, consts: [[1, "min-h-screen", "flex", "flex-col", "bg-background"], [3, "isOpenChange", "isOpen"], [3, "toggleSidenav"], [1, "flex-1", "w-full", "max-w-3xl", "mx-auto", "px-6", "py-12"], [1, "bg-white", "border-4", "border-black", "p-8", "neo-shadow-lg", "relative", "overflow-hidden"], [1, "absolute", "top-0", "right-0", "bg-secondary", "border-l-4", "border-b-4", "border-black", "px-4", "py-1", "font-headline", "font-black", "text-xs", "uppercase"], [1, "font-headline", "font-black", "text-4xl", "mb-8", "uppercase", "tracking-tighter", "leading-none"], [1, "text-[#635388]"], [1, "space-y-8", 3, "ngSubmit", "formGroup"], [1, "space-y-2"], ["for", "name", 1, "font-headline", "font-bold", "uppercase", "text-sm", "flex", "items-center", "gap-2"], ["id", "name", "type", "text", "formControlName", "name", "placeholder", "ex: Amigo da Firma", 1, "w-full", "border-4", "border-black", "p-4", "text-xl", "font-bold", "focus:ring-0", "focus:bg-primary", "focus:outline-none", "transition-colors", "neo-inset"], [1, "text-xs", "font-bold", "text-destructive", "uppercase"], [1, "text-xs", "font-bold", "text-muted-foreground", "uppercase"], [1, "grid", "grid-cols-1", "md:grid-cols-2", "gap-8"], ["for", "budget", 1, "font-headline", "font-bold", "uppercase", "text-sm", "flex", "items-center", "gap-2"], [1, "relative"], [1, "absolute", "left-4", "top-1/2", "-translate-y-1/2", "font-black", "text-xl"], ["id", "budget", "type", "number", "min", "0", "formControlName", "budget", "placeholder", "50", 1, "w-full", "border-4", "border-black", "p-4", "pl-12", "text-xl", "font-bold", "focus:ring-0", "focus:bg-accent", "focus:outline-none", "transition-colors", "neo-inset"], ["for", "draw_date", 1, "font-headline", "font-bold", "uppercase", "text-sm", "flex", "items-center", "gap-2"], ["id", "draw_date", "type", "date", "formControlName", "draw_date", 1, "w-full", "border-4", "border-black", "p-4", "text-xl", "font-bold", "focus:ring-0", "focus:bg-secondary", "focus:outline-none", "transition-colors", "neo-inset"], [1, "border-4", "border-black", "bg-destructive/10", "p-4", "font-bold", "text-destructive"], [1, "pt-4"], ["type", "submit", 1, "w-full", "bg-primary", "border-4", "border-black", "py-6", "px-8", "text-2xl", "font-black", "uppercase", "tracking-tighter", "neo-shadow", "hover:bg-accent", "active:translate-x-1", "active:translate-y-1", "active:shadow-none", "transition-all", "flex", "justify-center", "items-center", "gap-4", "disabled:opacity-60", "disabled:cursor-not-allowed", 3, "disabled"]], template: function CreateEventComponent_Template(rf, ctx) {
     if (rf & 1) {
       \u0275\u0275elementStart(0, "div", 0)(1, "app-sidenav", 1);
-      \u0275\u0275listener("closeSidenav", function CreateEventComponent_Template_app_sidenav_closeSidenav_1_listener() {
-        return ctx.sidenavOpen.set(false);
+      \u0275\u0275twoWayListener("isOpenChange", function CreateEventComponent_Template_app_sidenav_isOpenChange_1_listener($event) {
+        \u0275\u0275twoWayBindingSet(ctx.sidenavOpen, $event) || (ctx.sidenavOpen = $event);
+        return $event;
       });
       \u0275\u0275elementEnd();
       \u0275\u0275elementStart(2, "app-header", 2);
@@ -175,7 +179,7 @@ var CreateEventComponent = class _CreateEventComponent {
     }
     if (rf & 2) {
       \u0275\u0275advance();
-      \u0275\u0275property("isOpen", ctx.sidenavOpen());
+      \u0275\u0275twoWayProperty("isOpen", ctx.sidenavOpen);
       \u0275\u0275advance(11);
       \u0275\u0275property("formGroup", ctx.form);
       \u0275\u0275advance(5);
@@ -193,7 +197,8 @@ var CreateEventComponent = class _CreateEventComponent {
   (typeof ngDevMode === "undefined" || ngDevMode) && setClassMetadata(CreateEventComponent, [{
     type: Component,
     args: [{ selector: "app-create-event", standalone: true, imports: [ReactiveFormsModule, HeaderComponent, FooterComponent, SidenavComponent], template: `<div class="min-h-screen flex flex-col bg-background">\r
-  <app-sidenav [isOpen]="sidenavOpen()" (closeSidenav)="sidenavOpen.set(false)"></app-sidenav>\r
+  <!-- [ID12] two-way binding via model(): [(isOpen)] sincroniza sidenavOpen bidireccionalmente -->\r
+  <app-sidenav [(isOpen)]="sidenavOpen"></app-sidenav>\r
   <app-header (toggleSidenav)="sidenavOpen.set(!sidenavOpen())"></app-header>\r
 \r
   <main class="flex-1 w-full max-w-3xl mx-auto px-6 py-12">\r
@@ -289,9 +294,9 @@ var CreateEventComponent = class _CreateEventComponent {
   }], null, null);
 })();
 (() => {
-  (typeof ngDevMode === "undefined" || ngDevMode) && \u0275setClassDebugInfo(CreateEventComponent, { className: "CreateEventComponent", filePath: "src/app/features/events/create-event/create-event.component.ts", lineNumber: 15 });
+  (typeof ngDevMode === "undefined" || ngDevMode) && \u0275setClassDebugInfo(CreateEventComponent, { className: "CreateEventComponent", filePath: "apps/web/src/app/features/events/create-event/create-event.component.ts", lineNumber: 15 });
 })();
 export {
   CreateEventComponent
 };
-//# sourceMappingURL=chunk-E4OQMXHH.js.map
+//# sourceMappingURL=chunk-2VQ2KFF4.js.map

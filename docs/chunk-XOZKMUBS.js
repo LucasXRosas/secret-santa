@@ -1,4 +1,8 @@
 import {
+  BrlCurrencyPipe,
+  RelativeDatePipe
+} from "./chunk-6GD34B6A.js";
+import {
   DefaultValueAccessor,
   FormBuilder,
   FormControlName,
@@ -8,23 +12,25 @@ import {
   ReactiveFormsModule,
   Validators,
   ɵNgNoValidate
-} from "./chunk-FP24B2MI.js";
+} from "./chunk-D2NPQOVP.js";
 import {
   EventService
-} from "./chunk-MTUOECXP.js";
+} from "./chunk-2LLAPXEH.js";
 import {
   FooterComponent,
   HeaderComponent,
   SidenavComponent
-} from "./chunk-2RFXDO6G.js";
+} from "./chunk-4J7WXTPV.js";
 import {
-  ActivatedRoute,
   AuthService,
   Component,
   Injectable,
+  Input,
   RouterLink,
   computed,
+  effect,
   inject,
+  input,
   setClassMetadata,
   signal,
   ɵsetClassDebugInfo,
@@ -40,6 +46,8 @@ import {
   ɵɵgetCurrentView,
   ɵɵlistener,
   ɵɵnextContext,
+  ɵɵpipe,
+  ɵɵpipeBind1,
   ɵɵproperty,
   ɵɵrepeater,
   ɵɵrepeaterCreate,
@@ -47,8 +55,11 @@ import {
   ɵɵrestoreView,
   ɵɵtext,
   ɵɵtextInterpolate,
-  ɵɵtextInterpolate1
-} from "./chunk-SA44WC6K.js";
+  ɵɵtextInterpolate1,
+  ɵɵtwoWayBindingSet,
+  ɵɵtwoWayListener,
+  ɵɵtwoWayProperty
+} from "./chunk-PP7CZ2AI.js";
 
 // apps/web/src/app/core/services/participant.service.ts
 var ParticipantService = class _ParticipantService {
@@ -125,12 +136,13 @@ function EventDetailComponent_Conditional_6_Conditional_10_Template(rf, ctx) {
     \u0275\u0275text(2, "calendar_today");
     \u0275\u0275elementEnd();
     \u0275\u0275text(3);
+    \u0275\u0275pipe(4, "relativeDate");
     \u0275\u0275elementEnd();
   }
   if (rf & 2) {
     const ev_r3 = \u0275\u0275nextContext();
     \u0275\u0275advance(3);
-    \u0275\u0275textInterpolate1(" ", ev_r3.draw_date, " ");
+    \u0275\u0275textInterpolate1(" ", \u0275\u0275pipeBind1(4, 1, ev_r3.draw_date), " ");
   }
 }
 function EventDetailComponent_Conditional_6_Conditional_11_Template(rf, ctx) {
@@ -139,12 +151,13 @@ function EventDetailComponent_Conditional_6_Conditional_11_Template(rf, ctx) {
     \u0275\u0275text(2, "payments");
     \u0275\u0275elementEnd();
     \u0275\u0275text(3);
+    \u0275\u0275pipe(4, "brlCurrency");
     \u0275\u0275elementEnd();
   }
   if (rf & 2) {
     const ev_r3 = \u0275\u0275nextContext();
     \u0275\u0275advance(3);
-    \u0275\u0275textInterpolate1(" R$ ", ev_r3.budget, " ");
+    \u0275\u0275textInterpolate1(" ", \u0275\u0275pipeBind1(4, 1, ev_r3.budget), " ");
   }
 }
 function EventDetailComponent_Conditional_6_Conditional_25_Template(rf, ctx) {
@@ -232,8 +245,8 @@ function EventDetailComponent_Conditional_6_Template(rf, ctx) {
     \u0275\u0275text(8, " Convide a galera para o grupo. Quanto mais, melhor. ");
     \u0275\u0275elementEnd();
     \u0275\u0275elementStart(9, "div", 11);
-    \u0275\u0275conditionalCreate(10, EventDetailComponent_Conditional_6_Conditional_10_Template, 4, 1, "span", 12);
-    \u0275\u0275conditionalCreate(11, EventDetailComponent_Conditional_6_Conditional_11_Template, 4, 1, "span", 12);
+    \u0275\u0275conditionalCreate(10, EventDetailComponent_Conditional_6_Conditional_10_Template, 5, 3, "span", 12);
+    \u0275\u0275conditionalCreate(11, EventDetailComponent_Conditional_6_Conditional_11_Template, 5, 3, "span", 12);
     \u0275\u0275elementEnd()();
     \u0275\u0275elementStart(12, "div", 13)(13, "div", 14)(14, "div", 15)(15, "div", 16)(16, "span", 17);
     \u0275\u0275text(17, "mail");
@@ -321,7 +334,6 @@ function EventDetailComponent_Conditional_6_Template(rf, ctx) {
   }
 }
 var EventDetailComponent = class _EventDetailComponent {
-  route = inject(ActivatedRoute);
   fb = inject(FormBuilder);
   eventService = inject(EventService);
   participantService = inject(ParticipantService);
@@ -330,7 +342,15 @@ var EventDetailComponent = class _EventDetailComponent {
     /* istanbul ignore next */
     []
   ));
-  eventId = "";
+  /**
+   * [ID17] input() signal: o Router injeta o parâmetro :id da URL diretamente
+   * aqui via withComponentInputBinding(). Não é mais necessário usar ActivatedRoute.
+   * O nome da propriedade deve ser idêntico ao param da rota ('id').
+   */
+  id = input.required(...ngDevMode ? [{ debugName: "id" }] : (
+    /* istanbul ignore next */
+    []
+  ));
   event = signal(null, ...ngDevMode ? [{ debugName: "event" }] : (
     /* istanbul ignore next */
     []
@@ -362,7 +382,7 @@ var EventDetailComponent = class _EventDetailComponent {
     []
   ));
   /** Link mágico para entrar no sorteio (copiável). */
-  magicLink = computed(() => this.eventId ? `${location.origin}/join/${this.eventId}` : "", ...ngDevMode ? [{ debugName: "magicLink" }] : (
+  magicLink = computed(() => this.id() ? `${location.origin}/join/${this.id()}` : "", ...ngDevMode ? [{ debugName: "magicLink" }] : (
     /* istanbul ignore next */
     []
   ));
@@ -373,17 +393,21 @@ var EventDetailComponent = class _EventDetailComponent {
   inviteForm = this.fb.nonNullable.group({
     email: ["", [Validators.required, Validators.email]]
   });
-  async ngOnInit() {
-    this.eventId = this.route.snapshot.paramMap.get("id") ?? "";
-    await this.loadAll();
+  constructor() {
+    effect(() => {
+      const eventId = this.id();
+      if (eventId) {
+        this.loadAll(eventId);
+      }
+    });
   }
-  async loadAll() {
+  async loadAll(eventId) {
     this.loading.set(true);
     this.errorMessage.set(null);
     try {
       const [event, participants] = await Promise.all([
-        this.eventService.getEvent(this.eventId),
-        this.participantService.listByEvent(this.eventId)
+        this.eventService.getEvent(eventId),
+        this.participantService.listByEvent(eventId)
       ]);
       if (!event) {
         this.errorMessage.set("Evento n\xE3o encontrado.");
@@ -406,7 +430,7 @@ var EventDetailComponent = class _EventDetailComponent {
     this.inviteError.set(null);
     try {
       const email = this.inviteForm.getRawValue().email;
-      const novo = await this.participantService.invite(this.eventId, email);
+      const novo = await this.participantService.invite(this.id(), email);
       this.participants.update((list) => [novo, ...list]);
       this.inviteForm.reset();
     } catch (error) {
@@ -437,11 +461,12 @@ var EventDetailComponent = class _EventDetailComponent {
   static \u0275fac = function EventDetailComponent_Factory(__ngFactoryType__) {
     return new (__ngFactoryType__ || _EventDetailComponent)();
   };
-  static \u0275cmp = /* @__PURE__ */ \u0275\u0275defineComponent({ type: _EventDetailComponent, selectors: [["app-event-detail"]], decls: 8, vars: 2, consts: [[1, "min-h-screen", "flex", "flex-col", "bg-background"], [3, "closeSidenav", "isOpen"], [3, "toggleSidenav"], [1, "flex-1", "w-full", "max-w-4xl", "mx-auto", "px-6", "py-12"], [1, "font-headline", "font-bold", "uppercase", "text-muted-foreground"], [1, "border-4", "border-black", "bg-destructive/10", "p-6", "font-bold", "text-destructive"], [1, "mb-10"], ["routerLink", "/dashboard", 1, "inline-flex", "items-center", "gap-1", "font-headline", "font-bold", "uppercase", "text-sm", "text-muted-foreground", "hover:text-foreground", "mb-4"], [1, "material-symbols-outlined", "text-base"], [1, "text-4xl", "md:text-5xl", "font-black", "font-headline", "uppercase", "tracking-tighter", "mb-2"], [1, "text-lg", "font-medium", "text-muted-foreground"], [1, "flex", "flex-wrap", "gap-3", "mt-4"], [1, "flex", "items-center", "gap-1", "bg-white", "border-2", "border-black", "px-3", "py-1", "text-xs", "font-bold", "font-headline", "uppercase"], [1, "grid", "grid-cols-1", "md:grid-cols-2", "gap-8"], [1, "space-y-8"], [1, "bg-white", "border-4", "border-black", "p-6", "neo-shadow-lg"], [1, "flex", "items-center", "gap-3", "mb-6"], [1, "material-symbols-outlined", "text-3xl", "bg-primary", "p-2", "border-2", "border-black", "neo-shadow"], [1, "text-2xl", "font-black", "font-headline", "uppercase", "italic"], [1, "space-y-4", 3, "ngSubmit", "formGroup"], ["for", "email", 1, "block", "text-xs", "font-black", "uppercase", "mb-1"], ["id", "email", "type", "email", "formControlName", "email", "placeholder", "amigo@exemplo.com", 1, "w-full", "border-4", "border-black", "p-4", "font-bold", "focus:ring-0", "focus:outline-none", "focus:bg-accent", "bg-zinc-50", "transition-colors"], [1, "text-xs", "font-bold", "text-destructive", "uppercase", "mt-1"], [1, "text-sm", "font-bold", "text-destructive"], ["type", "submit", 1, "w-full", "bg-accent", "border-4", "border-black", "font-black", "uppercase", "py-4", "flex", "items-center", "justify-center", "gap-2", "neo-shadow", "hover:translate-x-0.5", "hover:translate-y-0.5", "hover:shadow-none", "active:translate-x-1", "active:translate-y-1", "active:shadow-none", "transition-all", "disabled:opacity-60", "disabled:cursor-not-allowed", 3, "disabled"], [1, "material-symbols-outlined"], [1, "bg-secondary", "border-4", "border-black", "p-6", "neo-shadow-lg"], [1, "flex", "items-center", "gap-3", "mb-4"], [1, "material-symbols-outlined", "text-3xl"], [1, "font-bold", "text-sm", "mb-4"], [1, "flex", "gap-2"], [1, "flex-1", "bg-white", "border-2", "border-black", "p-3", "font-mono", "text-sm", "overflow-hidden", "truncate"], ["type", "button", 1, "bg-black", "text-white", "p-3", "border-2", "border-black", "flex", "items-center", "justify-center", "hover:bg-zinc-800", "active:scale-95", "transition-transform", 3, "click"], [1, "bg-white", "border-4", "border-black", "p-6", "neo-shadow-lg", "h-fit"], [1, "flex", "justify-between", "items-center", "mb-6"], [1, "material-symbols-outlined", "text-zinc-400"], [1, "bg-zinc-100", "border-2", "border-dashed", "border-black", "p-6", "text-center"], [1, "space-y-4"], [1, "material-symbols-outlined", "text-sm"], [1, "text-xs", "font-bold", "uppercase", "italic", "text-zinc-500"], [1, "flex", "items-center", "justify-between", "p-3", "border-2", "border-black", "bg-zinc-50", "hover:bg-accent", "transition-colors"], [1, "flex", "items-center", "gap-3", "min-w-0"], [1, "w-10", "h-10", "border-2", "border-black", "bg-primary", "flex", "items-center", "justify-center", "font-black", "uppercase", "shrink-0"], [1, "min-w-0"], [1, "font-black", "text-sm", "truncate"], [1, "text-[10px]", "font-bold", "uppercase", "text-zinc-500"], ["type", "button", "aria-label", "Remover participante", 1, "text-zinc-400", "hover:text-destructive", "transition-colors", "shrink-0", 3, "click"], [1, "material-symbols-outlined", "text-xl"]], template: function EventDetailComponent_Template(rf, ctx) {
+  static \u0275cmp = /* @__PURE__ */ \u0275\u0275defineComponent({ type: _EventDetailComponent, selectors: [["app-event-detail"]], inputs: { id: [1, "id"] }, decls: 8, vars: 2, consts: [[1, "min-h-screen", "flex", "flex-col", "bg-background"], [3, "isOpenChange", "isOpen"], [3, "toggleSidenav"], [1, "flex-1", "w-full", "max-w-4xl", "mx-auto", "px-6", "py-12"], [1, "font-headline", "font-bold", "uppercase", "text-muted-foreground"], [1, "border-4", "border-black", "bg-destructive/10", "p-6", "font-bold", "text-destructive"], [1, "mb-10"], ["routerLink", "/dashboard", 1, "inline-flex", "items-center", "gap-1", "font-headline", "font-bold", "uppercase", "text-sm", "text-muted-foreground", "hover:text-foreground", "mb-4"], [1, "material-symbols-outlined", "text-base"], [1, "text-4xl", "md:text-5xl", "font-black", "font-headline", "uppercase", "tracking-tighter", "mb-2"], [1, "text-lg", "font-medium", "text-muted-foreground"], [1, "flex", "flex-wrap", "gap-3", "mt-4"], [1, "flex", "items-center", "gap-1", "bg-white", "border-2", "border-black", "px-3", "py-1", "text-xs", "font-bold", "font-headline", "uppercase"], [1, "grid", "grid-cols-1", "md:grid-cols-2", "gap-8"], [1, "space-y-8"], [1, "bg-white", "border-4", "border-black", "p-6", "neo-shadow-lg"], [1, "flex", "items-center", "gap-3", "mb-6"], [1, "material-symbols-outlined", "text-3xl", "bg-primary", "p-2", "border-2", "border-black", "neo-shadow"], [1, "text-2xl", "font-black", "font-headline", "uppercase", "italic"], [1, "space-y-4", 3, "ngSubmit", "formGroup"], ["for", "email", 1, "block", "text-xs", "font-black", "uppercase", "mb-1"], ["id", "email", "type", "email", "formControlName", "email", "placeholder", "amigo@exemplo.com", 1, "w-full", "border-4", "border-black", "p-4", "font-bold", "focus:ring-0", "focus:outline-none", "focus:bg-accent", "bg-zinc-50", "transition-colors"], [1, "text-xs", "font-bold", "text-destructive", "uppercase", "mt-1"], [1, "text-sm", "font-bold", "text-destructive"], ["type", "submit", 1, "w-full", "bg-accent", "border-4", "border-black", "font-black", "uppercase", "py-4", "flex", "items-center", "justify-center", "gap-2", "neo-shadow", "hover:translate-x-0.5", "hover:translate-y-0.5", "hover:shadow-none", "active:translate-x-1", "active:translate-y-1", "active:shadow-none", "transition-all", "disabled:opacity-60", "disabled:cursor-not-allowed", 3, "disabled"], [1, "material-symbols-outlined"], [1, "bg-secondary", "border-4", "border-black", "p-6", "neo-shadow-lg"], [1, "flex", "items-center", "gap-3", "mb-4"], [1, "material-symbols-outlined", "text-3xl"], [1, "font-bold", "text-sm", "mb-4"], [1, "flex", "gap-2"], [1, "flex-1", "bg-white", "border-2", "border-black", "p-3", "font-mono", "text-sm", "overflow-hidden", "truncate"], ["type", "button", 1, "bg-black", "text-white", "p-3", "border-2", "border-black", "flex", "items-center", "justify-center", "hover:bg-zinc-800", "active:scale-95", "transition-transform", 3, "click"], [1, "bg-white", "border-4", "border-black", "p-6", "neo-shadow-lg", "h-fit"], [1, "flex", "justify-between", "items-center", "mb-6"], [1, "material-symbols-outlined", "text-zinc-400"], [1, "bg-zinc-100", "border-2", "border-dashed", "border-black", "p-6", "text-center"], [1, "space-y-4"], [1, "material-symbols-outlined", "text-sm"], [1, "text-xs", "font-bold", "uppercase", "italic", "text-zinc-500"], [1, "flex", "items-center", "justify-between", "p-3", "border-2", "border-black", "bg-zinc-50", "hover:bg-accent", "transition-colors"], [1, "flex", "items-center", "gap-3", "min-w-0"], [1, "w-10", "h-10", "border-2", "border-black", "bg-primary", "flex", "items-center", "justify-center", "font-black", "uppercase", "shrink-0"], [1, "min-w-0"], [1, "font-black", "text-sm", "truncate"], [1, "text-[10px]", "font-bold", "uppercase", "text-zinc-500"], ["type", "button", "aria-label", "Remover participante", 1, "text-zinc-400", "hover:text-destructive", "transition-colors", "shrink-0", 3, "click"], [1, "material-symbols-outlined", "text-xl"]], template: function EventDetailComponent_Template(rf, ctx) {
     if (rf & 1) {
       \u0275\u0275elementStart(0, "div", 0)(1, "app-sidenav", 1);
-      \u0275\u0275listener("closeSidenav", function EventDetailComponent_Template_app_sidenav_closeSidenav_1_listener() {
-        return ctx.sidenavOpen.set(false);
+      \u0275\u0275twoWayListener("isOpenChange", function EventDetailComponent_Template_app_sidenav_isOpenChange_1_listener($event) {
+        \u0275\u0275twoWayBindingSet(ctx.sidenavOpen, $event) || (ctx.sidenavOpen = $event);
+        return $event;
       });
       \u0275\u0275elementEnd();
       \u0275\u0275elementStart(2, "app-header", 2);
@@ -458,17 +483,18 @@ var EventDetailComponent = class _EventDetailComponent {
     if (rf & 2) {
       let tmp_1_0;
       \u0275\u0275advance();
-      \u0275\u0275property("isOpen", ctx.sidenavOpen());
+      \u0275\u0275twoWayProperty("isOpen", ctx.sidenavOpen);
       \u0275\u0275advance(3);
       \u0275\u0275conditional(ctx.loading() ? 4 : ctx.errorMessage() ? 5 : (tmp_1_0 = ctx.event()) ? 6 : -1, tmp_1_0);
     }
-  }, dependencies: [ReactiveFormsModule, \u0275NgNoValidate, DefaultValueAccessor, NgControlStatus, NgControlStatusGroup, FormGroupDirective, FormControlName, RouterLink, HeaderComponent, FooterComponent, SidenavComponent], encapsulation: 2 });
+  }, dependencies: [ReactiveFormsModule, \u0275NgNoValidate, DefaultValueAccessor, NgControlStatus, NgControlStatusGroup, FormGroupDirective, FormControlName, RouterLink, HeaderComponent, FooterComponent, SidenavComponent, BrlCurrencyPipe, RelativeDatePipe], encapsulation: 2 });
 };
 (() => {
   (typeof ngDevMode === "undefined" || ngDevMode) && setClassMetadata(EventDetailComponent, [{
     type: Component,
-    args: [{ selector: "app-event-detail", standalone: true, imports: [ReactiveFormsModule, RouterLink, HeaderComponent, FooterComponent, SidenavComponent], template: `<div class="min-h-screen flex flex-col bg-background">\r
-  <app-sidenav [isOpen]="sidenavOpen()" (closeSidenav)="sidenavOpen.set(false)"></app-sidenav>\r
+    args: [{ selector: "app-event-detail", standalone: true, imports: [ReactiveFormsModule, RouterLink, HeaderComponent, FooterComponent, SidenavComponent, BrlCurrencyPipe, RelativeDatePipe], template: `<div class="min-h-screen flex flex-col bg-background">\r
+  <!-- [ID12] two-way binding via model(): [(isOpen)] sincroniza sidenavOpen bidireccionalmente -->\r
+  <app-sidenav [(isOpen)]="sidenavOpen"></app-sidenav>\r
   <app-header (toggleSidenav)="sidenavOpen.set(!sidenavOpen())"></app-header>\r
 \r
   <main class="flex-1 w-full max-w-4xl mx-auto px-6 py-12">\r
@@ -495,13 +521,15 @@ var EventDetailComponent = class _EventDetailComponent {
         </p>\r
         <div class="flex flex-wrap gap-3 mt-4">\r
           @if (ev.draw_date) {\r
+            <!-- [ID8] RelativeDatePipe: converte ISO date em texto relativo pt-BR -->\r
             <span class="flex items-center gap-1 bg-white border-2 border-black px-3 py-1 text-xs font-bold font-headline uppercase">\r
-              <span class="material-symbols-outlined text-sm">calendar_today</span> {{ ev.draw_date }}\r
+              <span class="material-symbols-outlined text-sm">calendar_today</span> {{ ev.draw_date | relativeDate }}\r
             </span>\r
           }\r
           @if (ev.budget != null) {\r
+            <!-- [ID8] BrlCurrencyPipe: formata n\xFAmero como R$ 00,00 via Intl.NumberFormat -->\r
             <span class="flex items-center gap-1 bg-white border-2 border-black px-3 py-1 text-xs font-bold font-headline uppercase">\r
-              <span class="material-symbols-outlined text-sm">payments</span> R$ {{ ev.budget }}\r
+              <span class="material-symbols-outlined text-sm">payments</span> {{ ev.budget | brlCurrency }}\r
             </span>\r
           }\r
         </div>\r
@@ -620,12 +648,12 @@ var EventDetailComponent = class _EventDetailComponent {
   <app-footer></app-footer>\r
 </div>\r
 ` }]
-  }], null, null);
+  }], () => [], { id: [{ type: Input, args: [{ isSignal: true, alias: "id", required: true }] }] });
 })();
 (() => {
-  (typeof ngDevMode === "undefined" || ngDevMode) && \u0275setClassDebugInfo(EventDetailComponent, { className: "EventDetailComponent", filePath: "src/app/features/events/event-detail/event-detail.component.ts", lineNumber: 16 });
+  (typeof ngDevMode === "undefined" || ngDevMode) && \u0275setClassDebugInfo(EventDetailComponent, { className: "EventDetailComponent", filePath: "apps/web/src/app/features/events/event-detail/event-detail.component.ts", lineNumber: 18 });
 })();
 export {
   EventDetailComponent
 };
-//# sourceMappingURL=chunk-5J5PCZAG.js.map
+//# sourceMappingURL=chunk-XOZKMUBS.js.map

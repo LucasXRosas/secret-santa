@@ -1,20 +1,21 @@
-import { Component, inject, signal, computed, OnInit } from '@angular/core';
-import { ActivatedRoute, RouterLink } from '@angular/router';
+import { Component, inject, signal, computed, input, effect } from '@angular/core';
+import { RouterLink } from '@angular/router';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { HeaderComponent } from '../../../components/header/header.component';
 import { FooterComponent } from '../../../components/footer/footer.component';
 import { SidenavComponent } from '../../../components/sidenav/sidenav.component';
 import { EventService, SecretSantaEvent } from '../../../core/services/event.service';
 import { ParticipantService, Participant } from '../../../core/services/participant.service';
+import { BrlCurrencyPipe } from '../../../shared/pipes/brl-currency.pipe';
+import { RelativeDatePipe } from '../../../shared/pipes/relative-date.pipe';
 
 @Component({
   selector: 'app-event-detail',
   standalone: true,
-  imports: [ReactiveFormsModule, RouterLink, HeaderComponent, FooterComponent, SidenavComponent],
+  imports: [ReactiveFormsModule, RouterLink, HeaderComponent, FooterComponent, SidenavComponent, BrlCurrencyPipe, RelativeDatePipe],
   templateUrl: './event-detail.component.html',
 })
-export class EventDetailComponent implements OnInit {
-  private route = inject(ActivatedRoute);
+export class EventDetailComponent {
   private fb = inject(FormBuilder);
   private eventService = inject(EventService);
   private participantService = inject(ParticipantService);
@@ -22,7 +23,12 @@ export class EventDetailComponent implements OnInit {
   /** Controla a abertura do menu lateral. */
   sidenavOpen = signal(false);
 
-  private eventId = '';
+  /**
+   * [ID17] input() signal: o Router injeta o parâmetro :id da URL diretamente
+   * aqui via withComponentInputBinding(). Não é mais necessário usar ActivatedRoute.
+   * O nome da propriedade deve ser idêntico ao param da rota ('id').
+   */
+  id = input.required<string>();
 
   event = signal<SecretSantaEvent | null>(null);
   participants = signal<Participant[]>([]);
@@ -38,7 +44,7 @@ export class EventDetailComponent implements OnInit {
 
   /** Link mágico para entrar no sorteio (copiável). */
   magicLink = computed(() =>
-    this.eventId ? `${location.origin}/join/${this.eventId}` : ''
+    this.id() ? `${location.origin}/join/${this.id()}` : ''
   );
   linkCopied = signal(false);
 
@@ -46,18 +52,28 @@ export class EventDetailComponent implements OnInit {
     email: ['', [Validators.required, Validators.email]],
   });
 
-  async ngOnInit() {
-    this.eventId = this.route.snapshot.paramMap.get('id') ?? '';
-    await this.loadAll();
+  constructor() {
+    /**
+     * [ID13] effect(): reage de forma segura ao signal id().
+     * Sempre que o parâmetro de rota mudar (ex: navegação entre eventos),
+     * o efeito dispara e recarrega os dados — sem ciclo de vida manual (ngOnInit).
+     * É o mecanismo correto para efeitos colaterais reativos em Angular Signals.
+     */
+    effect(() => {
+      const eventId = this.id();
+      if (eventId) {
+        this.loadAll(eventId);
+      }
+    });
   }
 
-  private async loadAll() {
+  private async loadAll(eventId: string) {
     this.loading.set(true);
     this.errorMessage.set(null);
     try {
       const [event, participants] = await Promise.all([
-        this.eventService.getEvent(this.eventId),
-        this.participantService.listByEvent(this.eventId),
+        this.eventService.getEvent(eventId),
+        this.participantService.listByEvent(eventId),
       ]);
       if (!event) {
         this.errorMessage.set('Evento não encontrado.');
@@ -82,7 +98,7 @@ export class EventDetailComponent implements OnInit {
     this.inviteError.set(null);
     try {
       const email = this.inviteForm.getRawValue().email;
-      const novo = await this.participantService.invite(this.eventId, email);
+      const novo = await this.participantService.invite(this.id(), email);
       this.participants.update((list) => [novo, ...list]);
       this.inviteForm.reset();
     } catch (error: any) {
@@ -116,3 +132,4 @@ export class EventDetailComponent implements OnInit {
     }
   }
 }
+

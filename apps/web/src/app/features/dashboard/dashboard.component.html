@@ -1,6 +1,7 @@
 <div class="min-h-screen flex flex-col bg-background">
   <!-- ===== Componentes reaproveitados da home ===== -->
-  <app-sidenav [isOpen]="sidenavOpen()" (closeSidenav)="sidenavOpen.set(false)"></app-sidenav>
+  <!-- [ID12] two-way binding via model(): [(isOpen)] sincroniza sidenavOpen bidireccionalmente -->
+  <app-sidenav [(isOpen)]="sidenavOpen"></app-sidenav>
   <app-header (toggleSidenav)="sidenavOpen.set(!sidenavOpen())"></app-header>
 
   <main class="flex-1 w-full max-w-5xl mx-auto px-6 py-12">
@@ -63,19 +64,21 @@
             </h2>
             <div class="flex flex-wrap gap-3 mt-4">
               @if (event.draw_date) {
+                <!-- [ID8] RelativeDatePipe: data relativa pt-BR -->
                 <span
                   class="flex items-center gap-1 bg-white border-2 border-black px-3 py-1 text-xs font-bold font-headline uppercase"
                 >
                   <span class="material-symbols-outlined text-sm">calendar_today</span>
-                  {{ event.draw_date }}
+                  {{ event.draw_date | relativeDate }}
                 </span>
               }
               @if (event.budget != null) {
+                <!-- [ID8] BrlCurrencyPipe: moeda BRL formatada -->
                 <span
                   class="flex items-center gap-1 bg-white border-2 border-black px-3 py-1 text-xs font-bold font-headline uppercase"
                 >
                   <span class="material-symbols-outlined text-sm">payments</span>
-                  R$ {{ event.budget }}
+                  {{ event.budget | brlCurrency }}
                 </span>
               }
             </div>

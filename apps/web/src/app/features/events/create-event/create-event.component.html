@@ -1,5 +1,6 @@
 <div class="min-h-screen flex flex-col bg-background">
-  <app-sidenav [isOpen]="sidenavOpen()" (closeSidenav)="sidenavOpen.set(false)"></app-sidenav>
+  <!-- [ID12] two-way binding via model(): [(isOpen)] sincroniza sidenavOpen bidireccionalmente -->
+  <app-sidenav [(isOpen)]="sidenavOpen"></app-sidenav>
   <app-header (toggleSidenav)="sidenavOpen.set(!sidenavOpen())"></app-header>
 
   <main class="flex-1 w-full max-w-3xl mx-auto px-6 py-12">

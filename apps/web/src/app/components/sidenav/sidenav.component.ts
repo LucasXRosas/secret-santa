@@ -1,4 +1,4 @@
-import { Component, input, output, inject } from '@angular/core';
+import { Component, model, inject } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
 import { AuthService } from '../../core/services/auth.service';
 
@@ -9,8 +9,13 @@ import { AuthService } from '../../core/services/auth.service';
   templateUrl: './sidenav.html',
 })
 export class SidenavComponent {
-  readonly isOpen = input(false);
-  readonly closeSidenav = output<void>();
+  /**
+   * [ID12] model() cria um signal de two-way data binding.
+   * O componente pai usa [(isOpen)]="sidenavOpen" para sincronização bidirecional:
+   * - Leitura: isOpen() → boolean
+   * - Escrita: isOpen.set(false) → atualiza o signal no pai automaticamente
+   */
+  isOpen = model(false);
 
   private authService = inject(AuthService);
   private router = inject(Router);
@@ -18,7 +23,8 @@ export class SidenavComponent {
   readonly isAuthenticated = this.authService.isAuthenticated;
 
   onClose() {
-    this.closeSidenav.emit();
+    // Atualiza o signal bidirecional — o pai recebe a mudança sem @Output
+    this.isOpen.set(false);
   }
 
   async logout() {
@@ -27,3 +33,4 @@ export class SidenavComponent {
     this.router.navigate(['/home']);
   }
 }
+
