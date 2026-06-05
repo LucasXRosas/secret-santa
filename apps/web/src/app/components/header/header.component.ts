@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output, inject, signal, computed } from '@angular/core';
+import { Component, output, inject, signal, computed } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
 import { AuthService } from '../../core/services/auth.service';
 
@@ -9,7 +9,7 @@ import { AuthService } from '../../core/services/auth.service';
   templateUrl: './header.html',
 })
 export class HeaderComponent {
-  @Output() toggleSidenav = new EventEmitter<void>();
+  readonly toggleSidenav = output<void>();
 
   private authService = inject(AuthService);
   private router = inject(Router);

@@ -12003,11 +12003,11 @@ function listenToOutput(tNode, lView, directiveIndex, lookupName, eventName, lis
   const tView = lView[TVIEW];
   const def = tView.data[directiveIndex];
   const propertyName = def.outputs[lookupName];
-  const output = instance[propertyName];
-  if (ngDevMode && !isOutputSubscribable(output)) {
+  const output2 = instance[propertyName];
+  if (ngDevMode && !isOutputSubscribable(output2)) {
     throw new Error(`@Output ${propertyName} not initialized in '${instance.constructor.name}'.`);
   }
-  const subscription = output.subscribe(listenerFn);
+  const subscription = output2.subscribe(listenerFn);
   storeListenerCleanup(tNode.index, tView, lView, eventName, listenerFn, subscription, true);
 }
 function isOutputSubscribable(value) {
@@ -21912,6 +21912,10 @@ var HostAttributeToken = class {
     return `HostAttributeToken ${this.attributeName}`;
   }
 };
+function output(opts) {
+  ngDevMode && assertInInjectionContext(output);
+  return new OutputEmitterRef();
+}
 function inputFunction(initialValue, opts) {
   ngDevMode && assertInInjectionContext(input);
   return createInputSignal(initialValue, opts);
@@ -53928,17 +53932,17 @@ var GoTrueClient = class _GoTrueClient {
       }
       const url = new URL((_a = options === null || options === void 0 ? void 0 : options.url) !== null && _a !== void 0 ? _a : window.location.href);
       if ("signIn" in resolvedWallet && resolvedWallet.signIn) {
-        const output = await resolvedWallet.signIn(Object.assign(Object.assign(Object.assign({ issuedAt: (/* @__PURE__ */ new Date()).toISOString() }, options === null || options === void 0 ? void 0 : options.signInWithSolana), {
+        const output2 = await resolvedWallet.signIn(Object.assign(Object.assign(Object.assign({ issuedAt: (/* @__PURE__ */ new Date()).toISOString() }, options === null || options === void 0 ? void 0 : options.signInWithSolana), {
           // non-overridable properties
           version: "1",
           domain: url.host,
           uri: url.href
         }), statement ? { statement } : null));
         let outputToProcess;
-        if (Array.isArray(output) && output[0] && typeof output[0] === "object") {
-          outputToProcess = output[0];
-        } else if (output && typeof output === "object" && "signedMessage" in output && "signature" in output) {
-          outputToProcess = output;
+        if (Array.isArray(output2) && output2[0] && typeof output2[0] === "object") {
+          outputToProcess = output2[0];
+        } else if (output2 && typeof output2 === "object" && "signedMessage" in output2 && "signature" in output2) {
+          outputToProcess = output2;
         } else {
           throw new Error("@supabase/auth-js: Wallet method signIn() returned unrecognized value");
         }
@@ -58625,6 +58629,8 @@ export {
   NgModule,
   untracked2 as untracked,
   computed,
+  output,
+  input,
   ChangeDetectorRef,
   booleanAttribute,
   getDOM,
@@ -58639,4 +58645,4 @@ export {
   provideRouter,
   AuthService
 };
-//# sourceMappingURL=chunk-GQUNLRQT.js.map
+//# sourceMappingURL=chunk-SA44WC6K.js.map

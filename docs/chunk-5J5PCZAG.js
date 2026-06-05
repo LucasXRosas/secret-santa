@@ -8,15 +8,15 @@ import {
   ReactiveFormsModule,
   Validators,
   ɵNgNoValidate
-} from "./chunk-4L2T4QFX.js";
+} from "./chunk-FP24B2MI.js";
 import {
   EventService
-} from "./chunk-UUE54GPX.js";
+} from "./chunk-MTUOECXP.js";
 import {
   FooterComponent,
   HeaderComponent,
   SidenavComponent
-} from "./chunk-VQINV7PY.js";
+} from "./chunk-2RFXDO6G.js";
 import {
   ActivatedRoute,
   AuthService,
@@ -48,7 +48,7 @@ import {
   ɵɵtext,
   ɵɵtextInterpolate,
   ɵɵtextInterpolate1
-} from "./chunk-GQUNLRQT.js";
+} from "./chunk-SA44WC6K.js";
 
 // apps/web/src/app/core/services/participant.service.ts
 var ParticipantService = class _ParticipantService {
@@ -467,158 +467,158 @@ var EventDetailComponent = class _EventDetailComponent {
 (() => {
   (typeof ngDevMode === "undefined" || ngDevMode) && setClassMetadata(EventDetailComponent, [{
     type: Component,
-    args: [{ selector: "app-event-detail", standalone: true, imports: [ReactiveFormsModule, RouterLink, HeaderComponent, FooterComponent, SidenavComponent], template: `<div class="min-h-screen flex flex-col bg-background">
-  <app-sidenav [isOpen]="sidenavOpen()" (closeSidenav)="sidenavOpen.set(false)"></app-sidenav>
-  <app-header (toggleSidenav)="sidenavOpen.set(!sidenavOpen())"></app-header>
-
-  <main class="flex-1 w-full max-w-4xl mx-auto px-6 py-12">
-    @if (loading()) {
-      <p class="font-headline font-bold uppercase text-muted-foreground">Carregando evento...</p>
-    } @else if (errorMessage()) {
-      <div class="border-4 border-black bg-destructive/10 p-6 font-bold text-destructive">
-        {{ errorMessage() }}
-      </div>
-    } @else if (event(); as ev) {
-      <!-- Cabe\xE7alho do evento -->
-      <div class="mb-10">
-        <a
-          routerLink="/dashboard"
-          class="inline-flex items-center gap-1 font-headline font-bold uppercase text-sm text-muted-foreground hover:text-foreground mb-4"
-        >
-          <span class="material-symbols-outlined text-base">arrow_back</span> Voltar
-        </a>
-        <h1 class="text-4xl md:text-5xl font-black font-headline uppercase tracking-tighter mb-2">
-          {{ ev.name }}
-        </h1>
-        <p class="text-lg font-medium text-muted-foreground">
-          Convide a galera para o grupo. Quanto mais, melhor.
-        </p>
-        <div class="flex flex-wrap gap-3 mt-4">
-          @if (ev.draw_date) {
-            <span class="flex items-center gap-1 bg-white border-2 border-black px-3 py-1 text-xs font-bold font-headline uppercase">
-              <span class="material-symbols-outlined text-sm">calendar_today</span> {{ ev.draw_date }}
-            </span>
-          }
-          @if (ev.budget != null) {
-            <span class="flex items-center gap-1 bg-white border-2 border-black px-3 py-1 text-xs font-bold font-headline uppercase">
-              <span class="material-symbols-outlined text-sm">payments</span> R$ {{ ev.budget }}
-            </span>
-          }
-        </div>
-      </div>
-
-      <!-- Grid de convite -->
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-        <!-- Coluna esquerda: convite direto + magic link -->
-        <div class="space-y-8">
-          <!-- Convite por e-mail -->
-          <div class="bg-white border-4 border-black p-6 neo-shadow-lg">
-            <div class="flex items-center gap-3 mb-6">
-              <span class="material-symbols-outlined text-3xl bg-primary p-2 border-2 border-black neo-shadow">mail</span>
-              <h2 class="text-2xl font-black font-headline uppercase italic">Convite Direto</h2>
-            </div>
-            <form [formGroup]="inviteForm" (ngSubmit)="addParticipant()" class="space-y-4">
-              <div>
-                <label for="email" class="block text-xs font-black uppercase mb-1">E-mail</label>
-                <input
-                  id="email"
-                  type="email"
-                  formControlName="email"
-                  placeholder="amigo@exemplo.com"
-                  class="w-full border-4 border-black p-4 font-bold focus:ring-0 focus:outline-none focus:bg-accent bg-zinc-50 transition-colors"
-                />
-                @if (inviteForm.controls.email.touched && inviteForm.controls.email.invalid) {
-                  <p class="text-xs font-bold text-destructive uppercase mt-1">Informe um e-mail v\xE1lido.</p>
-                }
-              </div>
-              @if (inviteError()) {
-                <p class="text-sm font-bold text-destructive">{{ inviteError() }}</p>
-              }
-              <button
-                type="submit"
-                [disabled]="inviting()"
-                class="w-full bg-accent border-4 border-black font-black uppercase py-4 flex items-center justify-center gap-2 neo-shadow hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-none active:translate-x-1 active:translate-y-1 active:shadow-none transition-all disabled:opacity-60 disabled:cursor-not-allowed"
-              >
-                <span class="material-symbols-outlined">person_add</span>
-                {{ inviting() ? 'Convidando...' : 'Adicionar Participante' }}
-              </button>
-            </form>
-          </div>
-
-          <!-- Magic Link -->
-          <div class="bg-secondary border-4 border-black p-6 neo-shadow-lg">
-            <div class="flex items-center gap-3 mb-4">
-              <span class="material-symbols-outlined text-3xl">auto_awesome</span>
-              <h2 class="text-2xl font-black font-headline uppercase italic">Link M\xE1gico</h2>
-            </div>
-            <p class="font-bold text-sm mb-4">
-              Compartilhe este link para a galera entrar no sorteio.
-            </p>
-            <div class="flex gap-2">
-              <div class="flex-1 bg-white border-2 border-black p-3 font-mono text-sm overflow-hidden truncate">
-                {{ magicLink() }}
-              </div>
-              <button
-                type="button"
-                (click)="copyMagicLink()"
-                class="bg-black text-white p-3 border-2 border-black flex items-center justify-center hover:bg-zinc-800 active:scale-95 transition-transform"
-                [attr.aria-label]="linkCopied() ? 'Link copiado' : 'Copiar link'"
-              >
-                <span class="material-symbols-outlined">{{ linkCopied() ? 'check' : 'content_copy' }}</span>
-              </button>
-            </div>
-          </div>
-        </div>
-
-        <!-- Coluna direita: convidados -->
-        <div class="bg-white border-4 border-black p-6 neo-shadow-lg h-fit">
-          <div class="flex justify-between items-center mb-6">
-            <h2 class="text-2xl font-black font-headline uppercase italic">
-              Convidados ({{ pendingCount() }})
-            </h2>
-            <span class="material-symbols-outlined text-zinc-400">group</span>
-          </div>
-
-          @if (participants().length === 0) {
-            <div class="bg-zinc-100 border-2 border-dashed border-black p-6 text-center">
-              <p class="text-xs font-bold uppercase italic text-zinc-500">
-                Ningu\xE9m por aqui ainda. Convide a galera acima!
-              </p>
-            </div>
-          } @else {
-            <div class="space-y-4">
-              @for (p of participants(); track p.id) {
-                <div class="flex items-center justify-between p-3 border-2 border-black bg-zinc-50 hover:bg-accent transition-colors">
-                  <div class="flex items-center gap-3 min-w-0">
-                    <div class="w-10 h-10 border-2 border-black bg-primary flex items-center justify-center font-black uppercase shrink-0">
-                      {{ p.email.charAt(0) }}
-                    </div>
-                    <div class="min-w-0">
-                      <p class="font-black text-sm truncate">{{ p.email }}</p>
-                      <p class="text-[10px] font-bold uppercase text-zinc-500">
-                        {{ p.status === 'joined' ? 'Entrou' : 'Pendente' }}
-                      </p>
-                    </div>
-                  </div>
-                  <button
-                    type="button"
-                    (click)="removeParticipant(p)"
-                    class="text-zinc-400 hover:text-destructive transition-colors shrink-0"
-                    aria-label="Remover participante"
-                  >
-                    <span class="material-symbols-outlined text-xl">cancel</span>
-                  </button>
-                </div>
-              }
-            </div>
-          }
-        </div>
-      </div>
-    }
-  </main>
-
-  <app-footer></app-footer>
-</div>
+    args: [{ selector: "app-event-detail", standalone: true, imports: [ReactiveFormsModule, RouterLink, HeaderComponent, FooterComponent, SidenavComponent], template: `<div class="min-h-screen flex flex-col bg-background">\r
+  <app-sidenav [isOpen]="sidenavOpen()" (closeSidenav)="sidenavOpen.set(false)"></app-sidenav>\r
+  <app-header (toggleSidenav)="sidenavOpen.set(!sidenavOpen())"></app-header>\r
+\r
+  <main class="flex-1 w-full max-w-4xl mx-auto px-6 py-12">\r
+    @if (loading()) {\r
+      <p class="font-headline font-bold uppercase text-muted-foreground">Carregando evento...</p>\r
+    } @else if (errorMessage()) {\r
+      <div class="border-4 border-black bg-destructive/10 p-6 font-bold text-destructive">\r
+        {{ errorMessage() }}\r
+      </div>\r
+    } @else if (event(); as ev) {\r
+      <!-- Cabe\xE7alho do evento -->\r
+      <div class="mb-10">\r
+        <a\r
+          routerLink="/dashboard"\r
+          class="inline-flex items-center gap-1 font-headline font-bold uppercase text-sm text-muted-foreground hover:text-foreground mb-4"\r
+        >\r
+          <span class="material-symbols-outlined text-base">arrow_back</span> Voltar\r
+        </a>\r
+        <h1 class="text-4xl md:text-5xl font-black font-headline uppercase tracking-tighter mb-2">\r
+          {{ ev.name }}\r
+        </h1>\r
+        <p class="text-lg font-medium text-muted-foreground">\r
+          Convide a galera para o grupo. Quanto mais, melhor.\r
+        </p>\r
+        <div class="flex flex-wrap gap-3 mt-4">\r
+          @if (ev.draw_date) {\r
+            <span class="flex items-center gap-1 bg-white border-2 border-black px-3 py-1 text-xs font-bold font-headline uppercase">\r
+              <span class="material-symbols-outlined text-sm">calendar_today</span> {{ ev.draw_date }}\r
+            </span>\r
+          }\r
+          @if (ev.budget != null) {\r
+            <span class="flex items-center gap-1 bg-white border-2 border-black px-3 py-1 text-xs font-bold font-headline uppercase">\r
+              <span class="material-symbols-outlined text-sm">payments</span> R$ {{ ev.budget }}\r
+            </span>\r
+          }\r
+        </div>\r
+      </div>\r
+\r
+      <!-- Grid de convite -->\r
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">\r
+        <!-- Coluna esquerda: convite direto + magic link -->\r
+        <div class="space-y-8">\r
+          <!-- Convite por e-mail -->\r
+          <div class="bg-white border-4 border-black p-6 neo-shadow-lg">\r
+            <div class="flex items-center gap-3 mb-6">\r
+              <span class="material-symbols-outlined text-3xl bg-primary p-2 border-2 border-black neo-shadow">mail</span>\r
+              <h2 class="text-2xl font-black font-headline uppercase italic">Convite Direto</h2>\r
+            </div>\r
+            <form [formGroup]="inviteForm" (ngSubmit)="addParticipant()" class="space-y-4">\r
+              <div>\r
+                <label for="email" class="block text-xs font-black uppercase mb-1">E-mail</label>\r
+                <input\r
+                  id="email"\r
+                  type="email"\r
+                  formControlName="email"\r
+                  placeholder="amigo@exemplo.com"\r
+                  class="w-full border-4 border-black p-4 font-bold focus:ring-0 focus:outline-none focus:bg-accent bg-zinc-50 transition-colors"\r
+                />\r
+                @if (inviteForm.controls.email.touched && inviteForm.controls.email.invalid) {\r
+                  <p class="text-xs font-bold text-destructive uppercase mt-1">Informe um e-mail v\xE1lido.</p>\r
+                }\r
+              </div>\r
+              @if (inviteError()) {\r
+                <p class="text-sm font-bold text-destructive">{{ inviteError() }}</p>\r
+              }\r
+              <button\r
+                type="submit"\r
+                [disabled]="inviting()"\r
+                class="w-full bg-accent border-4 border-black font-black uppercase py-4 flex items-center justify-center gap-2 neo-shadow hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-none active:translate-x-1 active:translate-y-1 active:shadow-none transition-all disabled:opacity-60 disabled:cursor-not-allowed"\r
+              >\r
+                <span class="material-symbols-outlined">person_add</span>\r
+                {{ inviting() ? 'Convidando...' : 'Adicionar Participante' }}\r
+              </button>\r
+            </form>\r
+          </div>\r
+\r
+          <!-- Magic Link -->\r
+          <div class="bg-secondary border-4 border-black p-6 neo-shadow-lg">\r
+            <div class="flex items-center gap-3 mb-4">\r
+              <span class="material-symbols-outlined text-3xl">auto_awesome</span>\r
+              <h2 class="text-2xl font-black font-headline uppercase italic">Link M\xE1gico</h2>\r
+            </div>\r
+            <p class="font-bold text-sm mb-4">\r
+              Compartilhe este link para a galera entrar no sorteio.\r
+            </p>\r
+            <div class="flex gap-2">\r
+              <div class="flex-1 bg-white border-2 border-black p-3 font-mono text-sm overflow-hidden truncate">\r
+                {{ magicLink() }}\r
+              </div>\r
+              <button\r
+                type="button"\r
+                (click)="copyMagicLink()"\r
+                class="bg-black text-white p-3 border-2 border-black flex items-center justify-center hover:bg-zinc-800 active:scale-95 transition-transform"\r
+                [attr.aria-label]="linkCopied() ? 'Link copiado' : 'Copiar link'"\r
+              >\r
+                <span class="material-symbols-outlined">{{ linkCopied() ? 'check' : 'content_copy' }}</span>\r
+              </button>\r
+            </div>\r
+          </div>\r
+        </div>\r
+\r
+        <!-- Coluna direita: convidados -->\r
+        <div class="bg-white border-4 border-black p-6 neo-shadow-lg h-fit">\r
+          <div class="flex justify-between items-center mb-6">\r
+            <h2 class="text-2xl font-black font-headline uppercase italic">\r
+              Convidados ({{ pendingCount() }})\r
+            </h2>\r
+            <span class="material-symbols-outlined text-zinc-400">group</span>\r
+          </div>\r
+\r
+          @if (participants().length === 0) {\r
+            <div class="bg-zinc-100 border-2 border-dashed border-black p-6 text-center">\r
+              <p class="text-xs font-bold uppercase italic text-zinc-500">\r
+                Ningu\xE9m por aqui ainda. Convide a galera acima!\r
+              </p>\r
+            </div>\r
+          } @else {\r
+            <div class="space-y-4">\r
+              @for (p of participants(); track p.id) {\r
+                <div class="flex items-center justify-between p-3 border-2 border-black bg-zinc-50 hover:bg-accent transition-colors">\r
+                  <div class="flex items-center gap-3 min-w-0">\r
+                    <div class="w-10 h-10 border-2 border-black bg-primary flex items-center justify-center font-black uppercase shrink-0">\r
+                      {{ p.email.charAt(0) }}\r
+                    </div>\r
+                    <div class="min-w-0">\r
+                      <p class="font-black text-sm truncate">{{ p.email }}</p>\r
+                      <p class="text-[10px] font-bold uppercase text-zinc-500">\r
+                        {{ p.status === 'joined' ? 'Entrou' : 'Pendente' }}\r
+                      </p>\r
+                    </div>\r
+                  </div>\r
+                  <button\r
+                    type="button"\r
+                    (click)="removeParticipant(p)"\r
+                    class="text-zinc-400 hover:text-destructive transition-colors shrink-0"\r
+                    aria-label="Remover participante"\r
+                  >\r
+                    <span class="material-symbols-outlined text-xl">cancel</span>\r
+                  </button>\r
+                </div>\r
+              }\r
+            </div>\r
+          }\r
+        </div>\r
+      </div>\r
+    }\r
+  </main>\r
+\r
+  <app-footer></app-footer>\r
+</div>\r
 ` }]
   }], null, null);
 })();
@@ -628,4 +628,4 @@ var EventDetailComponent = class _EventDetailComponent {
 export {
   EventDetailComponent
 };
-//# sourceMappingURL=chunk-6IVTA6WL.js.map
+//# sourceMappingURL=chunk-5J5PCZAG.js.map
