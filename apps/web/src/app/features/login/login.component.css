@@ -28,3 +28,15 @@
   background-image: radial-gradient(#000000 1.5px, transparent 1.5px);
   background-size: 32px 32px;
 }
+
+/* Remove a cor de fundo forçada pelo autofill */
+input:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0 30px #ffffff inset !important; /* Substitua #ffffff pela cor de fundo do seu input */
+    -webkit-text-fill-color: #000000 !important; /* Cor do texto dentro do input */
+}
+
+/* Mantém o estilo normal quando o usuário foca no input */
+input:-webkit-autofill:focus {
+    -webkit-box-shadow: 0 0 0 30px #ffffff inset !important;
+    -webkit-text-fill-color: #000000 !important;
+}
