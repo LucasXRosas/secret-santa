@@ -13,7 +13,7 @@ import {
 } from "./chunk-D2NPQOVP.js";
 import {
   EventService
-} from "./chunk-2LLAPXEH.js";
+} from "./chunk-EVQMUCJN.js";
 import {
   FooterComponent,
   HeaderComponent,
@@ -299,4 +299,4 @@ var CreateEventComponent = class _CreateEventComponent {
 export {
   CreateEventComponent
 };
-//# sourceMappingURL=chunk-2VQ2KFF4.js.map
+//# sourceMappingURL=chunk-WTO74MA7.js.map

@@ -1,5 +1,5 @@
 import { Component, inject, signal, computed, input, effect } from '@angular/core';
-import { RouterLink } from '@angular/router';
+import { RouterLink, Router } from '@angular/router';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { HeaderComponent } from '../../../components/header/header.component';
 import { FooterComponent } from '../../../components/footer/footer.component';
@@ -19,6 +19,7 @@ export class EventDetailComponent {
   private fb = inject(FormBuilder);
   private eventService = inject(EventService);
   private participantService = inject(ParticipantService);
+  private router = inject(Router);
 
   /** Controla a abertura do menu lateral. */
   sidenavOpen = signal(false);
@@ -39,8 +40,14 @@ export class EventDetailComponent {
   inviting = signal(false);
   inviteError = signal<string | null>(null);
 
+  /** Estado do sorteio */
+  drawing = signal(false);
+
   /** Quantidade de convidados (usada no título "Pendentes"). */
   pendingCount = computed(() => this.participants().length);
+
+  /** Indica se o sorteio já foi realizado (pelo menos um com drawn_participant_id) */
+  hasDrawn = computed(() => this.participants().some(p => p.drawn_participant_id != null));
 
   /** Link mágico para entrar no sorteio (copiável). */
   magicLink = computed(() =>
@@ -120,6 +127,49 @@ export class EventDetailComponent {
     } catch (error) {
       console.error('Erro ao remover participante:', error);
     }
+  }
+
+  async deleteEvent() {
+    if (!confirm('Tem certeza de que deseja excluir este sorteio? Esta ação não pode ser desfeita.')) {
+      return;
+    }
+
+    try {
+      await this.eventService.deleteEvent(this.id());
+      this.router.navigate(['/dashboard']);
+    } catch (error) {
+      console.error('Erro ao excluir evento:', error);
+      alert('Não foi possível excluir o evento.');
+    }
+  }
+
+  async fazerSorteio() {
+    if (this.participants().length < 3) {
+      alert('É necessário ter pelo menos 3 participantes para realizar o sorteio.');
+      return;
+    }
+    
+    if (!confirm('Deseja realmente realizar o sorteio? Após sorteado, você não poderá adicionar ou remover participantes.')) {
+      return;
+    }
+
+    this.drawing.set(true);
+    try {
+      await this.participantService.performDraw(this.id(), this.participants());
+      // Recarrega os participantes para exibir os resultados (ou apenas atualiza os signals se preferir)
+      await this.loadAll(this.id());
+    } catch (error: any) {
+      console.error('Erro ao realizar o sorteio:', error);
+      alert('Não foi possível realizar o sorteio: ' + (error?.message || 'Erro desconhecido.'));
+    } finally {
+      this.drawing.set(false);
+    }
+  }
+
+  getDrawnEmail(drawnId: string | null | undefined): string {
+    if (!drawnId) return '';
+    const participant = this.participants().find(p => p.id === drawnId);
+    return participant ? (participant.name || participant.email) : 'Desconhecido';
   }
 
   async copyMagicLink() {

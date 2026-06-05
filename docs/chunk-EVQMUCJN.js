@@ -47,6 +47,12 @@ var EventService = class _EventService {
       throw error;
     return data;
   }
+  /** Exclui um evento existente. */
+  async deleteEvent(id) {
+    const { error } = await this.getClient().from("events").delete().eq("id", id);
+    if (error)
+      throw error;
+  }
   static \u0275fac = function EventService_Factory(__ngFactoryType__) {
     return new (__ngFactoryType__ || _EventService)();
   };
@@ -64,4 +70,4 @@ var EventService = class _EventService {
 export {
   EventService
 };
-//# sourceMappingURL=chunk-2LLAPXEH.js.map
+//# sourceMappingURL=chunk-EVQMUCJN.js.map

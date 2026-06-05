@@ -4,7 +4,7 @@ import {
 } from "./chunk-6GD34B6A.js";
 import {
   EventService
-} from "./chunk-2LLAPXEH.js";
+} from "./chunk-EVQMUCJN.js";
 import {
   FooterComponent,
   HeaderComponent,
@@ -262,4 +262,4 @@ var DashboardComponent = class _DashboardComponent {
 export {
   DashboardComponent
 };
-//# sourceMappingURL=chunk-JZW6VF2E.js.map
+//# sourceMappingURL=chunk-ZPD6QUSK.js.map

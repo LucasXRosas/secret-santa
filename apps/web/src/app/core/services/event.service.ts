@@ -77,4 +77,14 @@ export class EventService {
     if (error) throw error;
     return data as SecretSantaEvent;
   }
+
+  /** Exclui um evento existente. */
+  async deleteEvent(id: string): Promise<void> {
+    const { error } = await this.getClient()
+      .from('events')
+      .delete()
+      .eq('id', id);
+
+    if (error) throw error;
+  }
 }

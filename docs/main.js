@@ -46,17 +46,17 @@ var routes = [
   {
     path: "dashboard",
     canActivate: [authGuard],
-    loadComponent: () => import("./chunk-JZW6VF2E.js").then((m) => m.DashboardComponent)
+    loadComponent: () => import("./chunk-ZPD6QUSK.js").then((m) => m.DashboardComponent)
   },
   {
     path: "eventos/novo",
     canActivate: [authGuard],
-    loadComponent: () => import("./chunk-2VQ2KFF4.js").then((m) => m.CreateEventComponent)
+    loadComponent: () => import("./chunk-WTO74MA7.js").then((m) => m.CreateEventComponent)
   },
   {
     path: "eventos/:id",
     canActivate: [authGuard],
-    loadComponent: () => import("./chunk-XOZKMUBS.js").then((m) => m.EventDetailComponent)
+    loadComponent: () => import("./chunk-7JY7HDK5.js").then((m) => m.EventDetailComponent)
   }
 ];
 

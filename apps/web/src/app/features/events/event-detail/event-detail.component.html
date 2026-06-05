@@ -13,12 +13,20 @@
     } @else if (event(); as ev) {
       <!-- Cabeçalho do evento -->
       <div class="mb-10">
-        <a
-          routerLink="/dashboard"
-          class="inline-flex items-center gap-1 font-headline font-bold uppercase text-sm text-muted-foreground hover:text-foreground mb-4"
-        >
-          <span class="material-symbols-outlined text-base">arrow_back</span> Voltar
-        </a>
+        <div class="flex justify-between items-center mb-4">
+          <a
+            routerLink="/dashboard"
+            class="inline-flex items-center gap-1 font-headline font-bold uppercase text-sm text-muted-foreground hover:text-foreground"
+          >
+            <span class="material-symbols-outlined text-base">arrow_back</span> Voltar
+          </a>
+          <button
+            (click)="deleteEvent()"
+            class="inline-flex items-center gap-1 text-sm font-bold uppercase text-destructive hover:opacity-80 transition-opacity"
+          >
+            <span class="material-symbols-outlined text-base">delete</span> Excluir Sorteio
+          </button>
+        </div>
         <h1 class="text-4xl md:text-5xl font-black font-headline uppercase tracking-tighter mb-2">
           {{ ev.name }}
         </h1>
@@ -45,6 +53,8 @@
       <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
         <!-- Coluna esquerda: convite direto + magic link -->
         <div class="space-y-8">
+          @if (!hasDrawn()) {
+            <!-- Convite por e-mail (Visível apenas antes do sorteio) -->
           <!-- Convite por e-mail -->
           <div class="bg-white border-4 border-black p-6 neo-shadow-lg">
             <div class="flex items-center gap-3 mb-6">
@@ -102,6 +112,15 @@
               </button>
             </div>
           </div>
+          } @else {
+            <div class="bg-primary/20 border-4 border-black p-6 neo-shadow-lg text-center flex flex-col items-center">
+              <span class="material-symbols-outlined text-6xl text-primary mb-4">celebration</span>
+              <h2 class="text-2xl font-black font-headline uppercase italic mb-2">Sorteio Realizado!</h2>
+              <p class="font-bold text-sm">
+                Os participantes já foram sorteados e não é mais possível alterar o grupo.
+              </p>
+            </div>
+          }
         </div>
 
         <!-- Coluna direita: convidados -->
@@ -127,24 +146,47 @@
                     <div class="w-10 h-10 border-2 border-black bg-primary flex items-center justify-center font-black uppercase shrink-0">
                       {{ p.email.charAt(0) }}
                     </div>
-                    <div class="min-w-0">
-                      <p class="font-black text-sm truncate">{{ p.email }}</p>
-                      <p class="text-[10px] font-bold uppercase text-zinc-500">
-                        {{ p.status === 'joined' ? 'Entrou' : 'Pendente' }}
-                      </p>
-                    </div>
+                  <div class="min-w-0">
+                    <p class="font-black text-sm truncate">{{ p.email }}</p>
+                    <p class="text-[10px] font-bold uppercase text-zinc-500">
+                      {{ p.status === 'joined' ? 'Entrou' : 'Pendente' }}
+                    </p>
                   </div>
-                  <button
-                    type="button"
-                    (click)="removeParticipant(p)"
-                    class="text-zinc-400 hover:text-destructive transition-colors shrink-0"
-                    aria-label="Remover participante"
-                  >
-                    <span class="material-symbols-outlined text-xl">cancel</span>
-                  </button>
                 </div>
+                <div class="flex items-center gap-2">
+                  @if (hasDrawn()) {
+                    <div class="bg-secondary px-3 py-1 border-2 border-black text-xs font-bold uppercase">
+                      👉 Tirou: {{ getDrawnEmail(p.drawn_participant_id) }}
+                    </div>
+                  } @else {
+                    <button
+                      type="button"
+                      (click)="removeParticipant(p)"
+                      class="text-zinc-400 hover:text-destructive transition-colors shrink-0"
+                      aria-label="Remover participante"
+                    >
+                      <span class="material-symbols-outlined text-xl">cancel</span>
+                    </button>
+                  }
+                </div>
+              </div>
               }
             </div>
+          }
+
+          @if (!hasDrawn() && participants().length >= 3) {
+            <button
+              (click)="fazerSorteio()"
+              [disabled]="drawing()"
+              class="mt-6 w-full bg-primary border-4 border-black font-black uppercase py-4 flex items-center justify-center gap-2 neo-shadow hover:bg-accent transition-all disabled:opacity-60 disabled:cursor-not-allowed"
+            >
+              <span class="material-symbols-outlined">shuffle</span>
+              {{ drawing() ? 'Sorteando...' : 'Fazer o Sorteio' }}
+            </button>
+          } @else if (!hasDrawn() && participants().length > 0) {
+            <p class="mt-6 text-center text-xs font-bold text-zinc-500 uppercase">
+              Adicione pelo menos 3 pessoas para realizar o sorteio.
+            </p>
           }
         </div>
       </div>
