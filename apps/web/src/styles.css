@@ -73,7 +73,7 @@
   --border: 0 0% 0%; /* Black borders for Neo-brutalism */
   --input: 0 0% 0%;
   --ring: 260 100% 88%;
-  --radius: 0px; /* Neo-Fun usually uses sharp edges or fully rounded */
+  --radius: 0.75rem; /* Neo-Fun usually uses sharp edges or fully rounded */
   --sidebar: 45 100% 98%;
   --sidebar-foreground: 0 0% 0%;
   --sidebar-accent: 260 100% 88%;
