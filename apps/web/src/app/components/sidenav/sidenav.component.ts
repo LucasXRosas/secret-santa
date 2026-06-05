@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter, inject } from '@angular/core';
+import { Component, input, output, inject } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
 import { AuthService } from '../../core/services/auth.service';
 
@@ -9,8 +9,8 @@ import { AuthService } from '../../core/services/auth.service';
   templateUrl: './sidenav.html',
 })
 export class SidenavComponent {
-  @Input() isOpen = false;
-  @Output() closeSidenav = new EventEmitter<void>();
+  readonly isOpen = input(false);
+  readonly closeSidenav = output<void>();
 
   private authService = inject(AuthService);
   private router = inject(Router);

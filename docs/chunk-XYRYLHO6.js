@@ -2,7 +2,7 @@ import {
   FooterComponent,
   HeaderComponent,
   SidenavComponent
-} from "./chunk-VQINV7PY.js";
+} from "./chunk-2RFXDO6G.js";
 import {
   CommonModule,
   Component,
@@ -19,7 +19,7 @@ import {
   ɵɵnamespaceSVG,
   ɵɵproperty,
   ɵɵtext
-} from "./chunk-GQUNLRQT.js";
+} from "./chunk-SA44WC6K.js";
 
 // apps/web/src/app/features/home/home.component.ts
 var HomeComponent = class _HomeComponent {
@@ -190,4 +190,4 @@ var HomeComponent = class _HomeComponent {
 export {
   HomeComponent
 };
-//# sourceMappingURL=chunk-GYMKCC6Y.js.map
+//# sourceMappingURL=chunk-XYRYLHO6.js.map

@@ -4,7 +4,7 @@ import {
   inject,
   setClassMetadata,
   ɵɵdefineInjectable
-} from "./chunk-GQUNLRQT.js";
+} from "./chunk-SA44WC6K.js";
 
 // apps/web/src/app/core/services/event.service.ts
 var EventService = class _EventService {
@@ -64,4 +64,4 @@ var EventService = class _EventService {
 export {
   EventService
 };
-//# sourceMappingURL=chunk-UUE54GPX.js.map
+//# sourceMappingURL=chunk-MTUOECXP.js.map

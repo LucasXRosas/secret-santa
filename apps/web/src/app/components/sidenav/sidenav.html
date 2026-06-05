@@ -1,5 +1,5 @@
 <!-- Backdrop Overlay (escurece o fundo e permite clicar para fechar) -->
-@if (isOpen) {
+@if (isOpen()) {
   <div
     class="fixed inset-0 bg-black/50 z-40 transition-opacity lg:hidden"
     (click)="onClose()"
@@ -10,8 +10,8 @@
 <!-- Menu Lateral (Drawer) -->
 <aside
   class="fixed top-0 left-0 w-64 h-full bg-secondary border-r-4 border-black z-50 transform transition-transform duration-300 ease-in-out lg:hidden neo-shadow-lg"
-  [class.-translate-x-full]="!isOpen"
-  [class.translate-x-0]="isOpen"
+  [class.-translate-x-full]="!isOpen()"
+  [class.translate-x-0]="isOpen()"
 >
   <div class="flex items-center justify-between p-4 border-b-4 border-black bg-white">
     <span class="text-xl font-headline font-black uppercase tracking-tighter text-black">Menu</span>

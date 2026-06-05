@@ -14,7 +14,7 @@ import {
   ɵsetClassDebugInfo,
   ɵɵdefineComponent,
   ɵɵelement
-} from "./chunk-GQUNLRQT.js";
+} from "./chunk-SA44WC6K.js";
 
 // apps/web/src/app/core/guards/auth.guard.ts
 var authGuard = async () => {
@@ -31,7 +31,7 @@ var authGuard = async () => {
 var routes = [
   {
     path: "login",
-    loadComponent: () => import("./chunk-FTR4ROEX.js").then((m) => m.LoginComponent)
+    loadComponent: () => import("./chunk-2OOZLBER.js").then((m) => m.LoginComponent)
   },
   {
     path: "",
@@ -40,22 +40,22 @@ var routes = [
   },
   {
     path: "home",
-    loadComponent: () => import("./chunk-GYMKCC6Y.js").then((m) => m.HomeComponent)
+    loadComponent: () => import("./chunk-XYRYLHO6.js").then((m) => m.HomeComponent)
   },
   {
     path: "dashboard",
     canActivate: [authGuard],
-    loadComponent: () => import("./chunk-SURF64WJ.js").then((m) => m.DashboardComponent)
+    loadComponent: () => import("./chunk-42KW2NTP.js").then((m) => m.DashboardComponent)
   },
   {
     path: "eventos/novo",
     canActivate: [authGuard],
-    loadComponent: () => import("./chunk-4XH5AVMZ.js").then((m) => m.CreateEventComponent)
+    loadComponent: () => import("./chunk-E4OQMXHH.js").then((m) => m.CreateEventComponent)
   },
   {
     path: "eventos/:id",
     canActivate: [authGuard],
-    loadComponent: () => import("./chunk-6IVTA6WL.js").then((m) => m.EventDetailComponent)
+    loadComponent: () => import("./chunk-5J5PCZAG.js").then((m) => m.EventDetailComponent)
   }
 ];
 

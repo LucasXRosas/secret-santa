@@ -10,15 +10,15 @@ import {
   ReactiveFormsModule,
   Validators,
   ɵNgNoValidate
-} from "./chunk-4L2T4QFX.js";
+} from "./chunk-FP24B2MI.js";
 import {
   EventService
-} from "./chunk-UUE54GPX.js";
+} from "./chunk-MTUOECXP.js";
 import {
   FooterComponent,
   HeaderComponent,
   SidenavComponent
-} from "./chunk-VQINV7PY.js";
+} from "./chunk-2RFXDO6G.js";
 import {
   Component,
   Router,
@@ -38,7 +38,7 @@ import {
   ɵɵproperty,
   ɵɵtext,
   ɵɵtextInterpolate1
-} from "./chunk-GQUNLRQT.js";
+} from "./chunk-SA44WC6K.js";
 
 // apps/web/src/app/features/events/create-event/create-event.component.ts
 function CreateEventComponent_Conditional_17_Template(rf, ctx) {
@@ -192,99 +192,99 @@ var CreateEventComponent = class _CreateEventComponent {
 (() => {
   (typeof ngDevMode === "undefined" || ngDevMode) && setClassMetadata(CreateEventComponent, [{
     type: Component,
-    args: [{ selector: "app-create-event", standalone: true, imports: [ReactiveFormsModule, HeaderComponent, FooterComponent, SidenavComponent], template: `<div class="min-h-screen flex flex-col bg-background">
-  <app-sidenav [isOpen]="sidenavOpen()" (closeSidenav)="sidenavOpen.set(false)"></app-sidenav>
-  <app-header (toggleSidenav)="sidenavOpen.set(!sidenavOpen())"></app-header>
-
-  <main class="flex-1 w-full max-w-3xl mx-auto px-6 py-12">
-    <div class="bg-white border-4 border-black p-8 neo-shadow-lg relative overflow-hidden">
-      <!-- Etiqueta decorativa de canto -->
-      <div
-        class="absolute top-0 right-0 bg-secondary border-l-4 border-b-4 border-black px-4 py-1 font-headline font-black text-xs uppercase"
-      >
-        Novo Sorteio
-      </div>
-
-      <h1 class="font-headline font-black text-4xl mb-8 uppercase tracking-tighter leading-none">
-        Crie seu <br /><span class="text-[#635388]">Amigo Secreto</span>
-      </h1>
-
-      <form [formGroup]="form" (ngSubmit)="onSubmit()" class="space-y-8">
-        <!-- Nome do Sorteio -->
-        <div class="space-y-2">
-          <label for="name" class="font-headline font-bold uppercase text-sm flex items-center gap-2">
-            \u{1F381} Nome do Sorteio
-          </label>
-          <input
-            id="name"
-            type="text"
-            formControlName="name"
-            placeholder="ex: Amigo da Firma"
-            class="w-full border-4 border-black p-4 text-xl font-bold focus:ring-0 focus:bg-primary focus:outline-none transition-colors neo-inset"
-          />
-          @if (form.controls.name.touched && form.controls.name.invalid) {
-            <p class="text-xs font-bold text-destructive uppercase">D\xEA um nome para o seu sorteio.</p>
-          } @else {
-            <p class="text-xs font-bold text-muted-foreground uppercase">D\xEA um nome legal para o seu grupo</p>
-          }
-        </div>
-
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-          <!-- Limite de Or\xE7amento -->
-          <div class="space-y-2">
-            <label for="budget" class="font-headline font-bold uppercase text-sm flex items-center gap-2">
-              \u{1F4B0} Limite de Or\xE7amento
-            </label>
-            <div class="relative">
-              <span class="absolute left-4 top-1/2 -translate-y-1/2 font-black text-xl">R$</span>
-              <input
-                id="budget"
-                type="number"
-                min="0"
-                formControlName="budget"
-                placeholder="50"
-                class="w-full border-4 border-black p-4 pl-12 text-xl font-bold focus:ring-0 focus:bg-accent focus:outline-none transition-colors neo-inset"
-              />
-            </div>
-            <p class="text-xs font-bold text-muted-foreground uppercase">Gasto m\xE1ximo por pessoa</p>
-          </div>
-
-          <!-- Data do Sorteio -->
-          <div class="space-y-2">
-            <label for="draw_date" class="font-headline font-bold uppercase text-sm flex items-center gap-2">
-              \u{1F4C5} Data do Sorteio
-            </label>
-            <input
-              id="draw_date"
-              type="date"
-              formControlName="draw_date"
-              class="w-full border-4 border-black p-4 text-xl font-bold focus:ring-0 focus:bg-secondary focus:outline-none transition-colors neo-inset"
-            />
-            <p class="text-xs font-bold text-muted-foreground uppercase">Quando vamos trocar os presentes?</p>
-          </div>
-        </div>
-
-        @if (errorMessage()) {
-          <div class="border-4 border-black bg-destructive/10 p-4 font-bold text-destructive">
-            {{ errorMessage() }}
-          </div>
-        }
-
-        <div class="pt-4">
-          <button
-            type="submit"
-            [disabled]="saving()"
-            class="w-full bg-primary border-4 border-black py-6 px-8 text-2xl font-black uppercase tracking-tighter neo-shadow hover:bg-accent active:translate-x-1 active:translate-y-1 active:shadow-none transition-all flex justify-center items-center gap-4 disabled:opacity-60 disabled:cursor-not-allowed"
-          >
-            {{ saving() ? 'Salvando...' : 'Criar Sorteio' }}
-          </button>
-        </div>
-      </form>
-    </div>
-  </main>
-
-  <app-footer></app-footer>
-</div>
+    args: [{ selector: "app-create-event", standalone: true, imports: [ReactiveFormsModule, HeaderComponent, FooterComponent, SidenavComponent], template: `<div class="min-h-screen flex flex-col bg-background">\r
+  <app-sidenav [isOpen]="sidenavOpen()" (closeSidenav)="sidenavOpen.set(false)"></app-sidenav>\r
+  <app-header (toggleSidenav)="sidenavOpen.set(!sidenavOpen())"></app-header>\r
+\r
+  <main class="flex-1 w-full max-w-3xl mx-auto px-6 py-12">\r
+    <div class="bg-white border-4 border-black p-8 neo-shadow-lg relative overflow-hidden">\r
+      <!-- Etiqueta decorativa de canto -->\r
+      <div\r
+        class="absolute top-0 right-0 bg-secondary border-l-4 border-b-4 border-black px-4 py-1 font-headline font-black text-xs uppercase"\r
+      >\r
+        Novo Sorteio\r
+      </div>\r
+\r
+      <h1 class="font-headline font-black text-4xl mb-8 uppercase tracking-tighter leading-none">\r
+        Crie seu <br /><span class="text-[#635388]">Amigo Secreto</span>\r
+      </h1>\r
+\r
+      <form [formGroup]="form" (ngSubmit)="onSubmit()" class="space-y-8">\r
+        <!-- Nome do Sorteio -->\r
+        <div class="space-y-2">\r
+          <label for="name" class="font-headline font-bold uppercase text-sm flex items-center gap-2">\r
+            \u{1F381} Nome do Sorteio\r
+          </label>\r
+          <input\r
+            id="name"\r
+            type="text"\r
+            formControlName="name"\r
+            placeholder="ex: Amigo da Firma"\r
+            class="w-full border-4 border-black p-4 text-xl font-bold focus:ring-0 focus:bg-primary focus:outline-none transition-colors neo-inset"\r
+          />\r
+          @if (form.controls.name.touched && form.controls.name.invalid) {\r
+            <p class="text-xs font-bold text-destructive uppercase">D\xEA um nome para o seu sorteio.</p>\r
+          } @else {\r
+            <p class="text-xs font-bold text-muted-foreground uppercase">D\xEA um nome legal para o seu grupo</p>\r
+          }\r
+        </div>\r
+\r
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">\r
+          <!-- Limite de Or\xE7amento -->\r
+          <div class="space-y-2">\r
+            <label for="budget" class="font-headline font-bold uppercase text-sm flex items-center gap-2">\r
+              \u{1F4B0} Limite de Or\xE7amento\r
+            </label>\r
+            <div class="relative">\r
+              <span class="absolute left-4 top-1/2 -translate-y-1/2 font-black text-xl">R$</span>\r
+              <input\r
+                id="budget"\r
+                type="number"\r
+                min="0"\r
+                formControlName="budget"\r
+                placeholder="50"\r
+                class="w-full border-4 border-black p-4 pl-12 text-xl font-bold focus:ring-0 focus:bg-accent focus:outline-none transition-colors neo-inset"\r
+              />\r
+            </div>\r
+            <p class="text-xs font-bold text-muted-foreground uppercase">Gasto m\xE1ximo por pessoa</p>\r
+          </div>\r
+\r
+          <!-- Data do Sorteio -->\r
+          <div class="space-y-2">\r
+            <label for="draw_date" class="font-headline font-bold uppercase text-sm flex items-center gap-2">\r
+              \u{1F4C5} Data do Sorteio\r
+            </label>\r
+            <input\r
+              id="draw_date"\r
+              type="date"\r
+              formControlName="draw_date"\r
+              class="w-full border-4 border-black p-4 text-xl font-bold focus:ring-0 focus:bg-secondary focus:outline-none transition-colors neo-inset"\r
+            />\r
+            <p class="text-xs font-bold text-muted-foreground uppercase">Quando vamos trocar os presentes?</p>\r
+          </div>\r
+        </div>\r
+\r
+        @if (errorMessage()) {\r
+          <div class="border-4 border-black bg-destructive/10 p-4 font-bold text-destructive">\r
+            {{ errorMessage() }}\r
+          </div>\r
+        }\r
+\r
+        <div class="pt-4">\r
+          <button\r
+            type="submit"\r
+            [disabled]="saving()"\r
+            class="w-full bg-primary border-4 border-black py-6 px-8 text-2xl font-black uppercase tracking-tighter neo-shadow hover:bg-accent active:translate-x-1 active:translate-y-1 active:shadow-none transition-all flex justify-center items-center gap-4 disabled:opacity-60 disabled:cursor-not-allowed"\r
+          >\r
+            {{ saving() ? 'Salvando...' : 'Criar Sorteio' }}\r
+          </button>\r
+        </div>\r
+      </form>\r
+    </div>\r
+  </main>\r
+\r
+  <app-footer></app-footer>\r
+</div>\r
 ` }]
   }], null, null);
 })();
@@ -294,4 +294,4 @@ var CreateEventComponent = class _CreateEventComponent {
 export {
   CreateEventComponent
 };
-//# sourceMappingURL=chunk-4XH5AVMZ.js.map
+//# sourceMappingURL=chunk-E4OQMXHH.js.map
