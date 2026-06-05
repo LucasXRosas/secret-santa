@@ -18,8 +18,24 @@ export class AuthService {
   // Signal computado para verificar se está autenticado
   readonly isAuthenticated = computed(() => !!this._currentUser());
 
+  // Promise que resolve quando a sessão inicial já foi restaurada do storage.
+  // Usada pelo authGuard para não redirecionar antes da sessão carregar (ex.: F5 no /dashboard).
+  private _ready!: Promise<void>;
+  whenReady(): Promise<void> {
+    return this._ready;
+  }
+
   constructor() {
     this.initSupabase();
+  }
+
+  /**
+   * Cliente Supabase público (autenticado). Usado por outros services
+   * (ex.: EventService) para fazer queries respeitando o RLS do usuário logado.
+   * Retorna null se o Supabase não estiver configurado.
+   */
+  get client(): SupabaseClient | null {
+    return this.supabase;
   }
 
   private initSupabase() {
@@ -31,17 +47,20 @@ export class AuthService {
       console.warn(
         '⚠️ Supabase não configurado. Por favor, configure as variáveis supabaseUrl e supabaseKey em seu arquivo environment.ts'
       );
+      this._ready = Promise.resolve();
       return;
     }
 
     try {
       // Cliente público (para login, sessão, etc.)
-      // persistSession: false => a sessão NÃO é gravada no localStorage,
-      // então ao recarregar a página (F5) o usuário precisa logar de novo.
+      // persistSession: true => a sessão é gravada no localStorage, então o
+      // usuário continua logado ao recarregar a página (F5) ou reabrir o
+      // navegador. Só sai ao clicar em "Logout" ou ao limpar o cache/storage.
+      // autoRefreshToken: true => renova o token automaticamente antes de expirar.
       this.supabase = createClient(url, key, {
         auth: {
-          persistSession: false,
-          autoRefreshToken: false,
+          persistSession: true,
+          autoRefreshToken: true,
         },
       });
       
@@ -55,8 +74,8 @@ export class AuthService {
         });
       }
       
-      // Obter sessão inicial
-      this.supabase.auth.getSession().then(({ data: { session } }) => {
+      // Obter sessão inicial (restaurada do localStorage, se existir)
+      this._ready = this.supabase.auth.getSession().then(({ data: { session } }) => {
         this._currentUser.set(session?.user ?? null);
       });
 
@@ -66,6 +85,7 @@ export class AuthService {
       });
     } catch (error) {
       console.error('Erro ao inicializar cliente Supabase:', error);
+      this._ready = Promise.resolve();
     }
   }
 

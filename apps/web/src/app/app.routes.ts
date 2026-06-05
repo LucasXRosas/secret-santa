@@ -20,4 +20,14 @@ export const routes: Routes = [
     canActivate: [authGuard],
     loadComponent: () => import('./features/dashboard/dashboard.component').then(m => m.DashboardComponent)
   },
+  {
+    path: 'eventos/novo',
+    canActivate: [authGuard],
+    loadComponent: () => import('./features/events/create-event/create-event.component').then(m => m.CreateEventComponent)
+  },
+  {
+    path: 'eventos/:id',
+    canActivate: [authGuard],
+    loadComponent: () => import('./features/events/event-detail/event-detail.component').then(m => m.EventDetailComponent)
+  },
 ];

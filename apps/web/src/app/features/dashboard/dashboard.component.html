@@ -3,199 +3,86 @@
   <app-sidenav [isOpen]="sidenavOpen()" (closeSidenav)="sidenavOpen.set(false)"></app-sidenav>
   <app-header (toggleSidenav)="sidenavOpen.set(!sidenavOpen())"></app-header>
 
-  <!-- ===== Miolo central (design do Stitch: Datas Marcadas / Neo-Fun) ===== -->
   <main class="flex-1 w-full max-w-5xl mx-auto px-6 py-12">
-    <!-- Hero / Título -->
-    <section class="mb-12">
-      <h1
-        class="font-headline font-black text-5xl md:text-6xl text-foreground mb-4 tracking-tighter uppercase leading-none"
+    <!-- Cabeçalho + ação de novo evento -->
+    <section class="mb-12 flex flex-col md:flex-row md:items-end md:justify-between gap-6">
+      <div>
+        <h1
+          class="font-headline font-black text-5xl md:text-6xl text-foreground mb-4 tracking-tighter uppercase leading-none"
+        >
+          Suas <span class="text-[#635388]">Trocas</span>
+        </h1>
+        <p class="text-lg text-muted-foreground max-w-xl font-medium">
+          Gerencie seus amigos secretos, acompanhe as revelações e prepare o presente perfeito.
+        </p>
+      </div>
+
+      <button
+        (click)="novoEvento()"
+        class="shrink-0 bg-primary border-4 border-black px-6 py-4 font-headline font-black text-lg uppercase tracking-tighter neo-shadow hover:bg-accent active:translate-x-1 active:translate-y-1 active:shadow-none transition-all flex items-center gap-2"
       >
-        Suas <span class="text-[#635388]">Trocas</span> Ativas
-      </h1>
-      <p class="text-lg text-muted-foreground max-w-xl font-medium">
-        Gerencie seus amigos secretos, acompanhe as revelações e prepare o presente perfeito.
-      </p>
+        <span class="material-symbols-outlined">add_circle</span>
+        Novo Evento
+      </button>
     </section>
 
-    <!-- Bento Grid -->
-    <div class="grid grid-cols-1 md:grid-cols-12 gap-6">
-      <!-- Card 1: Troca em destaque (grande) -->
-      <div
-        class="md:col-span-8 bg-accent border-4 border-black p-8 neo-shadow rounded-xl flex flex-col justify-between min-h-[320px] active-press cursor-pointer group"
-      >
-        <div>
-          <div class="flex items-center gap-2 mb-4">
-            <span
-              class="bg-primary text-black font-headline text-xs font-bold px-3 py-1 border-2 border-black rounded-full uppercase"
-            >
-              Em Progresso
-            </span>
-            <span
-              class="bg-white border-2 border-black px-3 py-1 rounded-full text-xs font-bold font-headline"
-            >
-              {{ trocaDestaque().participantes }} Participantes
-            </span>
-          </div>
-          <h2 class="font-headline font-black text-4xl text-black mb-2 uppercase">
-            {{ trocaDestaque().nome }}
-          </h2>
-          <p class="font-bold text-black/70 flex items-center gap-1">
-            <span class="material-symbols-outlined align-middle" style="font-variation-settings: 'FILL' 1;">
-              calendar_today
-            </span>
-            Revelação: {{ trocaDestaque().revelacao }}
-          </p>
-        </div>
-
-        <div class="mt-8 flex justify-between items-end">
-          <!-- Pilha de avatares (data-driven via @for) -->
-          <div class="flex -space-x-3">
-            @for (avatar of trocaDestaque().avatares; track avatar.iniciais) {
-              <div
-                class="w-12 h-12 rounded-full border-2 border-black flex items-center justify-center font-headline font-bold text-xs"
-                [class]="avatar.cor"
-              >
-                {{ avatar.iniciais }}
-              </div>
-            }
-            @if (trocaDestaque().participantes > trocaDestaque().avatares.length) {
-              <div
-                class="w-12 h-12 rounded-full border-2 border-black bg-muted flex items-center justify-center font-headline font-bold text-xs"
-              >
-                +{{ trocaDestaque().participantes - trocaDestaque().avatares.length }}
-              </div>
-            }
-          </div>
-
-          <div
-            class="bg-black text-white p-3 border-2 border-black rounded-lg neo-shadow-yellow font-headline font-bold uppercase text-sm group-hover:bg-secondary group-hover:text-black transition-colors"
-          >
-            Ver Dashboard
-          </div>
-        </div>
+    <!-- Estados: carregando / erro / vazio / lista -->
+    @if (loading()) {
+      <p class="font-headline font-bold uppercase text-muted-foreground">Carregando seus eventos...</p>
+    } @else if (errorMessage()) {
+      <div class="border-4 border-black bg-destructive/10 p-6 font-bold text-destructive">
+        {{ errorMessage() }}
       </div>
-
-      <!-- Card 2: Sorteio Pendente (pequeno) -->
+    } @else if (events().length === 0) {
+      <!-- Estado vazio -->
       <div
-        class="md:col-span-4 bg-secondary border-4 border-black p-6 neo-shadow rounded-xl flex flex-col justify-center items-center text-center space-y-4"
+        class="bg-white border-4 border-black border-dashed p-12 text-center flex flex-col items-center gap-4"
       >
-        <div
-          class="w-20 h-20 bg-white border-4 border-black rounded-full flex items-center justify-center neo-shadow"
-        >
-          <span class="material-symbols-outlined text-4xl" style="font-variation-settings: 'FILL' 1;">
-            redeem
-          </span>
-        </div>
-        <h3 class="font-headline font-black text-2xl text-black leading-tight uppercase">
-          Sorteio Pendente
-        </h3>
-        <p class="font-medium text-black/80">O grupo "Amigos do Fut" ainda não realizou o sorteio.</p>
+        <span class="material-symbols-outlined text-6xl">redeem</span>
+        <h2 class="font-headline font-black text-2xl uppercase">Nenhum sorteio ainda</h2>
+        <p class="text-muted-foreground font-medium max-w-md">
+          Você ainda não criou nenhum amigo secreto. Que tal começar agora?
+        </p>
         <button
-          class="w-full py-2 bg-white border-2 border-black rounded-lg font-headline font-bold uppercase active-press neo-shadow"
+          (click)="novoEvento()"
+          class="mt-2 bg-primary border-4 border-black px-6 py-3 font-headline font-black uppercase tracking-tighter neo-shadow hover:bg-accent active:translate-x-1 active:translate-y-1 active:shadow-none transition-all"
         >
-          Sortear Agora
+          Criar meu primeiro evento
         </button>
       </div>
-
-      <!-- Cards 3..N: Trocas concluídas (data-driven via @for) -->
-      @for (troca of trocasConcluidas(); track troca.nome) {
-        <div
-          class="md:col-span-6 bg-card border-4 border-black p-6 neo-shadow rounded-xl flex flex-col justify-between active-press cursor-pointer group"
-        >
-          <div>
-            <div class="flex justify-between items-start mb-4">
-              <span
-                class="bg-muted text-muted-foreground font-headline text-xs font-bold px-3 py-1 border-2 border-black rounded-full uppercase opacity-60"
-              >
-                Concluído
-              </span>
-              <span
-                class="material-symbols-outlined text-black opacity-30 group-hover:opacity-100 transition-opacity"
-              >
-                check_circle
-              </span>
-            </div>
-            <h2 class="font-headline font-black text-3xl text-black mb-1 uppercase">
-              {{ troca.nome }}
+    } @else {
+      <!-- Lista de eventos -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        @for (event of events(); track event.id) {
+          <div
+            (click)="abrirEvento(event)"
+            class="bg-card border-4 border-black p-6 neo-shadow active-press cursor-pointer flex flex-col justify-between"
+          >
+            <h2 class="font-headline font-black text-3xl text-black mb-2 uppercase">
+              {{ event.name }}
             </h2>
-            <p class="font-bold text-black/50">Ocorreu em {{ troca.data }}</p>
-          </div>
-
-          @if (troca.citacao) {
-            <div class="mt-6 bg-black/5 p-4 rounded-lg border-2 border-dashed border-black/10">
-              <p class="italic text-sm text-black/60">"{{ troca.citacao }}"</p>
+            <div class="flex flex-wrap gap-3 mt-4">
+              @if (event.draw_date) {
+                <span
+                  class="flex items-center gap-1 bg-white border-2 border-black px-3 py-1 text-xs font-bold font-headline uppercase"
+                >
+                  <span class="material-symbols-outlined text-sm">calendar_today</span>
+                  {{ event.draw_date }}
+                </span>
+              }
+              @if (event.budget != null) {
+                <span
+                  class="flex items-center gap-1 bg-white border-2 border-black px-3 py-1 text-xs font-bold font-headline uppercase"
+                >
+                  <span class="material-symbols-outlined text-sm">payments</span>
+                  R$ {{ event.budget }}
+                </span>
+              }
             </div>
-          } @else {
-            <div class="mt-6 flex items-center gap-4">
-              <div class="flex-1 h-2 bg-muted rounded-full border border-black overflow-hidden">
-                <div class="w-full h-full bg-accent"></div>
-              </div>
-              <span class="font-headline font-bold text-xs">100% Finalizado</span>
-            </div>
-          }
-        </div>
-      }
-
-      <!-- Card: Criar nova troca (ação) -->
-      <div
-        class="md:col-span-6 bg-primary border-4 border-black p-6 neo-shadow rounded-xl flex flex-col justify-between active-press cursor-pointer group"
-      >
-        <div class="flex justify-between items-start">
-          <h2 class="font-headline font-black text-3xl text-black uppercase leading-none">
-            Criar Nova<br />Troca
-          </h2>
-          <span class="material-symbols-outlined text-4xl">add_circle</span>
-        </div>
-        <p class="font-medium text-black/80 mt-4">
-          Organize um novo amigo secreto de forma rápida e divertida.
-        </p>
-        <div
-          class="mt-6 w-full h-12 border-2 border-dashed border-black/30 rounded-lg flex items-center justify-center"
-        >
-          <span class="font-headline font-bold text-black/40 uppercase tracking-widest text-xs">
-            Novo Evento
-          </span>
-        </div>
-      </div>
-
-      <!-- Card: Alerta de sorteio próximo (largura total) -->
-      <div
-        class="md:col-span-12 bg-accent border-4 border-black p-8 neo-shadow rounded-xl flex flex-row items-center gap-6 active-press cursor-pointer"
-      >
-        <div
-          class="hidden sm:flex w-32 h-32 bg-white border-4 border-black rounded-xl items-center justify-center rotate-3 neo-shadow"
-        >
-          <span class="material-symbols-outlined text-6xl" style="font-variation-settings: 'FILL' 1;">
-            card_giftcard
-          </span>
-        </div>
-        <div class="flex-1">
-          <h2 class="font-headline font-black text-3xl text-black uppercase mb-1">Amigo Chocolate</h2>
-          <div class="flex gap-4 mb-4">
-            <span class="flex items-center gap-1 font-headline font-bold text-xs uppercase">
-              <span class="material-symbols-outlined text-sm">group</span> 8 Pessoas
-            </span>
-            <span class="flex items-center gap-1 font-headline font-bold text-xs uppercase">
-              <span class="material-symbols-outlined text-sm">payments</span> Min: R$ 30
-            </span>
           </div>
-          <div class="flex items-center gap-2">
-            <span
-              class="bg-white border-2 border-black px-4 py-1 rounded-full text-sm font-black font-headline uppercase"
-            >
-              Sorteio Amanhã!
-            </span>
-            <span
-              class="material-symbols-outlined text-destructive animate-pulse"
-              style="font-variation-settings: 'FILL' 1;"
-            >
-              priority_high
-            </span>
-          </div>
-        </div>
-        <span class="material-symbols-outlined text-4xl">chevron_right</span>
+        }
       </div>
-    </div>
+    }
   </main>
 
   <app-footer></app-footer>
