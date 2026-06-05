@@ -2,7 +2,7 @@ import {
   FooterComponent,
   HeaderComponent,
   SidenavComponent
-} from "./chunk-WIC73XW4.js";
+} from "./chunk-VQINV7PY.js";
 import {
   CommonModule,
   Component,
@@ -19,7 +19,7 @@ import {
   ɵɵnamespaceSVG,
   ɵɵproperty,
   ɵɵtext
-} from "./chunk-SPEW6YYM.js";
+} from "./chunk-GQUNLRQT.js";
 
 // apps/web/src/app/features/home/home.component.ts
 var HomeComponent = class _HomeComponent {
@@ -185,9 +185,9 @@ var HomeComponent = class _HomeComponent {
   }], null, null);
 })();
 (() => {
-  (typeof ngDevMode === "undefined" || ngDevMode) && \u0275setClassDebugInfo(HomeComponent, { className: "HomeComponent", filePath: "apps/web/src/app/features/home/home.component.ts", lineNumber: 15 });
+  (typeof ngDevMode === "undefined" || ngDevMode) && \u0275setClassDebugInfo(HomeComponent, { className: "HomeComponent", filePath: "src/app/features/home/home.component.ts", lineNumber: 15 });
 })();
 export {
   HomeComponent
 };
-//# sourceMappingURL=chunk-WTSLTUAN.js.map
+//# sourceMappingURL=chunk-GYMKCC6Y.js.map

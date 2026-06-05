@@ -1,7 +1,5 @@
 import {
-  AuthService
-} from "./chunk-HNREXE6V.js";
-import {
+  AuthService,
   Component,
   Router,
   RouterOutlet,
@@ -16,12 +14,13 @@ import {
   ɵsetClassDebugInfo,
   ɵɵdefineComponent,
   ɵɵelement
-} from "./chunk-SPEW6YYM.js";
+} from "./chunk-GQUNLRQT.js";
 
 // apps/web/src/app/core/guards/auth.guard.ts
-var authGuard = () => {
+var authGuard = async () => {
   const authService = inject(AuthService);
   const router = inject(Router);
+  await authService.whenReady();
   if (authService.isAuthenticated()) {
     return true;
   }
@@ -32,7 +31,7 @@ var authGuard = () => {
 var routes = [
   {
     path: "login",
-    loadComponent: () => import("./chunk-4TSVER7M.js").then((m) => m.LoginComponent)
+    loadComponent: () => import("./chunk-FTR4ROEX.js").then((m) => m.LoginComponent)
   },
   {
     path: "",
@@ -41,12 +40,22 @@ var routes = [
   },
   {
     path: "home",
-    loadComponent: () => import("./chunk-WTSLTUAN.js").then((m) => m.HomeComponent)
+    loadComponent: () => import("./chunk-GYMKCC6Y.js").then((m) => m.HomeComponent)
   },
   {
     path: "dashboard",
     canActivate: [authGuard],
-    loadComponent: () => import("./chunk-AA2VFNMP.js").then((m) => m.DashboardComponent)
+    loadComponent: () => import("./chunk-SURF64WJ.js").then((m) => m.DashboardComponent)
+  },
+  {
+    path: "eventos/novo",
+    canActivate: [authGuard],
+    loadComponent: () => import("./chunk-4XH5AVMZ.js").then((m) => m.CreateEventComponent)
+  },
+  {
+    path: "eventos/:id",
+    canActivate: [authGuard],
+    loadComponent: () => import("./chunk-6IVTA6WL.js").then((m) => m.EventDetailComponent)
   }
 ];
 
@@ -88,7 +97,7 @@ var App = class _App {
   }], null, null);
 })();
 (() => {
-  (typeof ngDevMode === "undefined" || ngDevMode) && \u0275setClassDebugInfo(App, { className: "App", filePath: "apps/web/src/app/app.ts", lineNumber: 10 });
+  (typeof ngDevMode === "undefined" || ngDevMode) && \u0275setClassDebugInfo(App, { className: "App", filePath: "src/app/app.ts", lineNumber: 10 });
 })();
 
 // apps/web/src/main.ts

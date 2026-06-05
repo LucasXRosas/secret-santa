@@ -40,12 +40,28 @@
     >
       Sorteio
     </a>
-    <a
-      routerLink="/login"
-      (click)="onClose()"
-      class="text-black font-headline font-bold uppercase border-2 border-black bg-white py-3 px-4 hover:bg-primary hover:-translate-y-1 neo-shadow-sm transition-all focus:outline-none"
-    >
-      login
-    </a>
+    @if (isAuthenticated()) {
+      <a
+        routerLink="/dashboard"
+        (click)="onClose()"
+        class="text-black font-headline font-bold uppercase border-2 border-black bg-white py-3 px-4 hover:bg-primary hover:-translate-y-1 neo-shadow-sm transition-all focus:outline-none"
+      >
+        Dashboard
+      </a>
+      <button
+        (click)="logout()"
+        class="text-left text-black font-headline font-bold uppercase border-2 border-black bg-white py-3 px-4 hover:bg-black hover:text-white hover:-translate-y-1 neo-shadow-sm transition-all focus:outline-none"
+      >
+        Logout
+      </button>
+    } @else {
+      <a
+        routerLink="/login"
+        (click)="onClose()"
+        class="text-black font-headline font-bold uppercase border-2 border-black bg-white py-3 px-4 hover:bg-primary hover:-translate-y-1 neo-shadow-sm transition-all focus:outline-none"
+      >
+        Login
+      </a>
+    }
   </nav>
 </aside>

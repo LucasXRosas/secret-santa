@@ -23,12 +23,50 @@
     >
       Sorteio
     </a>
-    <a
-      routerLink="/login"
-      class="text-black font-headline font-bold uppercase hover:bg-black hover:text-white px-3 py-1 transition-colors outline-none focus-visible:ring-2 focus-visible:ring-black"
-    >
-      Login
-    </a>
+
+    @if (isAuthenticated()) {
+      <!-- Perfil do usuário com caixinha (dropdown) -->
+      <div class="relative">
+        <button
+          (click)="toggleProfile()"
+          class="w-10 h-10 bg-white border-2 border-black neo-shadow-sm hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-none transition-all outline-none focus-visible:ring-2 focus-visible:ring-black flex items-center justify-center font-headline font-black text-black uppercase"
+          aria-label="Abrir menu do perfil"
+          [attr.aria-expanded]="isProfileOpen()"
+        >
+          {{ userInitial() }}
+        </button>
+
+        @if (isProfileOpen()) {
+          <!-- Backdrop invisível para fechar ao clicar fora -->
+          <div class="fixed inset-0 z-40" (click)="closeProfile()" aria-hidden="true"></div>
+
+          <!-- Caixinha -->
+          <div
+            class="absolute right-0 mt-2 w-48 bg-white border-2 border-black neo-shadow-lg z-50 flex flex-col"
+          >
+            <button
+              (click)="goToDashboard()"
+              class="text-left text-black font-headline font-bold uppercase px-4 py-3 hover:bg-primary border-b-2 border-black transition-colors outline-none focus-visible:ring-2 focus-visible:ring-black"
+            >
+              Dashboard
+            </button>
+            <button
+              (click)="logout()"
+              class="text-left text-black font-headline font-bold uppercase px-4 py-3 hover:bg-black hover:text-white transition-colors outline-none focus-visible:ring-2 focus-visible:ring-black"
+            >
+              Logout
+            </button>
+          </div>
+        }
+      </div>
+    } @else {
+      <a
+        routerLink="/login"
+        class="text-black font-headline font-bold uppercase hover:bg-black hover:text-white px-3 py-1 transition-colors outline-none focus-visible:ring-2 focus-visible:ring-black"
+      >
+        Login
+      </a>
+    }
   </nav>
 
   <!-- Botão Menu Mobile -->

@@ -1,33 +1,10 @@
-import { Component, signal, inject } from '@angular/core';
+import { Component, signal, inject, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { HeaderComponent } from '../../components/header/header.component';
 import { FooterComponent } from '../../components/footer/footer.component';
 import { SidenavComponent } from '../../components/sidenav/sidenav.component';
 import { AuthService } from '../../core/services/auth.service';
-
-/** Participante exibido na pilha de avatares de uma troca. */
-interface Participante {
-  /** Iniciais mostradas no círculo (ex.: "FF"). */
-  iniciais: string;
-  /** Token de cor de fundo do avatar (classe Tailwind, ex.: 'bg-primary'). */
-  cor: string;
-}
-
-/** Uma troca em andamento (card grande / destaque). */
-interface TrocaAtiva {
-  nome: string;
-  participantes: number;
-  revelacao: string;
-  avatares: Participante[];
-}
-
-/** Uma troca já finalizada (card menor). */
-interface TrocaConcluida {
-  nome: string;
-  data: string;
-  /** Frase opcional de "melhor presente"; quando presente, vira um quote. */
-  citacao?: string;
-}
+import { EventService, SecretSantaEvent } from '../../core/services/event.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -35,34 +12,43 @@ interface TrocaConcluida {
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.css'],
 })
-export class DashboardComponent {
+export class DashboardComponent implements OnInit {
   protected authService = inject(AuthService);
+  private eventService = inject(EventService);
   private router = inject(Router);
 
   /** Controla a abertura do menu lateral (mesmo padrão da home). */
   sidenavOpen = signal(false);
 
-  /** Troca em destaque no topo do bento grid. */
-  trocaDestaque = signal<TrocaAtiva>({
-    nome: 'Natal da Firma 2024',
-    participantes: 12,
-    revelacao: '20 de Dezembro',
-    avatares: [
-      { iniciais: 'JS', cor: 'bg-primary' },
-      { iniciais: 'MA', cor: 'bg-secondary' },
-      { iniciais: 'RB', cor: 'bg-accent' },
-    ],
-  });
+  /** Eventos do usuário carregados do banco. */
+  events = signal<SecretSantaEvent[]>([]);
+  loading = signal(true);
+  errorMessage = signal<string | null>(null);
 
-  /** Histórico de trocas finalizadas (renderizadas via @for). */
-  trocasConcluidas = signal<TrocaConcluida[]>([
-    { nome: 'Família Oliveira 2023', data: '24 de Dez, 2023' },
-    {
-      nome: 'Intercâmbio Dublin',
-      data: '15 de Jul, 2023',
-      citacao: 'O melhor presente foi a Guinness que ganhei!',
-    },
-  ]);
+  async ngOnInit() {
+    await this.loadEvents();
+  }
+
+  private async loadEvents() {
+    this.loading.set(true);
+    this.errorMessage.set(null);
+    try {
+      this.events.set(await this.eventService.listMyEvents());
+    } catch (error) {
+      console.error('Erro ao carregar eventos:', error);
+      this.errorMessage.set('Não foi possível carregar seus eventos.');
+    } finally {
+      this.loading.set(false);
+    }
+  }
+
+  novoEvento() {
+    this.router.navigate(['/eventos/novo']);
+  }
+
+  abrirEvento(event: SecretSantaEvent) {
+    this.router.navigate(['/eventos', event.id]);
+  }
 
   async logout() {
     try {
