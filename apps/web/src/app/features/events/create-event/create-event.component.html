@@ -73,11 +73,17 @@
             <input
               id="draw_date"
               type="date"
+              [min]="todayDate"
               formControlName="draw_date"
               class="w-full border-4 border-black p-4 text-xl font-bold focus:ring-0 focus:bg-secondary focus:outline-none transition-colors neo-inset"
             />
             @if (form.controls.draw_date.touched && form.controls.draw_date.invalid) {
-              <p class="text-xs font-bold text-destructive uppercase">Data do sorteio é obrigatória.</p>
+              @if (form.controls.draw_date.hasError('required')) {
+                <p class="text-xs font-bold text-destructive uppercase">Data do sorteio é obrigatória.</p>
+              }
+              @if (form.controls.draw_date.hasError('pastDate')) {
+                <p class="text-xs font-bold text-destructive uppercase">A data não pode estar no passado.</p>
+              }
             } @else {
               <p class="text-xs font-bold text-muted-foreground uppercase">Quando vamos trocar os presentes?</p>
             }

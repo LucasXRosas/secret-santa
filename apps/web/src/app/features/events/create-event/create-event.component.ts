@@ -1,12 +1,30 @@
 import { Component, inject, signal } from '@angular/core';
 import { Router } from '@angular/router';
-import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormBuilder, ReactiveFormsModule, Validators, AbstractControl, ValidationErrors, ValidatorFn } from '@angular/forms';
 import { toSignal, toObservable } from '@angular/core/rxjs-interop';
 import { distinctUntilChanged } from 'rxjs';
 import { HeaderComponent } from '../../../components/header/header.component';
 import { FooterComponent } from '../../../components/footer/footer.component';
 import { SidenavComponent } from '../../../components/sidenav/sidenav.component';
 import { EventService } from '../../../core/services/event.service';
+
+/** Validador customizado para não permitir datas no passado */
+export function futureDateValidator(): ValidatorFn {
+  return (control: AbstractControl): ValidationErrors | null => {
+    if (!control.value) return null;
+    
+    const today = new Date();
+    const year = today.getFullYear();
+    const month = String(today.getMonth() + 1).padStart(2, '0');
+    const day = String(today.getDate()).padStart(2, '0');
+    const todayStr = `${year}-${month}-${day}`;
+    
+    if (control.value < todayStr) {
+      return { pastDate: true };
+    }
+    return null;
+  };
+}
 
 @Component({
   selector: 'app-create-event',
@@ -25,12 +43,15 @@ export class CreateEventComponent {
   /** Estado de envio / erro do formulário. */
   saving = signal(false);
   errorMessage = signal<string | null>(null);
+  
+  /** Data atual para usar no input [min] */
+  todayDate = new Date().toISOString().split('T')[0];
 
   /** Formulário do evento — espelha os campos do design (nome, orçamento, data). */
   form = this.fb.nonNullable.group({
     name: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(120)]],
     budget: [null as number | null, [Validators.min(0)]],
-    draw_date: ['', [Validators.required]],
+    draw_date: ['', [Validators.required, futureDateValidator()]],
   });
 
   // [ID25] toSignal: Transforma Observable (valueChanges) em um Signal reativo
