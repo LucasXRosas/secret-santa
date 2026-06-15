@@ -1,0 +1,17 @@
+{
+  "name": "WishDraw",
+  "short_name": "WishDraw",
+  "theme_color": "#635388",
+  "background_color": "#ffffff",
+  "display": "standalone",
+  "scope": "/",
+  "start_url": "/",
+  "description": "Organize um amigo secreto online de forma rápida e prática.",
+  "icons": [
+    {
+      "src": "favicon.ico",
+      "sizes": "256x256",
+      "type": "image/x-icon"
+    }
+  ]
+}

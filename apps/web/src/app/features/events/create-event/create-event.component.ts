@@ -1,6 +1,8 @@
 import { Component, inject, signal } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
+import { toSignal, toObservable } from '@angular/core/rxjs-interop';
+import { distinctUntilChanged } from 'rxjs';
 import { HeaderComponent } from '../../../components/header/header.component';
 import { FooterComponent } from '../../../components/footer/footer.component';
 import { SidenavComponent } from '../../../components/sidenav/sidenav.component';
@@ -26,10 +28,25 @@ export class CreateEventComponent {
 
   /** Formulário do evento — espelha os campos do design (nome, orçamento, data). */
   form = this.fb.nonNullable.group({
-    name: ['', [Validators.required, Validators.maxLength(120)]],
-    budget: [null as number | null],
-    draw_date: [''],
+    name: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(120)]],
+    budget: [null as number | null, [Validators.min(0)]],
+    draw_date: ['', [Validators.required]],
   });
+
+  // [ID25] toSignal: Transforma Observable (valueChanges) em um Signal reativo
+  formValues = toSignal(this.form.valueChanges, { initialValue: this.form.value });
+
+  // [ID25] toObservable: Transforma Signal em Observable para usar operadores RxJS
+  sidenavState$ = toObservable(this.sidenavOpen).pipe(
+    distinctUntilChanged()
+  );
+
+  constructor() {
+    // Apenas para demonstrar a reatividade RxJS <-> Sinais
+    this.sidenavState$.subscribe(isOpen => {
+      console.log('[RxJS] Menu lateral alterado:', isOpen);
+    });
+  }
 
   async onSubmit() {
     if (this.form.invalid) {

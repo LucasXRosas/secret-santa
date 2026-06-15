@@ -30,7 +30,12 @@
             class="w-full border-4 border-black p-4 text-xl font-bold focus:ring-0 focus:bg-primary focus:outline-none transition-colors neo-inset"
           />
           @if (form.controls.name.touched && form.controls.name.invalid) {
-            <p class="text-xs font-bold text-destructive uppercase">Dê um nome para o seu sorteio.</p>
+            @if (form.controls.name.hasError('required')) {
+              <p class="text-xs font-bold text-destructive uppercase">Dê um nome para o seu sorteio.</p>
+            }
+            @if (form.controls.name.hasError('minlength')) {
+              <p class="text-xs font-bold text-destructive uppercase">O nome precisa ter pelo menos 3 caracteres.</p>
+            }
           } @else {
             <p class="text-xs font-bold text-muted-foreground uppercase">Dê um nome legal para o seu grupo</p>
           }
@@ -53,7 +58,11 @@
                 class="w-full border-4 border-black p-4 pl-12 text-xl font-bold focus:ring-0 focus:bg-accent focus:outline-none transition-colors neo-inset"
               />
             </div>
-            <p class="text-xs font-bold text-muted-foreground uppercase">Gasto máximo por pessoa</p>
+            @if (form.controls.budget.touched && form.controls.budget.invalid) {
+              <p class="text-xs font-bold text-destructive uppercase">Orçamento inválido (mínimo 0).</p>
+            } @else {
+              <p class="text-xs font-bold text-muted-foreground uppercase">Gasto máximo por pessoa</p>
+            }
           </div>
 
           <!-- Data do Sorteio -->
@@ -67,7 +76,11 @@
               formControlName="draw_date"
               class="w-full border-4 border-black p-4 text-xl font-bold focus:ring-0 focus:bg-secondary focus:outline-none transition-colors neo-inset"
             />
-            <p class="text-xs font-bold text-muted-foreground uppercase">Quando vamos trocar os presentes?</p>
+            @if (form.controls.draw_date.touched && form.controls.draw_date.invalid) {
+              <p class="text-xs font-bold text-destructive uppercase">Data do sorteio é obrigatória.</p>
+            } @else {
+              <p class="text-xs font-bold text-muted-foreground uppercase">Quando vamos trocar os presentes?</p>
+            }
           </div>
         </div>
 
@@ -80,7 +93,7 @@
         <div class="pt-4">
           <button
             type="submit"
-            [disabled]="saving()"
+            [disabled]="saving() || form.invalid"
             class="w-full bg-primary border-4 border-black py-6 px-8 text-2xl font-black uppercase tracking-tighter neo-shadow hover:bg-accent active:translate-x-1 active:translate-y-1 active:shadow-none transition-all flex justify-center items-center gap-4 disabled:opacity-60 disabled:cursor-not-allowed"
           >
             {{ saving() ? 'Salvando...' : 'Criar Sorteio' }}
