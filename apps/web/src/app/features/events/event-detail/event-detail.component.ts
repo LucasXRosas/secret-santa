@@ -203,7 +203,7 @@ export class EventDetailComponent {
       return;
     }
     
-    if (!confirm('Deseja realmente realizar o sorteio? Após sorteado, você não poderá adicionar ou remover participantes.')) {
+    if (!confirm('Deseja realmente realizar o sorteio? Após realizado, você não poderá editar o evento e adicionar ou remover participantes.')) {
       return;
     }
 

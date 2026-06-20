@@ -21,12 +21,22 @@
             <span class="material-symbols-outlined text-base">arrow_back</span> Voltar
           </a>
           <div class="flex items-center gap-4">
-            <button
-              (click)="openEditModal()"
-              class="inline-flex items-center gap-1 text-sm font-bold uppercase text-primary hover:opacity-80 transition-opacity"
-            >
-              <span class="material-symbols-outlined text-base">edit</span> Editar Sorteio
-            </button>
+            @if (hasDrawn()) {
+              <button
+                disabled
+                title="Não é possível editar após o sorteio ser realizado"
+                class="inline-flex items-center gap-1 text-sm font-bold uppercase text-zinc-400 cursor-not-allowed"
+              >
+                <span class="material-symbols-outlined text-base">edit_off</span> Editar Sorteio
+              </button>
+            } @else {
+              <button
+                (click)="openEditModal()"
+                class="inline-flex items-center gap-1 text-sm font-bold uppercase text-primary hover:opacity-80 transition-opacity"
+              >
+                <span class="material-symbols-outlined text-base">edit</span> Editar Sorteio
+              </button>
+            }
             <button
               (click)="deleteEvent()"
               class="inline-flex items-center gap-1 text-sm font-bold uppercase text-destructive hover:opacity-80 transition-opacity"
