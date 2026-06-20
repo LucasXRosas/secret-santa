@@ -1,6 +1,6 @@
 {
   "configVersion": 1,
-  "timestamp": 1781955490997,
+  "timestamp": 1781955639153,
   "index": "/secret-santa/index.html",
   "assetGroups": [
     {
@@ -64,7 +64,7 @@
     "/secret-santa/index.html": "cba5eb530652c8fbd0ac1c956f2155573e0b8111",
     "/secret-santa/logo.png": "77908f1a5abc6ff3f90abd3fb8436ebd619ea35f",
     "/secret-santa/main-YYCIC4BX.js": "0ba86ea93a78f8d5c326eba688e4b07e73754c28",
-    "/secret-santa/manifest.json": "1188624184a3828825d1cba07e7d38e505f906c2",
+    "/secret-santa/manifest.json": "3a92c19bf38245639703e6ba9630b59460b0dd8e",
     "/secret-santa/styles-2TXFT3FL.css": "209a59c9ca8d55aa02bd659f6366fd149f068d36"
   },
   "navigationUrls": [
