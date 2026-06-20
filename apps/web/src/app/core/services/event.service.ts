@@ -78,6 +78,23 @@ export class EventService {
     return data as SecretSantaEvent;
   }
 
+  /** Atualiza um evento existente. */
+  async updateEvent(id: string, event: Partial<NewEvent>): Promise<SecretSantaEvent> {
+    const { data, error } = await this.getClient()
+      .from('events')
+      .update({
+        ...(event.name !== undefined && { name: event.name }),
+        ...(event.budget !== undefined && { budget: event.budget ?? null }),
+        ...(event.draw_date !== undefined && { draw_date: event.draw_date ?? null }),
+      })
+      .eq('id', id)
+      .select()
+      .single();
+
+    if (error) throw error;
+    return data as SecretSantaEvent;
+  }
+
   /** Exclui um evento existente. */
   async deleteEvent(id: string): Promise<void> {
     const { error } = await this.getClient()

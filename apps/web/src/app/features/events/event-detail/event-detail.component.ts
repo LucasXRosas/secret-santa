@@ -64,6 +64,15 @@ export class EventDetailComponent {
     email: ['', [Validators.required, Validators.email]],
   });
 
+  /** Estado e formulário de edição do evento */
+  showEditModal = signal(false);
+  updating = signal(false);
+  editForm = this.fb.group({
+    name: this.fb.control<string>('', { validators: [Validators.required], nonNullable: true }),
+    budget: this.fb.control<number | null>(null),
+    draw_date: this.fb.control<string | null>(null),
+  });
+
   constructor() {
     /**
      * [ID13] effect(): reage de forma segura ao signal id().
@@ -145,6 +154,46 @@ export class EventDetailComponent {
     } catch (error) {
       console.error('Erro ao excluir evento:', error);
       alert('Não foi possível excluir o evento.');
+    }
+  }
+
+  openEditModal() {
+    const current = this.event();
+    if (current) {
+      this.editForm.patchValue({
+        name: current.name,
+        budget: current.budget,
+        draw_date: current.draw_date,
+      });
+      this.showEditModal.set(true);
+    }
+  }
+
+  closeEditModal() {
+    this.showEditModal.set(false);
+  }
+
+  async updateEventDetails() {
+    if (this.editForm.invalid) {
+      this.editForm.markAllAsTouched();
+      return;
+    }
+
+    this.updating.set(true);
+    try {
+      const values = this.editForm.getRawValue();
+      const updatedEvent = await this.eventService.updateEvent(this.id(), {
+        name: values.name,
+        budget: values.budget,
+        draw_date: values.draw_date,
+      });
+      this.event.set(updatedEvent);
+      this.closeEditModal();
+    } catch (error) {
+      console.error('Erro ao atualizar evento:', error);
+      alert('Não foi possível atualizar o evento.');
+    } finally {
+      this.updating.set(false);
     }
   }
 
