@@ -4,8 +4,8 @@
   "theme_color": "#635388",
   "background_color": "#ffffff",
   "display": "standalone",
-  "scope": "/",
-  "start_url": "/",
+  "scope": "/secret-santa/",
+  "start_url": "/secret-santa/",
   "description": "Organize um amigo secreto online de forma rápida e prática.",
   "icons": [
     {
