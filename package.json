@@ -7,7 +7,7 @@
     "format": "prettier --write \"**/*.{ts,js,json,css,html,md}\"",
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build",
+    "build": "ng build && copy docs\\index.html docs\\404.html",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
   },
@@ -30,6 +30,7 @@
     "@angular/forms": "^21.2.0",
     "@angular/platform-browser": "^21.2.0",
     "@angular/router": "^21.2.0",
+    "@angular/service-worker": "^21.2.17",
     "@spartan-ng/brain": "^0.0.1-alpha.672",
     "@supabase/supabase-js": "^2.107.0",
     "rxjs": "~7.8.0",

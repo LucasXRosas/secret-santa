@@ -143,5 +143,9 @@
     }
   </main>
 
-  <app-footer></app-footer>
+  @defer (on viewport) {
+    <app-footer></app-footer>
+  } @placeholder {
+    <div class="h-16 w-full animate-pulse bg-muted mt-8"></div>
+  }
 </div>

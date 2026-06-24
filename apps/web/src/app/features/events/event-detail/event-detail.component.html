@@ -20,12 +20,30 @@
           >
             <span class="material-symbols-outlined text-base">arrow_back</span> Voltar
           </a>
-          <button
-            (click)="deleteEvent()"
-            class="inline-flex items-center gap-1 text-sm font-bold uppercase text-destructive hover:opacity-80 transition-opacity"
-          >
-            <span class="material-symbols-outlined text-base">delete</span> Excluir Sorteio
-          </button>
+          <div class="flex items-center gap-4">
+            @if (hasDrawn()) {
+              <button
+                disabled
+                title="Não é possível editar após o sorteio ser realizado"
+                class="inline-flex items-center gap-1 text-sm font-bold uppercase text-zinc-400 cursor-not-allowed"
+              >
+                <span class="material-symbols-outlined text-base">edit_off</span> Editar Sorteio
+              </button>
+            } @else {
+              <button
+                (click)="openEditModal()"
+                class="inline-flex items-center gap-1 text-sm font-bold uppercase text-primary hover:opacity-80 transition-opacity"
+              >
+                <span class="material-symbols-outlined text-base">edit</span> Editar Sorteio
+              </button>
+            }
+            <button
+              (click)="deleteEvent()"
+              class="inline-flex items-center gap-1 text-sm font-bold uppercase text-destructive hover:opacity-80 transition-opacity"
+            >
+              <span class="material-symbols-outlined text-base">delete</span> Excluir Sorteio
+            </button>
+          </div>
         </div>
         <h1 class="text-4xl md:text-5xl font-black font-headline uppercase tracking-tighter mb-2">
           {{ ev.name }}
@@ -284,6 +302,69 @@
             </button>
           </div>
         }
+      </div>
+    </div>
+  }
+  <!-- Modal de Edição -->
+  @if (showEditModal()) {
+    <div class="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm p-4">
+      <div class="bg-white border-4 border-black w-full max-w-md p-8 neo-shadow-xl relative animate-in fade-in zoom-in duration-200">
+        <button
+          type="button"
+          (click)="closeEditModal()"
+          class="absolute top-4 right-4 text-zinc-400 hover:text-black transition-colors"
+          aria-label="Fechar"
+        >
+          <span class="material-symbols-outlined">close</span>
+        </button>
+
+        <h2 class="text-2xl font-black font-headline uppercase italic mb-6">Editar Evento</h2>
+
+        <form [formGroup]="editForm" (ngSubmit)="updateEventDetails()" class="space-y-4">
+          <div>
+            <label for="edit-name" class="block text-xs font-black uppercase mb-1">Nome do Sorteio</label>
+            <input
+              id="edit-name"
+              type="text"
+              formControlName="name"
+              placeholder="Ex: Amigo Secreto da Família"
+              class="w-full border-4 border-black p-4 font-bold focus:ring-0 focus:outline-none focus:bg-accent bg-zinc-50 transition-colors"
+            />
+            @if (editForm.controls.name.touched && editForm.controls.name.invalid) {
+              <p class="text-xs font-bold text-destructive uppercase mt-1">O nome é obrigatório.</p>
+            }
+          </div>
+
+          <div>
+            <label for="edit-budget" class="block text-xs font-black uppercase mb-1">Orçamento (Opcional)</label>
+            <input
+              id="edit-budget"
+              type="number"
+              formControlName="budget"
+              placeholder="Ex: 50"
+              class="w-full border-4 border-black p-4 font-bold focus:ring-0 focus:outline-none focus:bg-accent bg-zinc-50 transition-colors"
+            />
+          </div>
+
+          <div>
+            <label for="edit-date" class="block text-xs font-black uppercase mb-1">Data do Sorteio (Opcional)</label>
+            <input
+              id="edit-date"
+              type="date"
+              formControlName="draw_date"
+              class="w-full border-4 border-black p-4 font-bold focus:ring-0 focus:outline-none focus:bg-accent bg-zinc-50 transition-colors"
+            />
+          </div>
+
+          <button
+            type="submit"
+            [disabled]="updating()"
+            class="w-full bg-primary border-4 border-black font-black uppercase py-4 flex items-center justify-center gap-2 neo-shadow hover:bg-accent transition-all disabled:opacity-60 disabled:cursor-not-allowed mt-4"
+          >
+            <span class="material-symbols-outlined">save</span>
+            {{ updating() ? 'Salvando...' : 'Salvar Alterações' }}
+          </button>
+        </form>
       </div>
     </div>
   }

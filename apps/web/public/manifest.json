@@ -1,0 +1,17 @@
+{
+  "name": "WishDraw",
+  "short_name": "WishDraw",
+  "theme_color": "#635388",
+  "background_color": "#ffffff",
+  "display": "standalone",
+  "scope": "/secret-santa/",
+  "start_url": "/secret-santa/",
+  "description": "Organize um amigo secreto online de forma rápida e prática.",
+  "icons": [
+    {
+      "src": "logo.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    }
+  ]
+}

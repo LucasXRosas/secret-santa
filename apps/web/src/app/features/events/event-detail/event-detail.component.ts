@@ -13,7 +13,15 @@ import { ToastService } from '../../../core/services/toast.service';
 @Component({
   selector: 'app-event-detail',
   standalone: true,
-  imports: [ReactiveFormsModule, RouterLink, HeaderComponent, FooterComponent, SidenavComponent, BrlCurrencyPipe, RelativeDatePipe],
+  imports: [
+    ReactiveFormsModule,
+    RouterLink,
+    HeaderComponent,
+    FooterComponent,
+    SidenavComponent,
+    BrlCurrencyPipe,
+    RelativeDatePipe,
+  ],
   templateUrl: './event-detail.component.html',
 })
 export class EventDetailComponent {
@@ -49,16 +57,23 @@ export class EventDetailComponent {
   pendingCount = computed(() => this.participants().length);
 
   /** Indica se o sorteio já foi realizado (pelo menos um com drawn_participant_id) */
-  hasDrawn = computed(() => this.participants().some(p => p.drawn_participant_id != null));
+  hasDrawn = computed(() => this.participants().some((p) => p.drawn_participant_id != null));
 
   /** Link mágico para entrar no sorteio (copiável). */
-  magicLink = computed(() =>
-    this.id() ? `${location.origin}/join/${this.id()}` : ''
-  );
+  magicLink = computed(() => (this.id() ? `${location.origin}/join/${this.id()}` : ''));
   linkCopied = signal(false);
 
   inviteForm = this.fb.nonNullable.group({
     email: ['', [Validators.required, Validators.email]],
+  });
+
+  /** Estado e formulário de edição do evento */
+  showEditModal = signal(false);
+  updating = signal(false);
+  editForm = this.fb.group({
+    name: this.fb.control<string>('', { validators: [Validators.required], nonNullable: true }),
+    budget: this.fb.control<number | null>(null),
+    draw_date: this.fb.control<string | null>(null),
   });
 
   constructor() {
@@ -128,7 +143,9 @@ export class EventDetailComponent {
   }
 
   async deleteEvent() {
-    if (!confirm('Tem certeza de que deseja excluir este sorteio? Esta ação não pode ser desfeita.')) {
+    if (
+      !confirm('Tem certeza de que deseja excluir este sorteio? Esta ação não pode ser desfeita.')
+    ) {
       return;
     }
 
@@ -141,13 +158,57 @@ export class EventDetailComponent {
     }
   }
 
+  openEditModal() {
+    const current = this.event();
+    if (current) {
+      this.editForm.patchValue({
+        name: current.name,
+        budget: current.budget,
+        draw_date: current.draw_date,
+      });
+      this.showEditModal.set(true);
+    }
+  }
+
+  closeEditModal() {
+    this.showEditModal.set(false);
+  }
+
+  async updateEventDetails() {
+    if (this.editForm.invalid) {
+      this.editForm.markAllAsTouched();
+      return;
+    }
+
+    this.updating.set(true);
+    try {
+      const values = this.editForm.getRawValue();
+      const updatedEvent = await this.eventService.updateEvent(this.id(), {
+        name: values.name,
+        budget: values.budget,
+        draw_date: values.draw_date,
+      });
+      this.event.set(updatedEvent);
+      this.closeEditModal();
+    } catch (error) {
+      console.error('Erro ao atualizar evento:', error);
+      alert('Não foi possível atualizar o evento.');
+    } finally {
+      this.updating.set(false);
+    }
+  }
+
   async fazerSorteio() {
     if (this.participants().length < 3) {
       alert('É necessário ter pelo menos 3 participantes para realizar o sorteio.');
       return;
     }
 
-    if (!confirm('Deseja realmente realizar o sorteio? Após sorteado, você não poderá adicionar ou remover participantes.')) {
+    if (
+      !confirm(
+        'Deseja realmente realizar o sorteio? Após sorteado, você não poderá adicionar ou remover participantes.',
+      )
+    ) {
       return;
     }
 
@@ -166,8 +227,8 @@ export class EventDetailComponent {
 
   getDrawnEmail(drawnId: string | null | undefined): string {
     if (!drawnId) return '';
-    const participant = this.participants().find(p => p.id === drawnId);
-    return participant ? (participant.name || participant.email) : 'Desconhecido';
+    const participant = this.participants().find((p) => p.id === drawnId);
+    return participant ? participant.name || participant.email : 'Desconhecido';
   }
 
   openRevealModal(participant: Participant) {
@@ -201,4 +262,3 @@ export class EventDetailComponent {
     }
   }
 }
-
