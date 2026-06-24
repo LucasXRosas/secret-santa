@@ -1,0 +1,89 @@
+<div class="min-h-screen flex flex-col bg-background">
+  <!-- [ID12] two-way binding via model() -->
+  <app-sidenav [(isOpen)]="sidenavOpen"></app-sidenav>
+  <app-header (toggleSidenav)="sidenavOpen.set(!sidenavOpen())"></app-header>
+
+  <main class="flex-1 w-full max-w-5xl mx-auto px-6 py-12">
+    <section class="mb-10">
+      <span
+        class="inline-block bg-accent border-2 border-black px-3 py-1 text-xs font-black font-headline uppercase tracking-tighter mb-4"
+      >
+        json-server · localhost:3001
+      </span>
+      <h1
+        class="font-headline font-black text-5xl md:text-6xl text-foreground mb-4 tracking-tighter uppercase leading-none"
+      >
+        Demo <span class="text-[#635388]">Mock</span>
+      </h1>
+      <p class="text-lg text-muted-foreground max-w-xl font-medium">
+        Esta tela lê e escreve na API Mock local (json-server) usando <code>fetch</code> nativo.
+        Rode <code>npm run dev:api</code> em paralelo ao <code>ng serve</code>.
+      </p>
+    </section>
+
+    <!-- Formulário de criação (event binding + signal) -->
+    <form (submit)="$event.preventDefault(); addEvent()" class="flex flex-col sm:flex-row gap-3 mb-10">
+      <input
+        [value]="newName()"
+        (input)="newName.set($any($event.target).value)"
+        placeholder="Nome do novo evento mock"
+        class="flex-1 border-4 border-black px-4 py-3 font-medium outline-none focus-visible:ring-2 focus-visible:ring-black"
+      />
+      <button
+        type="submit"
+        [disabled]="saving() || !newName().trim()"
+        class="shrink-0 bg-primary border-4 border-black px-6 py-3 font-headline font-black uppercase tracking-tighter neo-shadow hover:bg-accent active:translate-x-1 active:translate-y-1 active:shadow-none transition-all disabled:opacity-60 disabled:cursor-not-allowed"
+      >
+        {{ saving() ? 'Salvando...' : 'Adicionar' }}
+      </button>
+    </form>
+
+    <!-- Estados: carregando / erro / vazio / lista -->
+    @if (loading()) {
+      <p class="font-headline font-bold uppercase text-muted-foreground">Carregando do json-server...</p>
+    } @else if (errorMessage()) {
+      <div class="border-4 border-black bg-destructive/10 p-6 font-bold text-destructive">
+        {{ errorMessage() }}
+      </div>
+    } @else if (events().length === 0) {
+      <div class="bg-white border-4 border-black border-dashed p-12 text-center font-medium text-muted-foreground">
+        Nenhum evento no mock ainda. Adicione um acima.
+      </div>
+    } @else {
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <!-- [ID7] @for com track obrigatório -->
+        @for (event of events(); track event.id) {
+          <div class="bg-card border-4 border-black p-6 neo-shadow flex flex-col justify-between">
+            <div class="flex items-start justify-between gap-3">
+              <h2 class="font-headline font-black text-3xl text-black mb-2 uppercase">{{ event.name }}</h2>
+              <button
+                (click)="removeEvent(event)"
+                aria-label="Remover"
+                class="shrink-0 border-2 border-black px-2 py-1 hover:bg-destructive hover:text-white transition-colors"
+              >
+                <span class="material-symbols-outlined text-base">delete</span>
+              </button>
+            </div>
+            <div class="flex flex-wrap gap-3 mt-4">
+              <!-- [ID6] @if condicional + [ID8] Pipes -->
+              @if (event.draw_date) {
+                <span class="flex items-center gap-1 bg-white border-2 border-black px-3 py-1 text-xs font-bold font-headline uppercase">
+                  <span class="material-symbols-outlined text-sm">calendar_today</span>
+                  {{ event.draw_date | relativeDate }}
+                </span>
+              }
+              @if (event.budget != null) {
+                <span class="flex items-center gap-1 bg-white border-2 border-black px-3 py-1 text-xs font-bold font-headline uppercase">
+                  <span class="material-symbols-outlined text-sm">payments</span>
+                  {{ event.budget | brlCurrency }}
+                </span>
+              }
+            </div>
+          </div>
+        }
+      </div>
+    }
+  </main>
+
+  <app-footer></app-footer>
+</div>

@@ -90,6 +90,17 @@ export class AuthService {
   }
 
   /**
+   * Retorna o access_token (JWT) da sessão atual.
+   * Usado pelos Services que falam com o PostgREST do Supabase via fetch nativo:
+   * o token vai no header Authorization para que as políticas RLS reconheçam o usuário.
+   */
+  async getAccessToken(): Promise<string | null> {
+    if (!this.supabase) return null;
+    const { data } = await this.supabase.auth.getSession();
+    return data.session?.access_token ?? null;
+  }
+
+  /**
    * Realiza login com e-mail e senha
    */
   async signIn(email: string, password: string) {

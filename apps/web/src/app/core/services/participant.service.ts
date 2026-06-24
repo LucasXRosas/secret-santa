@@ -1,5 +1,7 @@
 import { Injectable, inject } from '@angular/core';
 import { AuthService } from './auth.service';
+import { environment } from '../../../environments/environment';
+import { SecretSantaEvent } from './event.service';
 
 /** Um participante convidado para um sorteio, como gravado na tabela `participants`. */
 export interface Participant {
@@ -12,56 +14,78 @@ export interface Participant {
   drawn_participant_id?: string | null;
 }
 
+/**
+ * [ID20] ParticipantService — requisições assíncronas com `fetch` nativo + `async/await`
+ * contra a API REST (PostgREST) do Supabase. Mesma técnica do EventService.
+ */
 @Injectable({
   providedIn: 'root',
 })
 export class ParticipantService {
   private authService = inject(AuthService);
 
-  private getClient() {
-    const client = this.authService.client;
-    if (!client) {
-      throw new Error('Supabase não configurado. Verifique o environment.');
+  private readonly baseUrl = `${environment.supabaseUrl}/rest/v1`;
+
+  private async buildHeaders(extra: HeadersInit = {}): Promise<HeadersInit> {
+    const token = await this.authService.getAccessToken();
+    return {
+      apikey: environment.supabaseKey,
+      Authorization: `Bearer ${token ?? environment.supabaseKey}`,
+      'Content-Type': 'application/json',
+      ...extra,
+    };
+  }
+
+  /** Lança um Error com a mensagem do PostgREST quando a resposta não é ok. */
+  private async ensureOk(res: Response, contexto: string): Promise<void> {
+    if (res.ok) return;
+    let detalhe = `${res.status} ${res.statusText}`;
+    try {
+      const body = await res.json();
+      if (body?.message) detalhe = body.message;
+      // Conflito de chave única (e-mail repetido) vem como código 23505.
+      if (body?.code) (res as any)._pgcode = body.code;
+    } catch {
+      /* corpo vazio ou não-JSON */
     }
-    return client;
+    const erro = new Error(`${contexto}: ${detalhe}`) as Error & { code?: string };
+    erro.code = (res as any)._pgcode;
+    throw erro;
   }
 
   /** Lista os participantes de um evento, dos mais recentes para os mais antigos. */
   async listByEvent(eventId: string): Promise<Participant[]> {
-    const { data, error } = await this.getClient()
-      .from('participants')
-      .select('*')
-      .eq('event_id', eventId)
-      .order('invited_at', { ascending: false });
-
-    if (error) throw error;
-    return (data ?? []) as Participant[];
+    const res = await fetch(
+      `${this.baseUrl}/participants?event_id=eq.${eventId}&select=*&order=invited_at.desc`,
+      { headers: await this.buildHeaders() }
+    );
+    await this.ensureOk(res, 'Erro ao listar participantes');
+    return (await res.json()) as Participant[];
   }
 
   /** Convida (adiciona) um participante por e-mail. */
   async invite(eventId: string, email: string, name?: string): Promise<Participant> {
-    const { data, error } = await this.getClient()
-      .from('participants')
-      .insert({
+    const res = await fetch(`${this.baseUrl}/participants`, {
+      method: 'POST',
+      headers: await this.buildHeaders({ Prefer: 'return=representation' }),
+      body: JSON.stringify({
         event_id: eventId,
         email: email.trim().toLowerCase(),
         name: name?.trim() || null,
-      })
-      .select()
-      .single();
-
-    if (error) throw error;
-    return data as Participant;
+      }),
+    });
+    await this.ensureOk(res, 'Erro ao convidar participante');
+    const rows = (await res.json()) as Participant[];
+    return rows[0];
   }
 
   /** Remove um participante do evento. */
   async remove(participantId: string): Promise<void> {
-    const { error } = await this.getClient()
-      .from('participants')
-      .delete()
-      .eq('id', participantId);
-
-    if (error) throw error;
+    const res = await fetch(`${this.baseUrl}/participants?id=eq.${participantId}`, {
+      method: 'DELETE',
+      headers: await this.buildHeaders(),
+    });
+    await this.ensureOk(res, 'Erro ao remover participante');
   }
 
   /**
@@ -86,27 +110,87 @@ export class ParticipantService {
       const nextParticipant = index === shuffled.length - 1 ? shuffled[0] : shuffled[index + 1];
       return {
         id: p.id,
-        event_id: eventId, // Necessário para a política RLS (se aplicável ao UPDATE em lote) ou validações
         drawn_participant_id: nextParticipant.id,
       };
     });
 
-    const client = this.getClient();
-    // Como a API REST do Supabase para UPSERT/UPDATE em lote exige todas as chaves
-    // necessárias para o Row Level Security passar, e cada participante é individual,
-    // a forma mais segura no MVP é fazer as requisições em paralelo.
-    const promises = updates.map(u => 
-      client.from('participants')
-        .update({ drawn_participant_id: u.drawn_participant_id })
-        .eq('id', u.id)
+    const headers = await this.buildHeaders();
+
+    // Cada participante é atualizado individualmente via PATCH no PostgREST.
+    // Disparamos em paralelo com Promise.all (cada update é independente).
+    const requests = updates.map((u) =>
+      fetch(`${this.baseUrl}/participants?id=eq.${u.id}`, {
+        method: 'PATCH',
+        headers,
+        body: JSON.stringify({ drawn_participant_id: u.drawn_participant_id }),
+      })
     );
 
-    const results = await Promise.all(promises);
-    
-    // Verifica se houve algum erro
-    const errorResult = results.find(r => r.error != null);
-    if (errorResult?.error) {
-      throw errorResult.error;
+    const results = await Promise.all(requests);
+    const falha = results.find((r) => !r.ok);
+    if (falha) {
+      await this.ensureOk(falha, 'Erro ao realizar o sorteio');
     }
+  }
+
+  private async buildAdminHeaders(extra: HeadersInit = {}): Promise<HeadersInit> {
+    const serviceRoleKey = (environment as any).supabaseServiceRoleKey;
+    return {
+      apikey: environment.supabaseKey,
+      Authorization: `Bearer ${serviceRoleKey}`,
+      'Content-Type': 'application/json',
+      ...extra,
+    };
+  }
+
+  /** Busca todos os convites pendentes de um determinado e-mail. */
+  async listInvitations(email: string): Promise<(Participant & { event_name?: string })[]> {
+    const headers = await this.buildAdminHeaders();
+    const res = await fetch(
+      `${this.baseUrl}/participants?email=eq.${encodeURIComponent(email.trim().toLowerCase())}&status=eq.pending&select=*,events(name)`,
+      { headers }
+    );
+    await this.ensureOk(res, 'Erro ao buscar convites');
+    const rows = await res.json();
+    return rows.map((row: any) => ({
+      ...row,
+      event_name: row.events?.name || 'Sorteio Sem Nome',
+    }));
+  }
+
+  /** Aceita um convite alterando o status para 'joined'. */
+  async acceptInvitation(participantId: string): Promise<void> {
+    const headers = await this.buildAdminHeaders();
+    const res = await fetch(`${this.baseUrl}/participants?id=eq.${participantId}`, {
+      method: 'PATCH',
+      headers,
+      body: JSON.stringify({ status: 'joined' }),
+    });
+    await this.ensureOk(res, 'Erro ao aceitar convite');
+  }
+
+  /**
+   * Busca todos os eventos em que o usuário participa como convidado aceito.
+   * Usa service role para contornar o RLS (que filtraria apenas eventos do owner).
+   */
+  async listParticipatingEvents(email: string): Promise<SecretSantaEvent[]> {
+    const headers = await this.buildAdminHeaders();
+    const res = await fetch(
+      `${this.baseUrl}/participants?email=eq.${encodeURIComponent(email.trim().toLowerCase())}&status=eq.joined&select=events(*)`,
+      { headers }
+    );
+    await this.ensureOk(res, 'Erro ao buscar eventos participados');
+    const rows = (await res.json()) as { events: SecretSantaEvent }[];
+    return rows.map((r) => r.events).filter(Boolean);
+  }
+
+  /** Recusa um convite removendo o participante do sorteio. */
+  async declineInvitation(participantId: string): Promise<void> {
+    const headers = await this.buildAdminHeaders();
+    const res = await fetch(`${this.baseUrl}/participants?id=eq.${participantId}`, {
+      method: 'DELETE',
+      headers,
+    });
+    await this.ensureOk(res, 'Erro ao recusar convite');
   }
 }

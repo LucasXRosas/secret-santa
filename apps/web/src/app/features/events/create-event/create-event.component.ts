@@ -24,11 +24,13 @@ export class CreateEventComponent {
   saving = signal(false);
   errorMessage = signal<string | null>(null);
 
-  /** Formulário do evento — espelha os campos do design (nome, orçamento, data). */
+  /** Formulário do evento — espelha os campos do design (nome, orçamento, data, organizador, local). */
   form = this.fb.nonNullable.group({
     name: ['', [Validators.required, Validators.maxLength(120)]],
     budget: [null as number | null],
     draw_date: [''],
+    organizer_name: [''],
+    location: [''],
   });
 
   async onSubmit() {
@@ -41,11 +43,13 @@ export class CreateEventComponent {
     this.errorMessage.set(null);
 
     try {
-      const { name, budget, draw_date } = this.form.getRawValue();
+      const { name, budget, draw_date, organizer_name, location } = this.form.getRawValue();
       await this.eventService.createEvent({
         name: name.trim(),
         budget: budget ?? null,
         draw_date: draw_date || null,
+        organizer_name: organizer_name || null,
+        location: location || null,
       });
       this.router.navigate(['/dashboard']);
     } catch (error: any) {

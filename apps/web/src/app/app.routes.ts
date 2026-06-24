@@ -16,6 +16,11 @@ export const routes: Routes = [
     loadComponent: () => import('./features/home/home.component').then(m => m.HomeComponent)
   },
   {
+    // [ID20] Página pública que consome o json-server (API Mock) via fetch nativo.
+    path: 'demo',
+    loadComponent: () => import('./features/demo/demo.component').then(m => m.DemoComponent)
+  },
+  {
     path: 'dashboard',
     canActivate: [authGuard],
     loadComponent: () => import('./features/dashboard/dashboard.component').then(m => m.DashboardComponent)

@@ -9,12 +9,7 @@ import { AuthService } from '../../core/services/auth.service';
   templateUrl: './sidenav.html',
 })
 export class SidenavComponent {
-  /**
-   * [ID12] model() cria um signal de two-way data binding.
-   * O componente pai usa [(isOpen)]="sidenavOpen" para sincronização bidirecional:
-   * - Leitura: isOpen() → boolean
-   * - Escrita: isOpen.set(false) → atualiza o signal no pai automaticamente
-   */
+
   isOpen = model(false);
 
   private authService = inject(AuthService);

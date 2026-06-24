@@ -123,76 +123,107 @@
           }
         </div>
 
-        <!-- Coluna direita: convidados -->
-        <div class="bg-white border-4 border-black p-6 neo-shadow-lg h-fit">
-          <div class="flex justify-between items-center mb-6">
-            <h2 class="text-2xl font-black font-headline uppercase italic">
-              Convidados ({{ pendingCount() }})
-            </h2>
-            <span class="material-symbols-outlined text-zinc-400">group</span>
-          </div>
-
-          @if (participants().length === 0) {
-            <div class="bg-zinc-100 border-2 border-dashed border-black p-6 text-center">
-              <p class="text-xs font-bold uppercase italic text-zinc-500">
-                Ninguém por aqui ainda. Convide a galera acima!
-              </p>
+        <!-- [ID9] @defer: a lista de convidados é conteúdo secundário.
+             Com "on idle", o browser renderiza o formulário de convite primeiro
+             e só carrega este bloco quando estiver livre, melhorando o LCP. -->
+        @defer (on idle) {
+          <div class="bg-white border-4 border-black p-6 neo-shadow-lg h-fit">
+            <div class="flex justify-between items-center mb-6">
+              <h2 class="text-2xl font-black font-headline uppercase italic">
+                Convidados ({{ pendingCount() }})
+              </h2>
+              <span class="material-symbols-outlined text-zinc-400">group</span>
             </div>
-          } @else {
-            <div class="space-y-4">
-              @for (p of participants(); track p.id) {
-                <div class="flex items-center justify-between p-3 border-2 border-black bg-zinc-50 hover:bg-accent transition-colors">
-                  <div class="flex items-center gap-3 min-w-0">
-                    <div class="w-10 h-10 border-2 border-black bg-primary flex items-center justify-center font-black uppercase shrink-0">
-                      {{ p.email.charAt(0) }}
+
+            @if (participants().length === 0) {
+              <div class="bg-zinc-100 border-2 border-dashed border-black p-6 text-center">
+                <p class="text-xs font-bold uppercase italic text-zinc-500">
+                  Ninguém por aqui ainda. Convide a galera acima!
+                </p>
+              </div>
+            } @else {
+              <div class="space-y-4">
+                @for (p of participants(); track p.id) {
+                  <div class="flex items-center justify-between p-3 border-2 border-black bg-zinc-50 hover:bg-accent transition-colors">
+                    <div class="flex items-center gap-3 min-w-0">
+                      <div class="w-10 h-10 border-2 border-black bg-primary flex items-center justify-center font-black uppercase shrink-0">
+                        {{ p.email.charAt(0) }}
+                      </div>
+                      <div class="min-w-0">
+                        <p class="font-black text-sm truncate">{{ p.email }}</p>
+                        <p class="text-[10px] font-bold uppercase text-zinc-500">
+                          {{ p.status === 'joined' ? 'Entrou' : 'Pendente' }}
+                        </p>
+                      </div>
                     </div>
-                  <div class="min-w-0">
-                    <p class="font-black text-sm truncate">{{ p.email }}</p>
-                    <p class="text-[10px] font-bold uppercase text-zinc-500">
-                      {{ p.status === 'joined' ? 'Entrou' : 'Pendente' }}
-                    </p>
+                    <div class="flex items-center gap-2">
+                      @if (hasDrawn()) {
+                        <button
+                          type="button"
+                          (click)="openRevealModal(p)"
+                          class="bg-secondary px-3 py-2 border-2 border-black text-xs font-black uppercase flex items-center gap-1 hover:bg-black hover:text-white transition-colors"
+                        >
+                          <span class="material-symbols-outlined text-sm">visibility</span> Revelar
+                        </button>
+                      } @else {
+                        <button
+                          type="button"
+                          (click)="removeParticipant(p)"
+                          class="text-zinc-400 hover:text-destructive transition-colors shrink-0"
+                          aria-label="Remover participante"
+                        >
+                          <span class="material-symbols-outlined text-xl">cancel</span>
+                        </button>
+                      }
+                    </div>
+                  </div>
+                }
+              </div>
+            }
+
+            @if (!hasDrawn() && participants().length >= 3) {
+              <button
+                (click)="fazerSorteio()"
+                [disabled]="drawing()"
+                class="mt-6 w-full bg-primary border-4 border-black font-black uppercase py-4 flex items-center justify-center gap-2 neo-shadow hover:bg-accent transition-all disabled:opacity-60 disabled:cursor-not-allowed"
+              >
+                <span class="material-symbols-outlined">shuffle</span>
+                {{ drawing() ? 'Sorteando...' : 'Fazer o Sorteio' }}
+              </button>
+            } @else if (!hasDrawn() && participants().length > 0) {
+              <p class="mt-6 text-center text-xs font-bold text-zinc-500 uppercase">
+                Adicione pelo menos 3 pessoas para realizar o sorteio.
+              </p>
+            }
+          </div>
+        } @placeholder {
+          <!-- Skeleton exibido enquanto o bloco ainda não foi carregado -->
+          <div class="bg-white border-4 border-black p-6 neo-shadow-lg h-fit">
+            <div class="flex justify-between items-center mb-6">
+              <div class="h-8 w-40 bg-zinc-200 border-2 border-black animate-pulse"></div>
+              <div class="w-6 h-6 bg-zinc-200 border-2 border-black animate-pulse"></div>
+            </div>
+            <div class="space-y-4">
+              @for (i of [1, 2, 3]; track i) {
+                <div class="flex items-center gap-3 p-3 border-2 border-black">
+                  <div class="w-10 h-10 bg-zinc-200 border-2 border-black animate-pulse shrink-0"></div>
+                  <div class="flex-1 space-y-2">
+                    <div class="h-3 bg-zinc-200 border border-black animate-pulse w-3/4"></div>
+                    <div class="h-2 bg-zinc-100 border border-black animate-pulse w-1/3"></div>
                   </div>
                 </div>
-                <div class="flex items-center gap-2">
-                  @if (hasDrawn()) {
-                    <button
-                      type="button"
-                      (click)="openRevealModal(p)"
-                      class="bg-secondary px-3 py-2 border-2 border-black text-xs font-black uppercase flex items-center gap-1 hover:bg-black hover:text-white transition-colors"
-                    >
-                      <span class="material-symbols-outlined text-sm">visibility</span> Revelar
-                    </button>
-                  } @else {
-                    <button
-                      type="button"
-                      (click)="removeParticipant(p)"
-                      class="text-zinc-400 hover:text-destructive transition-colors shrink-0"
-                      aria-label="Remover participante"
-                    >
-                      <span class="material-symbols-outlined text-xl">cancel</span>
-                    </button>
-                  }
-                </div>
-              </div>
               }
             </div>
-          }
-
-          @if (!hasDrawn() && participants().length >= 3) {
-            <button
-              (click)="fazerSorteio()"
-              [disabled]="drawing()"
-              class="mt-6 w-full bg-primary border-4 border-black font-black uppercase py-4 flex items-center justify-center gap-2 neo-shadow hover:bg-accent transition-all disabled:opacity-60 disabled:cursor-not-allowed"
-            >
-              <span class="material-symbols-outlined">shuffle</span>
-              {{ drawing() ? 'Sorteando...' : 'Fazer o Sorteio' }}
-            </button>
-          } @else if (!hasDrawn() && participants().length > 0) {
-            <p class="mt-6 text-center text-xs font-bold text-zinc-500 uppercase">
-              Adicione pelo menos 3 pessoas para realizar o sorteio.
+          </div>
+        } @loading (minimum 300ms) {
+          <!-- Exibido enquanto o Angular carrega o bloco diferido -->
+          <div class="bg-white border-4 border-black p-6 neo-shadow-lg h-fit flex items-center gap-3">
+            <span class="material-symbols-outlined animate-spin text-primary">progress_activity</span>
+            <p class="font-headline font-bold uppercase text-muted-foreground text-sm">
+              Carregando convidados...
             </p>
-          }
-        </div>
+          </div>
+        }
       </div>
     }
   </main>

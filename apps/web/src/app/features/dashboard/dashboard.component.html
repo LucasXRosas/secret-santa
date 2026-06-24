@@ -1,6 +1,4 @@
 <div class="min-h-screen flex flex-col bg-background">
-  <!-- ===== Componentes reaproveitados da home ===== -->
-  <!-- [ID12] two-way binding via model(): [(isOpen)] sincroniza sidenavOpen bidireccionalmente -->
   <app-sidenav [(isOpen)]="sidenavOpen"></app-sidenav>
   <app-header (toggleSidenav)="sidenavOpen.set(!sidenavOpen())"></app-header>
 
@@ -9,8 +7,7 @@
     <section class="mb-12 flex flex-col md:flex-row md:items-end md:justify-between gap-6">
       <div>
         <h1
-          class="font-headline font-black text-5xl md:text-6xl text-foreground mb-4 tracking-tighter uppercase leading-none"
-        >
+          class="font-headline font-black text-5xl md:text-6xl text-foreground mb-4 tracking-tighter uppercase leading-none">
           Suas <span class="text-[#635388]">Trocas</span>
         </h1>
         <p class="text-lg text-muted-foreground max-w-xl font-medium">
@@ -18,73 +15,131 @@
         </p>
       </div>
 
-      <button
-        (click)="novoEvento()"
-        class="shrink-0 bg-primary border-4 border-black px-6 py-4 font-headline font-black text-lg uppercase tracking-tighter neo-shadow hover:bg-accent active:translate-x-1 active:translate-y-1 active:shadow-none transition-all flex items-center gap-2"
-      >
+      <button (click)="novoEvento()"
+        class="shrink-0 bg-primary border-4 border-black px-6 py-4 font-headline font-black text-lg uppercase tracking-tighter neo-shadow hover:bg-accent active:translate-x-1 active:translate-y-1 active:shadow-none transition-all flex items-center gap-2">
         <span class="material-symbols-outlined">add_circle</span>
         Novo Evento
       </button>
     </section>
 
-    <!-- Estados: carregando / erro / vazio / lista -->
     @if (loading()) {
       <p class="font-headline font-bold uppercase text-muted-foreground">Carregando seus eventos...</p>
     } @else if (errorMessage()) {
       <div class="border-4 border-black bg-destructive/10 p-6 font-bold text-destructive">
         {{ errorMessage() }}
       </div>
-    } @else if (events().length === 0) {
-      <!-- Estado vazio -->
-      <div
-        class="bg-white border-4 border-black border-dashed p-12 text-center flex flex-col items-center gap-4"
-      >
-        <span class="material-symbols-outlined text-6xl">redeem</span>
-        <h2 class="font-headline font-black text-2xl uppercase">Nenhum sorteio ainda</h2>
-        <p class="text-muted-foreground font-medium max-w-md">
-          Você ainda não criou nenhum amigo secreto. Que tal começar agora?
-        </p>
-        <button
-          (click)="novoEvento()"
-          class="mt-2 bg-primary border-4 border-black px-6 py-3 font-headline font-black uppercase tracking-tighter neo-shadow hover:bg-accent active:translate-x-1 active:translate-y-1 active:shadow-none transition-all"
-        >
-          Criar meu primeiro evento
-        </button>
-      </div>
     } @else {
-      <!-- Lista de eventos -->
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-        @for (event of events(); track event.id) {
-          <div
-            (click)="abrirEvento(event)"
-            class="bg-card border-4 border-black p-6 neo-shadow active-press cursor-pointer flex flex-col justify-between"
-          >
-            <h2 class="font-headline font-black text-3xl text-black mb-2 uppercase">
-              {{ event.name }}
-            </h2>
-            <div class="flex flex-wrap gap-3 mt-4">
-              @if (event.draw_date) {
-                <!-- [ID8] RelativeDatePipe: data relativa pt-BR -->
-                <span
-                  class="flex items-center gap-1 bg-white border-2 border-black px-3 py-1 text-xs font-bold font-headline uppercase"
-                >
-                  <span class="material-symbols-outlined text-sm">calendar_today</span>
-                  {{ event.draw_date | relativeDate }}
-                </span>
-              }
-              @if (event.budget != null) {
-                <!-- [ID8] BrlCurrencyPipe: moeda BRL formatada -->
-                <span
-                  class="flex items-center gap-1 bg-white border-2 border-black px-3 py-1 text-xs font-bold font-headline uppercase"
-                >
-                  <span class="material-symbols-outlined text-sm">payments</span>
-                  {{ event.budget | brlCurrency }}
-                </span>
-              }
-            </div>
+
+      <!-- ── Seção: Meus Sorteios (eventos criados pelo usuário) ── -->
+      <section class="mb-12">
+        <h2 class="font-headline font-black text-2xl uppercase tracking-tighter mb-6 flex items-center gap-3">
+          <span class="material-symbols-outlined text-2xl">star</span>
+          Meus Sorteios
+        </h2>
+
+        @if (events().length === 0) {
+          <div class="bg-white border-4 border-black border-dashed p-12 text-center flex flex-col items-center gap-4">
+            <span class="material-symbols-outlined text-6xl">redeem</span>
+            <h3 class="font-headline font-black text-2xl uppercase">Nenhum sorteio ainda</h3>
+            <p class="text-muted-foreground font-medium max-w-md">
+              Você ainda não criou nenhum amigo secreto. Que tal começar agora?
+            </p>
+            <button (click)="novoEvento()"
+              class="mt-2 bg-primary border-4 border-black px-6 py-3 font-headline font-black uppercase tracking-tighter neo-shadow hover:bg-accent active:translate-x-1 active:translate-y-1 active:shadow-none transition-all">
+              Criar meu primeiro evento
+            </button>
+          </div>
+        } @else {
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            @for (event of events(); track event.id) {
+              <div (click)="abrirEvento(event)"
+                class="bg-card border-4 border-black p-6 neo-shadow active-press cursor-pointer flex flex-col justify-between gap-4 hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-none transition-all">
+                <div>
+                  <h3 class="font-headline font-black text-3xl text-black uppercase leading-tight mb-3">
+                    {{ event.name }}
+                  </h3>
+                  <!-- Dono e Local -->
+                  <div class="flex flex-col gap-1 mb-3">
+                    <p class="text-xs font-bold uppercase text-muted-foreground flex items-center gap-1">
+                      <span class="material-symbols-outlined text-sm">person</span>
+                      {{ event.organizer_name || 'Indefinido' }}
+                    </p>
+                    <p class="text-xs font-bold uppercase text-muted-foreground flex items-center gap-1">
+                      <span class="material-symbols-outlined text-sm">location_on</span>
+                      {{ event.location || 'Indefinido' }}
+                    </p>
+                  </div>
+                </div>
+                <!-- Chips de data e orçamento -->
+                <div class="flex flex-wrap gap-2">
+                  @if (event.draw_date) {
+                    <span class="flex items-center gap-1 bg-white border-2 border-black px-3 py-1 text-xs font-bold font-headline uppercase">
+                      <span class="material-symbols-outlined text-sm">calendar_today</span>
+                      {{ event.draw_date | relativeDate }}
+                    </span>
+                  }
+                  @if (event.budget != null) {
+                    <span class="flex items-center gap-1 bg-white border-2 border-black px-3 py-1 text-xs font-bold font-headline uppercase">
+                      <span class="material-symbols-outlined text-sm">payments</span>
+                      {{ event.budget | brlCurrency }}
+                    </span>
+                  }
+                </div>
+              </div>
+            }
           </div>
         }
-      </div>
+      </section>
+
+      <!-- ── Seção: Participo de (eventos em que foi convidado e aceitou) ── -->
+      @if (participatingEvents().length > 0) {
+        <section>
+          <h2 class="font-headline font-black text-2xl uppercase tracking-tighter mb-6 flex items-center gap-3">
+            <span class="material-symbols-outlined text-2xl">group</span>
+            Participo de
+          </h2>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            @for (event of participatingEvents(); track event.id) {
+              <div (click)="abrirEvento(event)"
+                class="bg-white border-4 border-black border-dashed p-6 neo-shadow cursor-pointer flex flex-col justify-between gap-4 hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-none transition-all">
+                <div>
+                  <h3 class="font-headline font-black text-3xl text-black uppercase leading-tight mb-3">
+                    {{ event.name }}
+                  </h3>
+                  <!-- Dono e Local -->
+                  <div class="flex flex-col gap-1 mb-3">
+                    <p class="text-xs font-bold uppercase text-muted-foreground flex items-center gap-1">
+                      <span class="material-symbols-outlined text-sm">person</span>
+                      {{ event.organizer_name || 'Indefinido' }}
+                    </p>
+                    <p class="text-xs font-bold uppercase text-muted-foreground flex items-center gap-1">
+                      <span class="material-symbols-outlined text-sm">location_on</span>
+                      {{ event.location || 'Indefinido' }}
+                    </p>
+                  </div>
+                </div>
+                <!-- Chips -->
+                <div class="flex flex-wrap gap-2">
+                  @if (event.draw_date) {
+                    <span class="flex items-center gap-1 bg-white border-2 border-black px-3 py-1 text-xs font-bold font-headline uppercase">
+                      <span class="material-symbols-outlined text-sm">calendar_today</span>
+                      {{ event.draw_date | relativeDate }}
+                    </span>
+                  }
+                  @if (event.budget != null) {
+                    <span class="flex items-center gap-1 bg-white border-2 border-black px-3 py-1 text-xs font-bold font-headline uppercase">
+                      <span class="material-symbols-outlined text-sm">payments</span>
+                      {{ event.budget | brlCurrency }}
+                    </span>
+                  }
+                </div>
+              </div>
+            }
+          </div>
+        </section>
+      }
+
     }
   </main>
 

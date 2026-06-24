@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "scripts": {
     "dev:web": "npm run start -w apps/web",
-    "dev:api": "echo 'Backend não configurado. Rode o Workflow 2.'",
+    "dev:api": "json-server db.json --port 3001",
     "format": "prettier --write \"**/*.{ts,js,json,css,html,md}\"",
     "ng": "ng",
     "start": "ng serve",
@@ -46,6 +46,7 @@
     "@tailwindcss/vite": "^4.3.0",
     "autoprefixer": "^10.4.27",
     "jsdom": "^28.0.0",
+    "json-server": "^0.17.4",
     "postcss": "^8.5.14",
     "prettier": "^3.8.1",
     "tailwindcss": "^4.3.0",

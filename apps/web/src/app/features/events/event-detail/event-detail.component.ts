@@ -8,6 +8,7 @@ import { EventService, SecretSantaEvent } from '../../../core/services/event.ser
 import { ParticipantService, Participant } from '../../../core/services/participant.service';
 import { BrlCurrencyPipe } from '../../../shared/pipes/brl-currency.pipe';
 import { RelativeDatePipe } from '../../../shared/pipes/relative-date.pipe';
+import { ToastService } from '../../../core/services/toast.service';
 
 @Component({
   selector: 'app-event-detail',
@@ -20,15 +21,11 @@ export class EventDetailComponent {
   private eventService = inject(EventService);
   private participantService = inject(ParticipantService);
   private router = inject(Router);
+  private toastService = inject(ToastService);
 
   /** Controla a abertura do menu lateral. */
   sidenavOpen = signal(false);
 
-  /**
-   * [ID17] input() signal: o Router injeta o parâmetro :id da URL diretamente
-   * aqui via withComponentInputBinding(). Não é mais necessário usar ActivatedRoute.
-   * O nome da propriedade deve ser idêntico ao param da rota ('id').
-   */
   id = input.required<string>();
 
   event = signal<SecretSantaEvent | null>(null);
@@ -65,12 +62,6 @@ export class EventDetailComponent {
   });
 
   constructor() {
-    /**
-     * [ID13] effect(): reage de forma segura ao signal id().
-     * Sempre que o parâmetro de rota mudar (ex: navegação entre eventos),
-     * o efeito dispara e recarrega os dados — sem ciclo de vida manual (ngOnInit).
-     * É o mecanismo correto para efeitos colaterais reativos em Angular Signals.
-     */
     effect(() => {
       const eventId = this.id();
       if (eventId) {
@@ -113,6 +104,7 @@ export class EventDetailComponent {
       const novo = await this.participantService.invite(this.id(), email);
       this.participants.update((list) => [novo, ...list]);
       this.inviteForm.reset();
+      this.toastService.success(`Convite enviado para ${email}! 🎁`);
     } catch (error: any) {
       console.error('Erro ao convidar:', error);
       const detalhe =
@@ -120,6 +112,7 @@ export class EventDetailComponent {
           ? 'Esse e-mail já foi convidado para este sorteio.'
           : error?.message || 'Erro desconhecido';
       this.inviteError.set(detalhe);
+      this.toastService.error(detalhe);
     } finally {
       this.inviting.set(false);
     }
@@ -153,7 +146,7 @@ export class EventDetailComponent {
       alert('É necessário ter pelo menos 3 participantes para realizar o sorteio.');
       return;
     }
-    
+
     if (!confirm('Deseja realmente realizar o sorteio? Após sorteado, você não poderá adicionar ou remover participantes.')) {
       return;
     }
@@ -200,9 +193,11 @@ export class EventDetailComponent {
     try {
       await navigator.clipboard.writeText(this.magicLink());
       this.linkCopied.set(true);
+      this.toastService.success('Link copiado para a área de transferência!');
       setTimeout(() => this.linkCopied.set(false), 2000);
     } catch (error) {
       console.error('Erro ao copiar link:', error);
+      this.toastService.error('Não foi possível copiar o link.');
     }
   }
 }
