@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["apps/web/src/app/features/dashboard/dashboard.component.css"],
+  "sourcesContent": ["/* Estilos do Dashboard */\r\n\r\n/* Efeito \"pressionar\" neo-brutalista: o card afunda na direção da sombra. */\r\n.active-press:active {\r\n  transform: translate(2px, 2px);\r\n  box-shadow: 0 0 0 0 black;\r\n}\r\n\r\n/* Sombra dura amarela (variação da neo-shadow para o botão \"Ver Dashboard\"). */\r\n.neo-shadow-yellow {\r\n  box-shadow: 4px 4px 0 0 #ffd700;\r\n}\r\n"],
+  "mappings": ";AAGA,CAAA,YAAA;AACE,aAAA,UAAA,GAAA,EAAA;AACA,cAAA,EAAA,EAAA,EAAA,EAAA;AACF;AAGA,CAAA;AACE,cAAA,IAAA,IAAA,EAAA,EAAA;AACF;",
+  "names": []
+}
