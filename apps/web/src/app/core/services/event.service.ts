@@ -112,19 +112,23 @@ export class EventService {
 
   /** Atualiza um evento existente. */
   async updateEvent(id: string, event: Partial<NewEvent>): Promise<SecretSantaEvent> {
-    const { data, error } = await this.getClient()
-      .from('events')
-      .update({
-        ...(event.name !== undefined && { name: event.name }),
-        ...(event.budget !== undefined && { budget: event.budget ?? null }),
-        ...(event.draw_date !== undefined && { draw_date: event.draw_date ?? null }),
-      })
-      .eq('id', id)
-      .select()
-      .single();
+    const body: Record<string, unknown> = {};
+    if (event.name !== undefined) body['name'] = event.name;
+    if (event.budget !== undefined) body['budget'] = event.budget ?? null;
+    if (event.draw_date !== undefined) body['draw_date'] = event.draw_date ?? null;
+    if (event.organizer_name !== undefined) body['organizer_name'] = event.organizer_name?.trim() || null;
+    if (event.location !== undefined) body['location'] = event.location?.trim() || null;
 
-    if (error) throw error;
-    return data as SecretSantaEvent;
+    const res = await fetch(`${this.baseUrl}/events?id=eq.${id}`, {
+      method: 'PATCH',
+      headers: await this.buildHeaders({ Prefer: 'return=representation' }),
+      body: JSON.stringify(body),
+    });
+    if (!res.ok) {
+      throw new Error(`Erro ao atualizar evento: ${res.status} ${res.statusText}`);
+    }
+    const rows = (await res.json()) as SecretSantaEvent[];
+    return rows[0];
   }
 
   /** Exclui um evento existente. */
