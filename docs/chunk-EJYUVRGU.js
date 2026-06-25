@@ -2,7 +2,7 @@ import {
   Pipe,
   setClassMetadata,
   ɵɵdefinePipe
-} from "./chunk-CU26WE3Z.js";
+} from "./chunk-S6SU5Y6X.js";
 
 // apps/web/src/app/shared/pipes/brl-currency.pipe.ts
 var BrlCurrencyPipe = class _BrlCurrencyPipe {
@@ -69,4 +69,4 @@ export {
   BrlCurrencyPipe,
   RelativeDatePipe
 };
-//# sourceMappingURL=chunk-PVHTZ7FE.js.map
+//# sourceMappingURL=chunk-EJYUVRGU.js.map

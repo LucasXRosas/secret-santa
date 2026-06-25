@@ -6,7 +6,7 @@ import {
   ɵɵdomElementEnd,
   ɵɵdomElementStart,
   ɵɵtext
-} from "./chunk-CU26WE3Z.js";
+} from "./chunk-S6SU5Y6X.js";
 
 // apps/web/src/app/components/footer/footer.component.ts
 var FooterComponent = class _FooterComponent {
@@ -43,4 +43,4 @@ var FooterComponent = class _FooterComponent {
 export {
   FooterComponent
 };
-//# sourceMappingURL=chunk-LYHK6WPZ.js.map
+//# sourceMappingURL=chunk-W5VBYQ7Z.js.map

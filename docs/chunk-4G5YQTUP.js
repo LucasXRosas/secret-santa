@@ -3,7 +3,7 @@ import {
   setClassMetadata,
   signal,
   ɵɵdefineInjectable
-} from "./chunk-CU26WE3Z.js";
+} from "./chunk-S6SU5Y6X.js";
 
 // apps/web/src/app/core/services/toast.service.ts
 var STORAGE_KEY = "pendingToast";
@@ -58,4 +58,4 @@ var ToastService = class _ToastService {
 export {
   ToastService
 };
-//# sourceMappingURL=chunk-YETSNVPI.js.map
+//# sourceMappingURL=chunk-4G5YQTUP.js.map

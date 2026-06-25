@@ -1,20 +1,20 @@
 import {
   BrlCurrencyPipe,
   RelativeDatePipe
-} from "./chunk-PVHTZ7FE.js";
+} from "./chunk-EJYUVRGU.js";
 import {
   EventService
-} from "./chunk-Z5HBZ42I.js";
+} from "./chunk-3UQHFIVU.js";
 import {
   HeaderComponent,
   ParticipantService,
   SidenavComponent
-} from "./chunk-U4QV6FE4.js";
-import "./chunk-YETSNVPI.js";
+} from "./chunk-2DMS5ADV.js";
+import "./chunk-4G5YQTUP.js";
 import {
   AuthService,
   Router
-} from "./chunk-6MYGOC25.js";
+} from "./chunk-UW2S6YIE.js";
 import {
   Component,
   inject,
@@ -46,10 +46,10 @@ import {
   ɵɵtwoWayBindingSet,
   ɵɵtwoWayListener,
   ɵɵtwoWayProperty
-} from "./chunk-CU26WE3Z.js";
+} from "./chunk-S6SU5Y6X.js";
 
 // apps/web/src/app/features/dashboard/dashboard.component.ts
-var DashboardComponent_Defer_21_DepsFn = () => [import("./chunk-6XDZJNNS.js").then((m) => m.FooterComponent)];
+var DashboardComponent_Defer_21_DepsFn = () => [import("./chunk-I7FVYQMU.js").then((m) => m.FooterComponent)];
 var _forTrack0 = ($index, $item) => $item.id;
 function DashboardComponent_Conditional_16_Template(rf, ctx) {
   if (rf & 1) {
@@ -404,7 +404,7 @@ var DashboardComponent = class _DashboardComponent {
   }, dependencies: [HeaderComponent, SidenavComponent, BrlCurrencyPipe, RelativeDatePipe], styles: ["\n.active-press[_ngcontent-%COMP%]:active {\n  transform: translate(2px, 2px);\n  box-shadow: 0 0 0 0 black;\n}\n.neo-shadow-yellow[_ngcontent-%COMP%] {\n  box-shadow: 4px 4px 0 0 #ffd700;\n}\n/*# sourceMappingURL=dashboard.component.css.map */"] });
 };
 (() => {
-  (typeof ngDevMode === "undefined" || ngDevMode) && setClassMetadataAsync(DashboardComponent, () => [import("./chunk-6XDZJNNS.js").then((m) => m.FooterComponent)], (FooterComponent) => {
+  (typeof ngDevMode === "undefined" || ngDevMode) && setClassMetadataAsync(DashboardComponent, () => [import("./chunk-I7FVYQMU.js").then((m) => m.FooterComponent)], (FooterComponent) => {
     setClassMetadata(DashboardComponent, [{
       type: Component,
       args: [{ selector: "app-dashboard", imports: [HeaderComponent, FooterComponent, SidenavComponent, BrlCurrencyPipe, RelativeDatePipe], template: `<div class="min-h-screen flex flex-col bg-background">\r
@@ -568,4 +568,4 @@ var DashboardComponent = class _DashboardComponent {
 export {
   DashboardComponent
 };
-//# sourceMappingURL=chunk-JESFBAG6.js.map
+//# sourceMappingURL=chunk-JU63HESN.js.map

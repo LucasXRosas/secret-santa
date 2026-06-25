@@ -166,7 +166,7 @@ import {
   ɵɵqueryRefresh,
   ɵɵsanitizeUrlOrResourceUrl,
   ɵɵstyleProp
-} from "./chunk-CU26WE3Z.js";
+} from "./chunk-S6SU5Y6X.js";
 
 // node_modules/@angular/common/fesm2022/_platform_location-chunk.mjs
 /**
@@ -35338,6 +35338,7 @@ export {
   getDOM,
   CommonModule,
   bootstrapApplication,
+  HttpClient,
   provideHttpClient,
   withInterceptors,
   withFetch,
@@ -35349,4 +35350,4 @@ export {
   environment,
   AuthService
 };
-//# sourceMappingURL=chunk-6MYGOC25.js.map
+//# sourceMappingURL=chunk-UW2S6YIE.js.map

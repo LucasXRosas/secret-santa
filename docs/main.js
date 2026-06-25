@@ -1,6 +1,9 @@
 import {
+  EventService
+} from "./chunk-3UQHFIVU.js";
+import {
   ToastService
-} from "./chunk-YETSNVPI.js";
+} from "./chunk-4G5YQTUP.js";
 import {
   AuthService,
   Router,
@@ -11,7 +14,7 @@ import {
   withComponentInputBinding,
   withFetch,
   withInterceptors
-} from "./chunk-6MYGOC25.js";
+} from "./chunk-UW2S6YIE.js";
 import {
   ApplicationRef,
   Component,
@@ -26,7 +29,6 @@ import {
   Subject,
   __spreadValues,
   catchError,
-  delay,
   filter,
   formatRuntimeError,
   from,
@@ -34,7 +36,6 @@ import {
   isDevMode,
   makeEnvironmentProviders,
   map,
-  of,
   provideAppInitializer,
   provideBrowserGlobalErrorListeners,
   setClassMetadata,
@@ -63,7 +64,7 @@ import {
   ɵɵrestoreView,
   ɵɵtext,
   ɵɵtextInterpolate
-} from "./chunk-CU26WE3Z.js";
+} from "./chunk-S6SU5Y6X.js";
 
 // node_modules/@angular/service-worker/fesm2022/service-worker.mjs
 /**
@@ -483,21 +484,23 @@ var MainLayoutComponent = class _MainLayoutComponent {
 })();
 
 // apps/web/src/app/core/resolvers/event.resolver.ts
-var eventResolver = (route, state) => {
-  const eventId = route.paramMap.get("id");
-  console.log("[Resolver] Carregando dados do evento:", eventId);
-  return of({
-    id: eventId,
-    title: `Sorteio de Natal ${eventId}`,
-    description: "Sorteio com a fam\xEDlia e amigos."
-  }).pipe(delay(500));
+var eventResolver = async (route) => {
+  const eventService = inject(EventService);
+  const id = route.paramMap.get("id");
+  if (!id)
+    return null;
+  try {
+    return await eventService.getEvent(id);
+  } catch {
+    return null;
+  }
 };
 
 // apps/web/src/app/app.routes.ts
 var routes = [
   {
     path: "login",
-    loadComponent: () => import("./chunk-ZPWLWGBB.js").then((m) => m.LoginComponent)
+    loadComponent: () => import("./chunk-RXQMGSCJ.js").then((m) => m.LoginComponent)
   },
   {
     path: "",
@@ -510,27 +513,27 @@ var routes = [
       },
       {
         path: "home",
-        loadComponent: () => import("./chunk-QU3EEHWA.js").then((m) => m.HomeComponent)
+        loadComponent: () => import("./chunk-T2VPGGIL.js").then((m) => m.HomeComponent)
       },
       {
         path: "demo",
-        loadComponent: () => import("./chunk-26NXPEEF.js").then((m) => m.DemoComponent)
+        loadComponent: () => import("./chunk-SLZUFGEB.js").then((m) => m.DemoComponent)
       },
       {
         path: "dashboard",
         canActivate: [authGuard],
-        loadComponent: () => import("./chunk-JESFBAG6.js").then((m) => m.DashboardComponent)
+        loadComponent: () => import("./chunk-JU63HESN.js").then((m) => m.DashboardComponent)
       },
       {
         path: "eventos/novo",
         canActivate: [authGuard],
-        loadComponent: () => import("./chunk-KRKUETGA.js").then((m) => m.CreateEventComponent)
+        loadComponent: () => import("./chunk-53HQN3BT.js").then((m) => m.CreateEventComponent)
       },
       {
         path: "eventos/:id",
         canActivate: [authGuard],
         resolve: { eventData: eventResolver },
-        loadComponent: () => import("./chunk-KIGYNW4H.js").then((m) => m.EventDetailComponent)
+        loadComponent: () => import("./chunk-ME5OMCYD.js").then((m) => m.EventDetailComponent)
       }
     ]
   }

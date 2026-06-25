@@ -6,7 +6,7 @@ import { eventResolver } from './core/resolvers/event.resolver';
 export const routes: Routes = [
   {
     path: 'login',
-    loadComponent: () => import('./features/login/login.component').then(m => m.LoginComponent)
+    loadComponent: () => import('./features/login/login.component').then((m) => m.LoginComponent),
   },
   {
     path: '',
@@ -15,32 +15,39 @@ export const routes: Routes = [
       {
         path: '',
         redirectTo: 'home',
-        pathMatch: 'full'
+        pathMatch: 'full',
       },
       {
         path: 'home',
-        loadComponent: () => import('./features/home/home.component').then(m => m.HomeComponent)
+        loadComponent: () => import('./features/home/home.component').then((m) => m.HomeComponent),
       },
       {
         path: 'demo',
-        loadComponent: () => import('./features/demo/demo.component').then(m => m.DemoComponent)
+        loadComponent: () => import('./features/demo/demo.component').then((m) => m.DemoComponent),
       },
       {
         path: 'dashboard',
         canActivate: [authGuard],
-        loadComponent: () => import('./features/dashboard/dashboard.component').then(m => m.DashboardComponent)
+        loadComponent: () =>
+          import('./features/dashboard/dashboard.component').then((m) => m.DashboardComponent),
       },
       {
         path: 'eventos/novo',
         canActivate: [authGuard],
-        loadComponent: () => import('./features/events/create-event/create-event.component').then(m => m.CreateEventComponent)
+        loadComponent: () =>
+          import('./features/events/create-event/create-event.component').then(
+            (m) => m.CreateEventComponent,
+          ),
       },
       {
         path: 'eventos/:id',
         canActivate: [authGuard],
         resolve: { eventData: eventResolver },
-        loadComponent: () => import('./features/events/event-detail/event-detail.component').then(m => m.EventDetailComponent)
-      }
-    ]
-  }
+        loadComponent: () =>
+          import('./features/events/event-detail/event-detail.component').then(
+            (m) => m.EventDetailComponent,
+          ),
+      },
+    ],
+  },
 ];

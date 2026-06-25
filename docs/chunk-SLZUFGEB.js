@@ -1,16 +1,16 @@
 import {
   BrlCurrencyPipe,
   RelativeDatePipe
-} from "./chunk-PVHTZ7FE.js";
+} from "./chunk-EJYUVRGU.js";
 import {
   FooterComponent
-} from "./chunk-LYHK6WPZ.js";
+} from "./chunk-W5VBYQ7Z.js";
 import {
   HeaderComponent,
   SidenavComponent
-} from "./chunk-U4QV6FE4.js";
-import "./chunk-YETSNVPI.js";
-import "./chunk-6MYGOC25.js";
+} from "./chunk-2DMS5ADV.js";
+import "./chunk-4G5YQTUP.js";
+import "./chunk-UW2S6YIE.js";
 import {
   Component,
   Injectable,
@@ -44,7 +44,7 @@ import {
   ɵɵtwoWayBindingSet,
   ɵɵtwoWayListener,
   ɵɵtwoWayProperty
-} from "./chunk-CU26WE3Z.js";
+} from "./chunk-S6SU5Y6X.js";
 
 // apps/web/src/app/core/services/mock-event.service.ts
 var MockEventService = class _MockEventService {
@@ -455,4 +455,4 @@ var DemoComponent = class _DemoComponent {
 export {
   DemoComponent
 };
-//# sourceMappingURL=chunk-26NXPEEF.js.map
+//# sourceMappingURL=chunk-SLZUFGEB.js.map

@@ -36,6 +36,9 @@ export class EventDetailComponent {
 
   id = input.required<string>();
 
+  /** [ID19] Dado pré-carregado pelo eventResolver antes da rota abrir. */
+  eventData = input<SecretSantaEvent | null>(null);
+
   event = signal<SecretSantaEvent | null>(null);
   participants = signal<Participant[]>([]);
   loading = signal(true);
@@ -89,8 +92,11 @@ export class EventDetailComponent {
     this.loading.set(true);
     this.errorMessage.set(null);
     try {
+      // [ID19] Usa dado pré-carregado pelo resolver para evitar requisição dupla.
+      // Se o resolver retornou null (rota digitada manualmente, etc.), busca do Supabase.
+      const resolvedEvent = this.eventData();
       const [event, participants] = await Promise.all([
-        this.eventService.getEvent(eventId),
+        resolvedEvent ? Promise.resolve(resolvedEvent) : this.eventService.getEvent(eventId),
         this.participantService.listByEvent(eventId),
       ]);
       if (!event) {

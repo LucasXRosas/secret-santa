@@ -1,18 +1,22 @@
 import {
   AuthService,
+  HttpClient,
   environment
-} from "./chunk-6MYGOC25.js";
+} from "./chunk-UW2S6YIE.js";
 import {
   Injectable,
   __spreadValues,
+  firstValueFrom,
   inject,
   setClassMetadata,
   ɵɵdefineInjectable
-} from "./chunk-CU26WE3Z.js";
+} from "./chunk-S6SU5Y6X.js";
 
 // apps/web/src/app/core/services/event.service.ts
 var EventService = class _EventService {
   authService = inject(AuthService);
+  /** [ID23] HttpClient permite que os Functional Interceptors (auth + error) atuem nas requisições. */
+  http = inject(HttpClient);
   /** Base do PostgREST: https://<projeto>.supabase.co/rest/v1 */
   baseUrl = `${environment.supabaseUrl}/rest/v1`;
   /**
@@ -38,13 +42,13 @@ var EventService = class _EventService {
     const rows = await res.json();
     return rows[0] ?? null;
   }
-  /** Lista os eventos do usuário logado, dos mais recentes para os mais antigos. */
+  /**
+   * Lista os eventos do usuário logado, dos mais recentes para os mais antigos.
+   * [ID23] Usa HttpClient para que o authInterceptor injete o Bearer token automaticamente
+   * e o errorInterceptor trate erros 401/403/500 de forma centralizada.
+   */
   async listMyEvents() {
-    const res = await fetch(`${this.baseUrl}/events?select=*&order=created_at.desc`, { headers: await this.buildHeaders() });
-    if (!res.ok) {
-      throw new Error(`Erro ao listar eventos: ${res.status} ${res.statusText}`);
-    }
-    return await res.json();
+    return firstValueFrom(this.http.get(`${this.baseUrl}/events?select=*&order=created_at.desc`, { headers: { apikey: environment.supabaseKey } }));
   }
   /** Cria um novo evento para o usuário logado. */
   async createEvent(event) {
@@ -122,4 +126,4 @@ var EventService = class _EventService {
 export {
   EventService
 };
-//# sourceMappingURL=chunk-Z5HBZ42I.js.map
+//# sourceMappingURL=chunk-3UQHFIVU.js.map

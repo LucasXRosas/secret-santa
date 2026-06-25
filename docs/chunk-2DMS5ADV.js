@@ -1,12 +1,12 @@
 import {
   ToastService
-} from "./chunk-YETSNVPI.js";
+} from "./chunk-4G5YQTUP.js";
 import {
   AuthService,
   Router,
   RouterLink,
   environment
-} from "./chunk-6MYGOC25.js";
+} from "./chunk-UW2S6YIE.js";
 import {
   Component,
   Injectable,
@@ -43,7 +43,7 @@ import {
   ɵɵrestoreView,
   ɵɵtext,
   ɵɵtextInterpolate1
-} from "./chunk-CU26WE3Z.js";
+} from "./chunk-S6SU5Y6X.js";
 
 // apps/web/src/app/core/services/participant.service.ts
 var ParticipantService = class _ParticipantService {
@@ -622,4 +622,4 @@ export {
   HeaderComponent,
   SidenavComponent
 };
-//# sourceMappingURL=chunk-U4QV6FE4.js.map
+//# sourceMappingURL=chunk-2DMS5ADV.js.map

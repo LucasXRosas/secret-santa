@@ -1,4 +1,6 @@
 import { Injectable, inject } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { firstValueFrom } from 'rxjs';
 import { AuthService } from './auth.service';
 import { environment } from '../../../environments/environment';
 
@@ -36,6 +38,8 @@ export interface NewEvent {
 })
 export class EventService {
   private authService = inject(AuthService);
+  /** [ID23] HttpClient permite que os Functional Interceptors (auth + error) atuem nas requisições. */
+  private http = inject(HttpClient);
 
   /** Base do PostgREST: https://<projeto>.supabase.co/rest/v1 */
   private readonly baseUrl = `${environment.supabaseUrl}/rest/v1`;
@@ -69,16 +73,18 @@ export class EventService {
     return rows[0] ?? null;
   }
 
-  /** Lista os eventos do usuário logado, dos mais recentes para os mais antigos. */
+  /**
+   * Lista os eventos do usuário logado, dos mais recentes para os mais antigos.
+   * [ID23] Usa HttpClient para que o authInterceptor injete o Bearer token automaticamente
+   * e o errorInterceptor trate erros 401/403/500 de forma centralizada.
+   */
   async listMyEvents(): Promise<SecretSantaEvent[]> {
-    const res = await fetch(
-      `${this.baseUrl}/events?select=*&order=created_at.desc`,
-      { headers: await this.buildHeaders() }
+    return firstValueFrom(
+      this.http.get<SecretSantaEvent[]>(
+        `${this.baseUrl}/events?select=*&order=created_at.desc`,
+        { headers: { apikey: environment.supabaseKey } }
+      )
     );
-    if (!res.ok) {
-      throw new Error(`Erro ao listar eventos: ${res.status} ${res.statusText}`);
-    }
-    return (await res.json()) as SecretSantaEvent[];
   }
 
   /** Cria um novo evento para o usuário logado. */
