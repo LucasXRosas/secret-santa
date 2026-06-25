@@ -356,6 +356,17 @@
             />
           </div>
 
+          <div>
+            <label for="edit-location" class="block text-xs font-black uppercase mb-1">📍 Local (Opcional)</label>
+            <input
+              id="edit-location"
+              type="text"
+              formControlName="location"
+              placeholder="Ex: Casa da Ana"
+              class="w-full border-4 border-black p-4 font-bold focus:ring-0 focus:outline-none focus:bg-accent bg-zinc-50 transition-colors"
+            />
+          </div>
+
           <button
             type="submit"
             [disabled]="updating()"

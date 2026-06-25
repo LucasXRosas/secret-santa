@@ -517,23 +517,23 @@ var routes = [
       },
       {
         path: "demo",
-        loadComponent: () => import("./chunk-SLZUFGEB.js").then((m) => m.DemoComponent)
+        loadComponent: () => import("./chunk-AELATBGW.js").then((m) => m.DemoComponent)
       },
       {
         path: "dashboard",
         canActivate: [authGuard],
-        loadComponent: () => import("./chunk-JU63HESN.js").then((m) => m.DashboardComponent)
+        loadComponent: () => import("./chunk-G5S4WLMX.js").then((m) => m.DashboardComponent)
       },
       {
         path: "eventos/novo",
         canActivate: [authGuard],
-        loadComponent: () => import("./chunk-53HQN3BT.js").then((m) => m.CreateEventComponent)
+        loadComponent: () => import("./chunk-DGO5XGVP.js").then((m) => m.CreateEventComponent)
       },
       {
         path: "eventos/:id",
         canActivate: [authGuard],
         resolve: { eventData: eventResolver },
-        loadComponent: () => import("./chunk-ME5OMCYD.js").then((m) => m.EventDetailComponent)
+        loadComponent: () => import("./chunk-BNLA7I22.js").then((m) => m.EventDetailComponent)
       }
     ]
   }

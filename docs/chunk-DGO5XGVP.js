@@ -269,12 +269,10 @@ var CreateEventComponent = class _CreateEventComponent {
   fb = inject(FormBuilder);
   eventService = inject(EventService);
   router = inject(Router);
-  /** Controla a abertura do menu lateral (mesmo padrão das outras telas). */
   sidenavOpen = signal(false, ...ngDevMode ? [{ debugName: "sidenavOpen" }] : (
     /* istanbul ignore next */
     []
   ));
-  /** Estado de envio / erro do formulário. */
   saving = signal(false, ...ngDevMode ? [{ debugName: "saving" }] : (
     /* istanbul ignore next */
     []
@@ -283,9 +281,7 @@ var CreateEventComponent = class _CreateEventComponent {
     /* istanbul ignore next */
     []
   ));
-  /** Data atual para usar no input [min] */
   todayDate = (/* @__PURE__ */ new Date()).toISOString().split("T")[0];
-  /** Formulário do evento — espelha os campos do design (nome, orçamento, data, organizador, local). */
   form = this.fb.nonNullable.group({
     name: ["", [Validators.required, Validators.minLength(3), Validators.maxLength(120)]],
     budget: [null, [Validators.min(0)]],
@@ -573,10 +569,10 @@ var CreateEventComponent = class _CreateEventComponent {
   }], () => [], null);
 })();
 (() => {
-  (typeof ngDevMode === "undefined" || ngDevMode) && \u0275setClassDebugInfo(CreateEventComponent, { className: "CreateEventComponent", filePath: "apps/web/src/app/features/events/create-event/create-event.component.ts", lineNumber: 35 });
+  (typeof ngDevMode === "undefined" || ngDevMode) && \u0275setClassDebugInfo(CreateEventComponent, { className: "CreateEventComponent", filePath: "apps/web/src/app/features/events/create-event/create-event.component.ts", lineNumber: 42 });
 })();
 export {
   CreateEventComponent,
   futureDateValidator
 };
-//# sourceMappingURL=chunk-53HQN3BT.js.map
+//# sourceMappingURL=chunk-DGO5XGVP.js.map

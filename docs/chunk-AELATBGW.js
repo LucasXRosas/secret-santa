@@ -1,10 +1,12 @@
 import {
-  BrlCurrencyPipe,
-  RelativeDatePipe
-} from "./chunk-EJYUVRGU.js";
-import {
   FooterComponent
 } from "./chunk-W5VBYQ7Z.js";
+import {
+  BrlCurrencyPipe
+} from "./chunk-E642KB2B.js";
+import {
+  RelativeDatePipe
+} from "./chunk-XUCKCSJZ.js";
 import {
   HeaderComponent,
   SidenavComponent
@@ -455,4 +457,4 @@ var DemoComponent = class _DemoComponent {
 export {
   DemoComponent
 };
-//# sourceMappingURL=chunk-SLZUFGEB.js.map
+//# sourceMappingURL=chunk-AELATBGW.js.map

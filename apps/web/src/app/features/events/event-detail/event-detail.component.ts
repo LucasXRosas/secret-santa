@@ -77,6 +77,7 @@ export class EventDetailComponent {
     name: this.fb.control<string>('', { validators: [Validators.required], nonNullable: true }),
     budget: this.fb.control<number | null>(null),
     draw_date: this.fb.control<string | null>(null),
+    location: this.fb.control<string | null>(null),
   });
 
   constructor() {
@@ -171,6 +172,7 @@ export class EventDetailComponent {
         name: current.name,
         budget: current.budget,
         draw_date: current.draw_date,
+        location: current.location,
       });
       this.showEditModal.set(true);
     }
@@ -193,6 +195,7 @@ export class EventDetailComponent {
         name: values.name,
         budget: values.budget,
         draw_date: values.draw_date,
+        location: values.location,
       });
       this.event.set(updatedEvent);
       this.closeEditModal();

@@ -65,6 +65,13 @@
               "optimization": false,
               "extractLicenses": false,
               "sourceMap": true
+            },
+            "render": {
+              "outputPath": {
+                "base": "dist",
+                "browser": ""
+              },
+              "baseHref": "/"
             }
           },
           "defaultConfiguration": "production"

@@ -30,114 +30,148 @@
       </div>
     } @else {
 
-      <!-- ── Seção: Meus Sorteios (eventos criados pelo usuário) ── -->
-      <section class="mb-12">
-        <h2 class="font-headline font-black text-2xl uppercase tracking-tighter mb-6 flex items-center gap-3">
-          <span class="material-symbols-outlined text-2xl">star</span>
-          Meus Sorteios
-        </h2>
+      <!-- [ID9] @defer: os cards de eventos são conteúdo secundário ao carregamento inicial.
+           O browser renderiza o cabeçalho e o botão "Novo Evento" primeiro (LCP mais rápido),
+           e só monta os cards quando estiver livre (on idle). -->
+      @defer (on idle) {
 
-        @if (events().length === 0) {
-          <div class="bg-white border-4 border-black border-dashed p-12 text-center flex flex-col items-center gap-4">
-            <span class="material-symbols-outlined text-6xl">redeem</span>
-            <h3 class="font-headline font-black text-2xl uppercase">Nenhum sorteio ainda</h3>
-            <p class="text-muted-foreground font-medium max-w-md">
-              Você ainda não criou nenhum amigo secreto. Que tal começar agora?
-            </p>
-            <button (click)="novoEvento()"
-              class="mt-2 bg-primary border-4 border-black px-6 py-3 font-headline font-black uppercase tracking-tighter neo-shadow hover:bg-accent active:translate-x-1 active:translate-y-1 active:shadow-none transition-all">
-              Criar meu primeiro evento
-            </button>
-          </div>
-        } @else {
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-            @for (event of events(); track event.id) {
-              <div (click)="abrirEvento(event)"
-                class="bg-card border-4 border-black p-6 neo-shadow active-press cursor-pointer flex flex-col justify-between gap-4 hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-none transition-all">
-                <div>
-                  <h3 class="font-headline font-black text-3xl text-black uppercase leading-tight mb-3">
-                    {{ event.name }}
-                  </h3>
-                  <!-- Dono e Local -->
-                  <div class="flex flex-col gap-1 mb-3">
-                    <p class="text-xs font-bold uppercase text-muted-foreground flex items-center gap-1">
-                      <span class="material-symbols-outlined text-sm">person</span>
-                      {{ event.organizer_name || 'Indefinido' }}
-                    </p>
-                    <p class="text-xs font-bold uppercase text-muted-foreground flex items-center gap-1">
-                      <span class="material-symbols-outlined text-sm">location_on</span>
-                      {{ event.location || 'Indefinido' }}
-                    </p>
-                  </div>
-                </div>
-                <!-- Chips de data e orçamento -->
-                <div class="flex flex-wrap gap-2">
-                  @if (event.draw_date) {
-                    <span class="flex items-center gap-1 bg-white border-2 border-black px-3 py-1 text-xs font-bold font-headline uppercase">
-                      <span class="material-symbols-outlined text-sm">calendar_today</span>
-                      {{ event.draw_date | relativeDate }}
-                    </span>
-                  }
-                  @if (event.budget != null) {
-                    <span class="flex items-center gap-1 bg-white border-2 border-black px-3 py-1 text-xs font-bold font-headline uppercase">
-                      <span class="material-symbols-outlined text-sm">payments</span>
-                      {{ event.budget | brlCurrency }}
-                    </span>
-                  }
-                </div>
-              </div>
-            }
-          </div>
-        }
-      </section>
-
-      <!-- ── Seção: Participo de (eventos em que foi convidado e aceitou) ── -->
-      @if (participatingEvents().length > 0) {
-        <section>
+        <!-- ── Seção: Meus Sorteios ── -->
+        <section class="mb-12">
           <h2 class="font-headline font-black text-2xl uppercase tracking-tighter mb-6 flex items-center gap-3">
-            <span class="material-symbols-outlined text-2xl">group</span>
-            Participo de
+            <span class="material-symbols-outlined text-2xl">star</span>
+            Meus Sorteios
           </h2>
 
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-            @for (event of participatingEvents(); track event.id) {
-              <div (click)="abrirEvento(event)"
-                class="bg-white border-4 border-black border-dashed p-6 neo-shadow cursor-pointer flex flex-col justify-between gap-4 hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-none transition-all">
-                <div>
-                  <h3 class="font-headline font-black text-3xl text-black uppercase leading-tight mb-3">
-                    {{ event.name }}
-                  </h3>
-                  <!-- Dono e Local -->
-                  <div class="flex flex-col gap-1 mb-3">
-                    <p class="text-xs font-bold uppercase text-muted-foreground flex items-center gap-1">
-                      <span class="material-symbols-outlined text-sm">person</span>
-                      {{ event.organizer_name || 'Indefinido' }}
-                    </p>
-                    <p class="text-xs font-bold uppercase text-muted-foreground flex items-center gap-1">
-                      <span class="material-symbols-outlined text-sm">location_on</span>
-                      {{ event.location || 'Indefinido' }}
-                    </p>
+          @if (events().length === 0) {
+            <div class="bg-white border-4 border-black border-dashed p-12 text-center flex flex-col items-center gap-4">
+              <span class="material-symbols-outlined text-6xl">redeem</span>
+              <h3 class="font-headline font-black text-2xl uppercase">Nenhum sorteio ainda</h3>
+              <p class="text-muted-foreground font-medium max-w-md">
+                Você ainda não criou nenhum amigo secreto. Que tal começar agora?
+              </p>
+              <button (click)="novoEvento()"
+                class="mt-2 bg-primary border-4 border-black px-6 py-3 font-headline font-black uppercase tracking-tighter neo-shadow hover:bg-accent active:translate-x-1 active:translate-y-1 active:shadow-none transition-all">
+                Criar meu primeiro evento
+              </button>
+            </div>
+          } @else {
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+              @for (event of events(); track event.id) {
+                <div (click)="abrirEvento(event)"
+                  class="bg-card border-4 border-black p-6 neo-shadow active-press cursor-pointer flex flex-col justify-between gap-4 hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-none transition-all">
+                  <div>
+                    <h3 class="font-headline font-black text-3xl text-black uppercase leading-tight mb-3">
+                      {{ event.name }}
+                    </h3>
+                    <div class="flex flex-col gap-1 mb-3">
+                      <p class="text-xs font-bold uppercase text-muted-foreground flex items-center gap-1">
+                        <span class="material-symbols-outlined text-sm">person</span>
+                        {{ event.organizer_name || 'Indefinido' }}
+                      </p>
+                      <p class="text-xs font-bold uppercase text-muted-foreground flex items-center gap-1">
+                        <span class="material-symbols-outlined text-sm">location_on</span>
+                        {{ event.location || 'Indefinido' }}
+                      </p>
+                    </div>
+                  </div>
+                  <div class="flex flex-wrap gap-2">
+                    @if (event.draw_date) {
+                      <span class="flex items-center gap-1 bg-white border-2 border-black px-3 py-1 text-xs font-bold font-headline uppercase">
+                        <span class="material-symbols-outlined text-sm">calendar_today</span>
+                        {{ event.draw_date | relativeDate }}
+                      </span>
+                    }
+                    @if (event.budget != null) {
+                      <span class="flex items-center gap-1 bg-white border-2 border-black px-3 py-1 text-xs font-bold font-headline uppercase">
+                        <span class="material-symbols-outlined text-sm">payments</span>
+                        {{ event.budget | brlCurrency }}
+                      </span>
+                    }
                   </div>
                 </div>
-                <!-- Chips -->
-                <div class="flex flex-wrap gap-2">
-                  @if (event.draw_date) {
-                    <span class="flex items-center gap-1 bg-white border-2 border-black px-3 py-1 text-xs font-bold font-headline uppercase">
-                      <span class="material-symbols-outlined text-sm">calendar_today</span>
-                      {{ event.draw_date | relativeDate }}
-                    </span>
-                  }
-                  @if (event.budget != null) {
-                    <span class="flex items-center gap-1 bg-white border-2 border-black px-3 py-1 text-xs font-bold font-headline uppercase">
-                      <span class="material-symbols-outlined text-sm">payments</span>
-                      {{ event.budget | brlCurrency }}
-                    </span>
-                  }
+              }
+            </div>
+          }
+        </section>
+
+        <!-- ── Seção: Participo de ── -->
+        @if (participatingEvents().length > 0) {
+          <section>
+            <h2 class="font-headline font-black text-2xl uppercase tracking-tighter mb-6 flex items-center gap-3">
+              <span class="material-symbols-outlined text-2xl">group</span>
+              Participo de
+            </h2>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+              @for (event of participatingEvents(); track event.id) {
+                <div (click)="abrirEvento(event)"
+                  class="bg-white border-4 border-black border-dashed p-6 neo-shadow cursor-pointer flex flex-col justify-between gap-4 hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-none transition-all">
+                  <div>
+                    <h3 class="font-headline font-black text-3xl text-black uppercase leading-tight mb-3">
+                      {{ event.name }}
+                    </h3>
+                    <div class="flex flex-col gap-1 mb-3">
+                      <p class="text-xs font-bold uppercase text-muted-foreground flex items-center gap-1">
+                        <span class="material-symbols-outlined text-sm">person</span>
+                        {{ event.organizer_name || 'Indefinido' }}
+                      </p>
+                      <p class="text-xs font-bold uppercase text-muted-foreground flex items-center gap-1">
+                        <span class="material-symbols-outlined text-sm">location_on</span>
+                        {{ event.location || 'Indefinido' }}
+                      </p>
+                    </div>
+                  </div>
+                  <div class="flex flex-wrap gap-2">
+                    @if (event.draw_date) {
+                      <span class="flex items-center gap-1 bg-white border-2 border-black px-3 py-1 text-xs font-bold font-headline uppercase">
+                        <span class="material-symbols-outlined text-sm">calendar_today</span>
+                        {{ event.draw_date | relativeDate }}
+                      </span>
+                    }
+                    @if (event.budget != null) {
+                      <span class="flex items-center gap-1 bg-white border-2 border-black px-3 py-1 text-xs font-bold font-headline uppercase">
+                        <span class="material-symbols-outlined text-sm">payments</span>
+                        {{ event.budget | brlCurrency }}
+                      </span>
+                    }
+                  </div>
+                </div>
+              }
+            </div>
+          </section>
+        }
+
+      } @placeholder (minimum 600ms) {
+
+        <!-- Prévia dos cards enquanto o browser está ocupado — mesma estrutura visual dos cards reais -->
+        <section class="mb-12">
+          <div class="flex items-center gap-3 mb-6">
+            <div class="w-6 h-6 bg-muted animate-pulse rounded-sm"></div>
+            <div class="h-7 w-40 bg-muted animate-pulse rounded-sm"></div>
+          </div>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            @for (item of [1, 2]; track item) {
+              <div class="bg-card border-4 border-black p-6 neo-shadow flex flex-col justify-between gap-4">
+                <div>
+                  <div class="h-8 w-3/4 bg-muted animate-pulse rounded-sm mb-3"></div>
+                  <div class="flex flex-col gap-2 mb-3">
+                    <div class="h-3 w-1/2 bg-muted animate-pulse rounded-sm"></div>
+                    <div class="h-3 w-1/3 bg-muted animate-pulse rounded-sm"></div>
+                  </div>
+                </div>
+                <div class="flex gap-2">
+                  <div class="h-6 w-24 bg-muted animate-pulse rounded-sm border-2 border-black"></div>
+                  <div class="h-6 w-20 bg-muted animate-pulse rounded-sm border-2 border-black"></div>
                 </div>
               </div>
             }
           </div>
         </section>
+
+      } @loading (minimum 300ms) {
+        <p class="font-headline font-bold uppercase text-muted-foreground text-sm">
+          Preparando seus eventos...
+        </p>
       }
 
     }
