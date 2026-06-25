@@ -10,7 +10,7 @@ import {
 import {
   HeaderComponent,
   SidenavComponent
-} from "./chunk-2DMS5ADV.js";
+} from "./chunk-CAIZGX2S.js";
 import "./chunk-4G5YQTUP.js";
 import "./chunk-UW2S6YIE.js";
 import {
@@ -457,4 +457,4 @@ var DemoComponent = class _DemoComponent {
 export {
   DemoComponent
 };
-//# sourceMappingURL=chunk-AELATBGW.js.map
+//# sourceMappingURL=chunk-6SLODQP2.js.map

@@ -5,7 +5,7 @@ import {
   HeaderComponent,
   ParticipantService,
   SidenavComponent
-} from "./chunk-2DMS5ADV.js";
+} from "./chunk-CAIZGX2S.js";
 import "./chunk-4G5YQTUP.js";
 import {
   AuthService,
@@ -644,4 +644,4 @@ var DashboardComponent = class _DashboardComponent {
 export {
   DashboardComponent
 };
-//# sourceMappingURL=chunk-G5S4WLMX.js.map
+//# sourceMappingURL=chunk-5F7BOU2Y.js.map

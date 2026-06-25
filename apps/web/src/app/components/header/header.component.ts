@@ -4,6 +4,14 @@ import { AuthService } from '../../core/services/auth.service';
 import { ParticipantService, Participant } from '../../core/services/participant.service';
 import { ToastService } from '../../core/services/toast.service';
 
+const DRAW_NOTIFICATIONS_KEY = 'wd_draw_notifications';
+
+export interface DrawNotification {
+  eventId: string;
+  eventName: string;
+  ts: number;
+}
+
 @Component({
   selector: 'app-header',
   standalone: true,
@@ -30,6 +38,9 @@ export class HeaderComponent {
   // Lista de convites pendentes
   readonly invitations = signal<(Participant & { event_name?: string })[]>([]);
 
+  // Notificações de sorteios realizados (persistidas no localStorage)
+  readonly drawNotifications = signal<DrawNotification[]>([]);
+
   // Inicial exibida no ícone de perfil (primeira letra do nome ou e-mail)
   readonly userInitial = computed(() => {
     const user = this.authService.currentUser();
@@ -37,13 +48,20 @@ export class HeaderComponent {
     return source.charAt(0).toUpperCase();
   });
 
+  // Total de notificações não lidas (convites + sorteios)
+  readonly notificationCount = computed(
+    () => this.invitations().length + this.drawNotifications().length
+  );
+
   constructor() {
     effect(() => {
       const user = this.authService.currentUser();
       if (user && user.email) {
         this.loadInvitations(user.email);
+        this.loadDrawNotifications();
       } else {
         this.invitations.set([]);
+        this.drawNotifications.set([]);
       }
     });
   }
@@ -55,6 +73,21 @@ export class HeaderComponent {
     } catch (error) {
       console.error('Erro ao carregar convites:', error);
     }
+  }
+
+  loadDrawNotifications() {
+    try {
+      const stored = JSON.parse(localStorage.getItem(DRAW_NOTIFICATIONS_KEY) ?? '[]');
+      this.drawNotifications.set(stored);
+    } catch {
+      this.drawNotifications.set([]);
+    }
+  }
+
+  dismissDrawNotification(ts: number) {
+    const updated = this.drawNotifications().filter((n) => n.ts !== ts);
+    this.drawNotifications.set(updated);
+    localStorage.setItem(DRAW_NOTIFICATIONS_KEY, JSON.stringify(updated));
   }
 
   toggleInvitations() {

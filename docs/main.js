@@ -513,27 +513,27 @@ var routes = [
       },
       {
         path: "home",
-        loadComponent: () => import("./chunk-T2VPGGIL.js").then((m) => m.HomeComponent)
+        loadComponent: () => import("./chunk-QAZM55DB.js").then((m) => m.HomeComponent)
       },
       {
         path: "demo",
-        loadComponent: () => import("./chunk-AELATBGW.js").then((m) => m.DemoComponent)
+        loadComponent: () => import("./chunk-6SLODQP2.js").then((m) => m.DemoComponent)
       },
       {
         path: "dashboard",
         canActivate: [authGuard],
-        loadComponent: () => import("./chunk-G5S4WLMX.js").then((m) => m.DashboardComponent)
+        loadComponent: () => import("./chunk-5F7BOU2Y.js").then((m) => m.DashboardComponent)
       },
       {
         path: "eventos/novo",
         canActivate: [authGuard],
-        loadComponent: () => import("./chunk-DGO5XGVP.js").then((m) => m.CreateEventComponent)
+        loadComponent: () => import("./chunk-NTRO6VOS.js").then((m) => m.CreateEventComponent)
       },
       {
         path: "eventos/:id",
         canActivate: [authGuard],
         resolve: { eventData: eventResolver },
-        loadComponent: () => import("./chunk-BNLA7I22.js").then((m) => m.EventDetailComponent)
+        loadComponent: () => import("./chunk-Z4LS6DY4.js").then((m) => m.EventDetailComponent)
       }
     ]
   }

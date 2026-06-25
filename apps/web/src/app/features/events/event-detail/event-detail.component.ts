@@ -9,6 +9,9 @@ import { ParticipantService, Participant } from '../../../core/services/particip
 import { BrlCurrencyPipe } from '../../../shared/pipes/brl-currency.pipe';
 import { RelativeDatePipe } from '../../../shared/pipes/relative-date.pipe';
 import { ToastService } from '../../../core/services/toast.service';
+import { AuthService } from '../../../core/services/auth.service';
+
+const DRAW_NOTIFICATIONS_KEY = 'wd_draw_notifications';
 
 @Component({
   selector: 'app-event-detail',
@@ -28,6 +31,7 @@ export class EventDetailComponent {
   private fb = inject(FormBuilder);
   private eventService = inject(EventService);
   private participantService = inject(ParticipantService);
+  private authService = inject(AuthService);
   private router = inject(Router);
   private toastService = inject(ToastService);
 
@@ -61,6 +65,16 @@ export class EventDetailComponent {
 
   /** Indica se o sorteio já foi realizado (pelo menos um com drawn_participant_id) */
   hasDrawn = computed(() => this.participants().some((p) => p.drawn_participant_id != null));
+
+  /** [ID21] O usuário logado é o dono deste evento? Controla visibilidade de editar/excluir. */
+  isOwner = computed(() => {
+    const ev = this.event();
+    const user = this.authService.currentUser();
+    return !!ev && !!user && ev.owner_id === user.id;
+  });
+
+  /** Email do usuário logado, para identificar qual card de participante é "meu". */
+  currentUserEmail = computed(() => this.authService.currentUser()?.email ?? '');
 
   /** Link mágico para entrar no sorteio (copiável). */
   magicLink = computed(() => (this.id() ? `${location.origin}/join/${this.id()}` : ''));
@@ -224,8 +238,12 @@ export class EventDetailComponent {
     this.drawing.set(true);
     try {
       await this.participantService.performDraw(this.id(), this.participants());
-      // Recarrega os participantes para exibir os resultados (ou apenas atualiza os signals se preferir)
       await this.loadAll(this.id());
+      this.toastService.success(`Sorteio de "${this.event()?.name}" realizado! 🎉`);
+      // Persiste notificação no localStorage para aparecer na caixa do header
+      const stored = JSON.parse(localStorage.getItem(DRAW_NOTIFICATIONS_KEY) ?? '[]');
+      stored.push({ eventId: this.id(), eventName: this.event()?.name ?? 'Sorteio', ts: Date.now() });
+      localStorage.setItem(DRAW_NOTIFICATIONS_KEY, JSON.stringify(stored));
     } catch (error: any) {
       console.error('Erro ao realizar o sorteio:', error);
       alert('Não foi possível realizar o sorteio: ' + (error?.message || 'Erro desconhecido.'));

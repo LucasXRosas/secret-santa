@@ -20,7 +20,7 @@ import {
 import {
   HeaderComponent,
   SidenavComponent
-} from "./chunk-2DMS5ADV.js";
+} from "./chunk-CAIZGX2S.js";
 import "./chunk-4G5YQTUP.js";
 import {
   Router
@@ -575,4 +575,4 @@ export {
   CreateEventComponent,
   futureDateValidator
 };
-//# sourceMappingURL=chunk-DGO5XGVP.js.map
+//# sourceMappingURL=chunk-NTRO6VOS.js.map
