@@ -1,9 +1,4 @@
-<div class="min-h-screen flex flex-col bg-background">
-  <!-- [ID12] two-way binding via model(): [(isOpen)] sincroniza sidenavOpen bidireccionalmente -->
-  <app-sidenav [(isOpen)]="sidenavOpen"></app-sidenav>
-  <app-header (toggleSidenav)="sidenavOpen.set(!sidenavOpen())"></app-header>
-
-  <main class="flex-1 w-full max-w-4xl mx-auto px-6 py-12">
+<main class="flex-1 w-full max-w-4xl mx-auto px-6 py-12">
     @if (loading()) {
       <p class="font-headline font-bold uppercase text-muted-foreground">Carregando evento...</p>
     } @else if (errorMessage()) {
@@ -261,8 +256,6 @@
     }
   </main>
 
-  <app-footer></app-footer>
-
   <!-- Modal de Revelação de Amigo Secreto ("Passa o Celular") -->
   @if (showRevealModal() && revealedParticipant(); as p) {
     <div class="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm p-4">
@@ -394,4 +387,3 @@
       </div>
     </div>
   }
-</div>

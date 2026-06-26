@@ -3,7 +3,6 @@
 {
   "compileOnSave": false,
   "compilerOptions": {
-    "baseUrl": "./",
     "strict": true,
     "noImplicitOverride": true,
     "noPropertyAccessFromIndexSignature": true,
@@ -16,6 +15,7 @@
     "target": "ES2022",
     "module": "esnext",
     "moduleResolution": "bundler",
+    "ignoreDeprecations": "5.0",
     "paths": {
       "@components/*": ["./apps/web/src/app/components/*"]
     }

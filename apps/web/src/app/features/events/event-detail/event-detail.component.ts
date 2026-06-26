@@ -1,9 +1,6 @@
 import { Component, inject, signal, computed, input, effect } from '@angular/core';
 import { RouterLink, Router } from '@angular/router';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
-import { HeaderComponent } from '../../../components/header/header.component';
-import { FooterComponent } from '../../../components/footer/footer.component';
-import { SidenavComponent } from '../../../components/sidenav/sidenav.component';
 import { EventService, SecretSantaEvent } from '../../../core/services/event.service';
 import { ParticipantService, Participant } from '../../../core/services/participant.service';
 import { BrlCurrencyPipe } from '../../../shared/pipes/brl-currency.pipe';
@@ -19,9 +16,6 @@ const DRAW_NOTIFICATIONS_KEY = 'wd_draw_notifications';
   imports: [
     ReactiveFormsModule,
     RouterLink,
-    HeaderComponent,
-    FooterComponent,
-    SidenavComponent,
     BrlCurrencyPipe,
     RelativeDatePipe,
   ],
@@ -34,9 +28,6 @@ export class EventDetailComponent {
   private authService = inject(AuthService);
   private router = inject(Router);
   private toastService = inject(ToastService);
-
-  /** Controla a abertura do menu lateral. */
-  sidenavOpen = signal(false);
 
   id = input.required<string>();
 

@@ -1,8 +1,5 @@
 import { Component, signal, inject, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { HeaderComponent } from '../../components/header/header.component';
-import { FooterComponent } from '../../components/footer/footer.component';
-import { SidenavComponent } from '../../components/sidenav/sidenav.component';
 import { AuthService } from '../../core/services/auth.service';
 import { EventService, SecretSantaEvent } from '../../core/services/event.service';
 import { ParticipantService } from '../../core/services/participant.service';
@@ -11,7 +8,7 @@ import { RelativeDatePipe } from '../../shared/pipes/relative-date.pipe';
 
 @Component({
   selector: 'app-dashboard',
-  imports: [HeaderComponent, FooterComponent, SidenavComponent, BrlCurrencyPipe, RelativeDatePipe],
+  imports: [BrlCurrencyPipe, RelativeDatePipe],
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.css'],
 })
@@ -20,8 +17,6 @@ export class DashboardComponent implements OnInit {
   private eventService = inject(EventService);
   private participantService = inject(ParticipantService);
   private router = inject(Router);
-
-  sidenavOpen = signal(false);
 
   /** Eventos criados pelo usuário. */
   events = signal<SecretSantaEvent[]>([]);

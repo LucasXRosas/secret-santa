@@ -1,7 +1,0 @@
-{
-  "version": 3,
-  "sources": ["apps/web/src/app/shared/pipes/brl-currency.pipe.ts"],
-  "sourcesContent": ["import { Pipe, PipeTransform } from '@angular/core';\r\n\r\n/**\r\n * [ID8] Pipe puro que formata um número como moeda brasileira (BRL).\r\n * Usa a API nativa Intl.NumberFormat para garantir localização correta.\r\n *\r\n * Uso no template:\r\n *   {{ event.budget | brlCurrency }}         → \"R$ 50,00\"\r\n *   {{ event.budget | brlCurrency : false }}  → \"50,00\" (sem símbolo)\r\n */\r\n@Pipe({\r\n  name: 'brlCurrency',\r\n  pure: true,\r\n})\r\nexport class BrlCurrencyPipe implements PipeTransform {\r\n  private formatter = new Intl.NumberFormat('pt-BR', {\r\n    style: 'currency',\r\n    currency: 'BRL',\r\n    minimumFractionDigits: 2,\r\n  });\r\n\r\n  transform(value: number | null | undefined, showSymbol = true): string {\r\n    if (value == null) return '—';\r\n    const formatted = this.formatter.format(value);\r\n    // Intl já inclui \"R$\"; se showSymbol=false, remove o símbolo + espaço.\r\n    return showSymbol ? formatted : formatted.replace('R$\\u00a0', '').trim();\r\n  }\r\n}\r\n"],
-  "mappings": ";;;;;;;AAcM,IAAO,kBAAP,MAAO,iBAAe;EAClB,YAAY,IAAI,KAAK,aAAa,SAAS;IACjD,OAAO;IACP,UAAU;IACV,uBAAuB;GACxB;EAED,UAAU,OAAkC,aAAa,MAAI;AAC3D,QAAI,SAAS;AAAM,aAAO;AAC1B,UAAM,YAAY,KAAK,UAAU,OAAO,KAAK;AAE7C,WAAO,aAAa,YAAY,UAAU,QAAQ,UAAY,EAAE,EAAE,KAAI;EACxE;;qCAZW,kBAAe;EAAA;0FAAf,kBAAe,MAAA,KAAA,CAAA;;;sEAAf,iBAAe,CAAA;UAJ3B;WAAK;MACJ,MAAM;MACN,MAAM;KACP;;;",
-  "names": []
-}
