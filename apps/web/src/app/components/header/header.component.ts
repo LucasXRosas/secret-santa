@@ -1,6 +1,16 @@
-import { Component, output, inject, signal, computed } from '@angular/core';
+import { Component, output, inject, signal, computed, effect } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
 import { AuthService } from '../../core/services/auth.service';
+import { ParticipantService, Participant } from '../../core/services/participant.service';
+import { ToastService } from '../../core/services/toast.service';
+
+const DRAW_NOTIFICATIONS_KEY = 'wd_draw_notifications';
+
+export interface DrawNotification {
+  eventId: string;
+  eventName: string;
+  ts: number;
+}
 
 @Component({
   selector: 'app-header',
@@ -12,13 +22,24 @@ export class HeaderComponent {
   readonly toggleSidenav = output<void>();
 
   private authService = inject(AuthService);
+  private participantService = inject(ParticipantService);
   private router = inject(Router);
+  private toastService = inject(ToastService);
 
   // Estado de autenticação vindo do AuthService
   readonly isAuthenticated = this.authService.isAuthenticated;
 
   // Controla a abertura da caixinha de perfil
   readonly isProfileOpen = signal(false);
+
+  // Controla a caixinha de convites
+  readonly isInvitationsOpen = signal(false);
+
+  // Lista de convites pendentes
+  readonly invitations = signal<(Participant & { event_name?: string })[]>([]);
+
+  // Notificações de sorteios realizados (persistidas no localStorage)
+  readonly drawNotifications = signal<DrawNotification[]>([]);
 
   // Inicial exibida no ícone de perfil (primeira letra do nome ou e-mail)
   readonly userInitial = computed(() => {
@@ -27,12 +48,92 @@ export class HeaderComponent {
     return source.charAt(0).toUpperCase();
   });
 
+  // Total de notificações não lidas (convites + sorteios)
+  readonly notificationCount = computed(
+    () => this.invitations().length + this.drawNotifications().length
+  );
+
+  constructor() {
+    effect(() => {
+      const user = this.authService.currentUser();
+      if (user && user.email) {
+        this.loadInvitations(user.email);
+        this.loadDrawNotifications();
+      } else {
+        this.invitations.set([]);
+        this.drawNotifications.set([]);
+      }
+    });
+  }
+
+  async loadInvitations(email: string) {
+    try {
+      const list = await this.participantService.listInvitations(email);
+      this.invitations.set(list);
+    } catch (error) {
+      console.error('Erro ao carregar convites:', error);
+    }
+  }
+
+  loadDrawNotifications() {
+    try {
+      const stored = JSON.parse(localStorage.getItem(DRAW_NOTIFICATIONS_KEY) ?? '[]');
+      this.drawNotifications.set(stored);
+    } catch {
+      this.drawNotifications.set([]);
+    }
+  }
+
+  dismissDrawNotification(ts: number) {
+    const updated = this.drawNotifications().filter((n) => n.ts !== ts);
+    this.drawNotifications.set(updated);
+    localStorage.setItem(DRAW_NOTIFICATIONS_KEY, JSON.stringify(updated));
+  }
+
+  toggleInvitations() {
+    this.isInvitationsOpen.update((open) => !open);
+    if (this.isInvitationsOpen()) {
+      this.isProfileOpen.set(false);
+    }
+  }
+
+  closeInvitations() {
+    this.isInvitationsOpen.set(false);
+  }
+
+  async acceptInvite(inviteId: string) {
+    try {
+      await this.participantService.acceptInvitation(inviteId);
+      this.closeInvitations();
+      this.toastService.showAfterReload('Você entrou no sorteio! 🎉', 'success');
+      window.location.reload();
+    } catch (error) {
+      console.error('Erro ao aceitar convite:', error);
+      this.toastService.error('Não foi possível aceitar o convite.');
+    }
+  }
+
+  async declineInvite(inviteId: string) {
+    try {
+      await this.participantService.declineInvitation(inviteId);
+      this.invitations.update((list) => list.filter((i) => i.id !== inviteId));
+      this.closeInvitations();
+      this.toastService.info('Convite recusado.');
+    } catch (error) {
+      console.error('Erro ao recusar convite:', error);
+      this.toastService.error('Não foi possível recusar o convite.');
+    }
+  }
+
   onToggleSidenav() {
     this.toggleSidenav.emit();
   }
 
   toggleProfile() {
     this.isProfileOpen.update((open) => !open);
+    if (this.isProfileOpen()) {
+      this.isInvitationsOpen.set(false);
+    }
   }
 
   closeProfile() {

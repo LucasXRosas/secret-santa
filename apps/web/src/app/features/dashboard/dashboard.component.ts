@@ -1,29 +1,28 @@
 import { Component, signal, inject, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { HeaderComponent } from '../../components/header/header.component';
-import { FooterComponent } from '../../components/footer/footer.component';
-import { SidenavComponent } from '../../components/sidenav/sidenav.component';
 import { AuthService } from '../../core/services/auth.service';
 import { EventService, SecretSantaEvent } from '../../core/services/event.service';
+import { ParticipantService } from '../../core/services/participant.service';
 import { BrlCurrencyPipe } from '../../shared/pipes/brl-currency.pipe';
 import { RelativeDatePipe } from '../../shared/pipes/relative-date.pipe';
 
 @Component({
   selector: 'app-dashboard',
-  imports: [HeaderComponent, FooterComponent, SidenavComponent, BrlCurrencyPipe, RelativeDatePipe],
+  imports: [BrlCurrencyPipe, RelativeDatePipe],
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.css'],
 })
 export class DashboardComponent implements OnInit {
   protected authService = inject(AuthService);
   private eventService = inject(EventService);
+  private participantService = inject(ParticipantService);
   private router = inject(Router);
 
-  /** Controla a abertura do menu lateral (mesmo padrão da home). */
-  sidenavOpen = signal(false);
-
-  /** Eventos do usuário carregados do banco. */
+  /** Eventos criados pelo usuário. */
   events = signal<SecretSantaEvent[]>([]);
+  /** Eventos em que o usuário foi convidado e aceitou. */
+  participatingEvents = signal<SecretSantaEvent[]>([]);
+
   loading = signal(true);
   errorMessage = signal<string | null>(null);
 
@@ -35,7 +34,16 @@ export class DashboardComponent implements OnInit {
     this.loading.set(true);
     this.errorMessage.set(null);
     try {
-      this.events.set(await this.eventService.listMyEvents());
+      const user = this.authService.currentUser();
+      const [owned, participating] = await Promise.all([
+        this.eventService.listMyEvents(),
+        user?.email ? this.participantService.listParticipatingEvents(user.email) : Promise.resolve([]),
+      ]);
+
+      this.events.set(owned);
+      // Remove eventos que o próprio usuário criou (caso ele seja dono e participante)
+      const ownedIds = new Set(owned.map((e) => e.id));
+      this.participatingEvents.set(participating.filter((e) => !ownedIds.has(e.id)));
     } catch (error) {
       console.error('Erro ao carregar eventos:', error);
       this.errorMessage.set('Não foi possível carregar seus eventos.');

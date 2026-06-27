@@ -10,8 +10,6 @@ import { errorInterceptor } from './core/interceptors/error.interceptor';
 export const appConfig: ApplicationConfig = {
   providers: [
     provideBrowserGlobalErrorListeners(),
-    // [ID16] withComponentInputBinding() faz o Router injetar automaticamente
-    // os parâmetros de rota (ex: :id) diretamente como input() nos componentes.
     provideRouter(routes, withComponentInputBinding()),
     provideHttpClient(
       withFetch(),

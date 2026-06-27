@@ -1,7 +1,7 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
 /**
- * [ID8] Pipe puro que converte uma data no formato ISO (yyyy-MM-dd) em
+ * Pipe puro que converte uma data no formato ISO (yyyy-MM-dd) em
  * texto relativo legível, usando a API nativa Intl.RelativeTimeFormat.
  *
  * Uso no template:

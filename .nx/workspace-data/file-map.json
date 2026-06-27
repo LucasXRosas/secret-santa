@@ -1,0 +1,647 @@
+{
+  "version": "6.0",
+  "nxVersion": "22.6.5",
+  "pathMappings": {
+    "@components/*": [
+      "./apps/web/src/app/components/*"
+    ]
+  },
+  "nxJsonPlugins": [],
+  "fileMap": {
+    "projectFileMap": {
+      "@secret-santa/web": [
+        {
+          "file": "apps/web/ngsw-config.json",
+          "hash": "17578750259678352861"
+        },
+        {
+          "file": "apps/web/package.json",
+          "hash": "17235291196737594298"
+        },
+        {
+          "file": "apps/web/public/favicon.ico",
+          "hash": "3988961587069885523"
+        },
+        {
+          "file": "apps/web/public/logo.png",
+          "hash": "14911391047473514989"
+        },
+        {
+          "file": "apps/web/public/manifest.json",
+          "hash": "4026831078616727918"
+        },
+        {
+          "file": "apps/web/public/sdd.md",
+          "hash": "12365435849937586402"
+        },
+        {
+          "file": "apps/web/src/app/app.config.ts",
+          "hash": "12656425341204539719"
+        },
+        {
+          "file": "apps/web/src/app/app.css",
+          "hash": "3244421341483603138"
+        },
+        {
+          "file": "apps/web/src/app/app.html",
+          "hash": "8391295075999141128"
+        },
+        {
+          "file": "apps/web/src/app/app.routes.ts",
+          "hash": "6459799964705217931"
+        },
+        {
+          "file": "apps/web/src/app/app.spec.ts",
+          "hash": "12677979897978253410"
+        },
+        {
+          "file": "apps/web/src/app/app.ts",
+          "hash": "10291217688966157118"
+        },
+        {
+          "file": "apps/web/src/app/components/footer/footer.component.ts",
+          "hash": "15996460784403710806"
+        },
+        {
+          "file": "apps/web/src/app/components/footer/footer.html",
+          "hash": "3412052896068894307"
+        },
+        {
+          "file": "apps/web/src/app/components/header/header.component.ts",
+          "hash": "8236769105149451371"
+        },
+        {
+          "file": "apps/web/src/app/components/header/header.html",
+          "hash": "14417612992670529901"
+        },
+        {
+          "file": "apps/web/src/app/components/sidenav/sidenav.component.ts",
+          "hash": "2314075026810438083"
+        },
+        {
+          "file": "apps/web/src/app/components/sidenav/sidenav.html",
+          "hash": "5956090155139448997"
+        },
+        {
+          "file": "apps/web/src/app/core/.gitkeep",
+          "hash": "12279837457049548762"
+        },
+        {
+          "file": "apps/web/src/app/core/guards/.gitkeep",
+          "hash": "3244421341483603138"
+        },
+        {
+          "file": "apps/web/src/app/core/guards/auth.guard.spec.ts",
+          "hash": "900714055770140845"
+        },
+        {
+          "file": "apps/web/src/app/core/guards/auth.guard.ts",
+          "hash": "13366697743072022764"
+        },
+        {
+          "file": "apps/web/src/app/core/interceptors/.gitkeep",
+          "hash": "3244421341483603138"
+        },
+        {
+          "file": "apps/web/src/app/core/interceptors/auth.interceptor.ts",
+          "hash": "1644320155422230667"
+        },
+        {
+          "file": "apps/web/src/app/core/interceptors/error.interceptor.ts",
+          "hash": "13958262491785696757"
+        },
+        {
+          "file": "apps/web/src/app/core/layout/main-layout/main-layout.component.ts",
+          "hash": "14293852241931459013"
+        },
+        {
+          "file": "apps/web/src/app/core/resolvers/event.resolver.ts",
+          "hash": "9321352479988356985"
+        },
+        {
+          "file": "apps/web/src/app/core/services/.gitkeep",
+          "hash": "3244421341483603138"
+        },
+        {
+          "file": "apps/web/src/app/core/services/auth.service.ts",
+          "hash": "12864401526132977329"
+        },
+        {
+          "file": "apps/web/src/app/core/services/event.service.ts",
+          "hash": "1808615773722527089"
+        },
+        {
+          "file": "apps/web/src/app/core/services/mock-event.service.ts",
+          "hash": "16669770661827165029"
+        },
+        {
+          "file": "apps/web/src/app/core/services/participant.service.ts",
+          "hash": "16205814939983335033"
+        },
+        {
+          "file": "apps/web/src/app/core/services/toast.service.ts",
+          "hash": "13133125541672224594"
+        },
+        {
+          "file": "apps/web/src/app/features/dashboard/.gitkeep",
+          "hash": "12279837457049548762"
+        },
+        {
+          "file": "apps/web/src/app/features/dashboard/dashboard.component.css",
+          "hash": "7698658555600614609"
+        },
+        {
+          "file": "apps/web/src/app/features/dashboard/dashboard.component.html",
+          "hash": "17421767054085370194"
+        },
+        {
+          "file": "apps/web/src/app/features/dashboard/dashboard.component.ts",
+          "hash": "1731519491993794148"
+        },
+        {
+          "file": "apps/web/src/app/features/demo/demo.component.html",
+          "hash": "15633174634601829018"
+        },
+        {
+          "file": "apps/web/src/app/features/demo/demo.component.ts",
+          "hash": "3304178651455480150"
+        },
+        {
+          "file": "apps/web/src/app/features/draw/list/.gitkeep",
+          "hash": "5502458636423383521"
+        },
+        {
+          "file": "apps/web/src/app/features/draw/management/.gitkeep",
+          "hash": "5502458636423383521"
+        },
+        {
+          "file": "apps/web/src/app/features/events/create-event/create-event.component.html",
+          "hash": "9320119600117138933"
+        },
+        {
+          "file": "apps/web/src/app/features/events/create-event/create-event.component.spec.ts",
+          "hash": "13833852150014720639"
+        },
+        {
+          "file": "apps/web/src/app/features/events/create-event/create-event.component.ts",
+          "hash": "11799181927162219745"
+        },
+        {
+          "file": "apps/web/src/app/features/events/event-detail/event-detail.component.html",
+          "hash": "16816727149254150170"
+        },
+        {
+          "file": "apps/web/src/app/features/events/event-detail/event-detail.component.ts",
+          "hash": "10456472018313440175"
+        },
+        {
+          "file": "apps/web/src/app/features/home/home.component.css",
+          "hash": "11982222040645003020"
+        },
+        {
+          "file": "apps/web/src/app/features/home/home.component.html",
+          "hash": "14789834880294365096"
+        },
+        {
+          "file": "apps/web/src/app/features/home/home.component.ts",
+          "hash": "1861922899930802365"
+        },
+        {
+          "file": "apps/web/src/app/features/login/.gitkeep",
+          "hash": "12279837457049548762"
+        },
+        {
+          "file": "apps/web/src/app/features/login/login.component.css",
+          "hash": "2753627022362066019"
+        },
+        {
+          "file": "apps/web/src/app/features/login/login.component.html",
+          "hash": "11051226983626784197"
+        },
+        {
+          "file": "apps/web/src/app/features/login/login.component.ts",
+          "hash": "10875184261403036026"
+        },
+        {
+          "file": "apps/web/src/app/features/management/.gitkeep",
+          "hash": "3244421341483603138"
+        },
+        {
+          "file": "apps/web/src/app/features/wishlist/.gitkeep",
+          "hash": "12279837457049548762"
+        },
+        {
+          "file": "apps/web/src/app/shared/.gitkeep",
+          "hash": "12279837457049548762"
+        },
+        {
+          "file": "apps/web/src/app/shared/components/toast/toast.component.html",
+          "hash": "8609880084707946840"
+        },
+        {
+          "file": "apps/web/src/app/shared/components/toast/toast.component.ts",
+          "hash": "7101189496590576106"
+        },
+        {
+          "file": "apps/web/src/app/shared/directives/.gitkeep",
+          "hash": "3244421341483603138"
+        },
+        {
+          "file": "apps/web/src/app/shared/pipes/.gitkeep",
+          "hash": "3244421341483603138"
+        },
+        {
+          "file": "apps/web/src/app/shared/pipes/brl-currency.pipe.ts",
+          "hash": "2796153779114105025"
+        },
+        {
+          "file": "apps/web/src/app/shared/pipes/relative-date.pipe.ts",
+          "hash": "12880231062557828967"
+        },
+        {
+          "file": "apps/web/src/environments/environment.development.ts",
+          "hash": "3599239805169353604"
+        },
+        {
+          "file": "apps/web/src/environments/environment.ts",
+          "hash": "12834931871507911899"
+        },
+        {
+          "file": "apps/web/src/index.html",
+          "hash": "11627549406747056851"
+        },
+        {
+          "file": "apps/web/src/main.ts",
+          "hash": "3314327030169821486"
+        },
+        {
+          "file": "apps/web/src/styles.css",
+          "hash": "11324786617647307037"
+        },
+        {
+          "file": "apps/web/src/test.css",
+          "hash": "10123657597825066195"
+        },
+        {
+          "file": "apps/web/tsconfig.app.json",
+          "hash": "10929399938589115955"
+        },
+        {
+          "file": "apps/web/tsconfig.spec.json",
+          "hash": "14413235669630144611"
+        }
+      ]
+    },
+    "nonProjectFiles": [
+      {
+        "file": ".agents/rules/00-global-rules.md",
+        "hash": "13646367363225230250"
+      },
+      {
+        "file": ".agents/rules/01-angular-strict-rules.md",
+        "hash": "16215804810600317243"
+      },
+      {
+        "file": ".agents/workflows/angular-workflow.md",
+        "hash": "9448130114515051416"
+      },
+      {
+        "file": ".agents/workflows/monorepo-workflow.md",
+        "hash": "620248206331834957"
+      },
+      {
+        "file": ".editorconfig",
+        "hash": "8037249353422744134"
+      },
+      {
+        "file": ".env",
+        "hash": "5873323244218522211"
+      },
+      {
+        "file": ".env.example",
+        "hash": "5742406662225268971"
+      },
+      {
+        "file": ".gitignore",
+        "hash": "16536178477747192153"
+      },
+      {
+        "file": ".npmrc",
+        "hash": "18085261541358865259"
+      },
+      {
+        "file": ".postcssrc.json",
+        "hash": "17460548602263189673"
+      },
+      {
+        "file": ".prettierrc",
+        "hash": "16585123394505152524"
+      },
+      {
+        "file": ".vscode/extensions.json",
+        "hash": "5331566439708925252"
+      },
+      {
+        "file": ".vscode/launch.json",
+        "hash": "17038929134016848735"
+      },
+      {
+        "file": ".vscode/mcp.json",
+        "hash": "2048642474820873600"
+      },
+      {
+        "file": ".vscode/settings.json",
+        "hash": "6414707288622281725"
+      },
+      {
+        "file": ".vscode/tasks.json",
+        "hash": "1370608409982315224"
+      },
+      {
+        "file": "README.md",
+        "hash": "1464351624880364733"
+      },
+      {
+        "file": "angular.json",
+        "hash": "14435837056292274797"
+      },
+      {
+        "file": "components.json",
+        "hash": "95348381939246469"
+      },
+      {
+        "file": "db.json",
+        "hash": "11167356087463063042"
+      },
+      {
+        "file": "docs/chunk-3UQHFIVU.js",
+        "hash": "16749904354284319469"
+      },
+      {
+        "file": "docs/chunk-3UQHFIVU.js.map",
+        "hash": "6783623557016239693"
+      },
+      {
+        "file": "docs/chunk-4G5YQTUP.js",
+        "hash": "4952212268452649690"
+      },
+      {
+        "file": "docs/chunk-4G5YQTUP.js.map",
+        "hash": "510633580076467666"
+      },
+      {
+        "file": "docs/chunk-5F7BOU2Y.js",
+        "hash": "417049481102034939"
+      },
+      {
+        "file": "docs/chunk-5F7BOU2Y.js.map",
+        "hash": "16450567575011855691"
+      },
+      {
+        "file": "docs/chunk-6DWFAD2T.js",
+        "hash": "8783822328630613570"
+      },
+      {
+        "file": "docs/chunk-6DWFAD2T.js.map",
+        "hash": "9947606979680686569"
+      },
+      {
+        "file": "docs/chunk-6SLODQP2.js",
+        "hash": "11155417350263592503"
+      },
+      {
+        "file": "docs/chunk-6SLODQP2.js.map",
+        "hash": "18070686153384443780"
+      },
+      {
+        "file": "docs/chunk-CAIZGX2S.js",
+        "hash": "2093147461981240674"
+      },
+      {
+        "file": "docs/chunk-CAIZGX2S.js.map",
+        "hash": "13773994010960278552"
+      },
+      {
+        "file": "docs/chunk-DQPSSHH6.js",
+        "hash": "11123915872133468772"
+      },
+      {
+        "file": "docs/chunk-DQPSSHH6.js.map",
+        "hash": "4174397375569282405"
+      },
+      {
+        "file": "docs/chunk-E642KB2B.js",
+        "hash": "14218650566197053184"
+      },
+      {
+        "file": "docs/chunk-E642KB2B.js.map",
+        "hash": "17676534349334886983"
+      },
+      {
+        "file": "docs/chunk-I7FVYQMU.js",
+        "hash": "595420001306389496"
+      },
+      {
+        "file": "docs/chunk-I7FVYQMU.js.map",
+        "hash": "9947606979680686569"
+      },
+      {
+        "file": "docs/chunk-NTRO6VOS.js",
+        "hash": "4666090523635035618"
+      },
+      {
+        "file": "docs/chunk-NTRO6VOS.js.map",
+        "hash": "4000952991416916117"
+      },
+      {
+        "file": "docs/chunk-QAZM55DB.js",
+        "hash": "17023974426726458822"
+      },
+      {
+        "file": "docs/chunk-QAZM55DB.js.map",
+        "hash": "5662032838410462590"
+      },
+      {
+        "file": "docs/chunk-RXQMGSCJ.js",
+        "hash": "5175943312769320663"
+      },
+      {
+        "file": "docs/chunk-RXQMGSCJ.js.map",
+        "hash": "10251431422093991539"
+      },
+      {
+        "file": "docs/chunk-S6SU5Y6X.js",
+        "hash": "1742338508868292620"
+      },
+      {
+        "file": "docs/chunk-S6SU5Y6X.js.map",
+        "hash": "17823578146170547536"
+      },
+      {
+        "file": "docs/chunk-UW2S6YIE.js",
+        "hash": "13549251841697974276"
+      },
+      {
+        "file": "docs/chunk-UW2S6YIE.js.map",
+        "hash": "8739417537799552603"
+      },
+      {
+        "file": "docs/chunk-W5VBYQ7Z.js",
+        "hash": "12781955459455281735"
+      },
+      {
+        "file": "docs/chunk-W5VBYQ7Z.js.map",
+        "hash": "12447780652034181703"
+      },
+      {
+        "file": "docs/chunk-X5X5TS5U.js",
+        "hash": "2873140340720661756"
+      },
+      {
+        "file": "docs/chunk-X5X5TS5U.js.map",
+        "hash": "9947606979680686569"
+      },
+      {
+        "file": "docs/chunk-XUCKCSJZ.js",
+        "hash": "16871152490297237488"
+      },
+      {
+        "file": "docs/chunk-XUCKCSJZ.js.map",
+        "hash": "14379171671284085704"
+      },
+      {
+        "file": "docs/chunk-Z4LS6DY4.js",
+        "hash": "9362975905311262800"
+      },
+      {
+        "file": "docs/chunk-Z4LS6DY4.js.map",
+        "hash": "5721356283250015776"
+      },
+      {
+        "file": "docs/dashboard.component.css.map",
+        "hash": "10421368508820614755"
+      },
+      {
+        "file": "docs/favicon.ico",
+        "hash": "3988961587069885523"
+      },
+      {
+        "file": "docs/home.component.css.map",
+        "hash": "12720446861480569715"
+      },
+      {
+        "file": "docs/index.html",
+        "hash": "4316981176686649234"
+      },
+      {
+        "file": "docs/login.component.css.map",
+        "hash": "2536058189601212430"
+      },
+      {
+        "file": "docs/logo.png",
+        "hash": "14911391047473514989"
+      },
+      {
+        "file": "docs/main.js",
+        "hash": "10795656586510964191"
+      },
+      {
+        "file": "docs/main.js.map",
+        "hash": "60935137588004603"
+      },
+      {
+        "file": "docs/manifest.json",
+        "hash": "4026831078616727918"
+      },
+      {
+        "file": "docs/ngsw-worker.js",
+        "hash": "4010067092671215328"
+      },
+      {
+        "file": "docs/ngsw.json",
+        "hash": "7351217949389209077"
+      },
+      {
+        "file": "docs/prerendered-routes.json",
+        "hash": "15049165521752226651"
+      },
+      {
+        "file": "docs/safety-worker.js",
+        "hash": "14760896576309392103"
+      },
+      {
+        "file": "docs/sdd.md",
+        "hash": "12365435849937586402"
+      },
+      {
+        "file": "docs/styles.css",
+        "hash": "3347586357288417002"
+      },
+      {
+        "file": "docs/styles.css.map",
+        "hash": "7170685772649759234"
+      },
+      {
+        "file": "docs/worker-basic.min.js",
+        "hash": "14760896576309392103"
+      },
+      {
+        "file": "libs/.gitkeep",
+        "hash": "12279837457049548762"
+      },
+      {
+        "file": "package-lock.json",
+        "hash": "2647165363865185147"
+      },
+      {
+        "file": "package.json",
+        "hash": "2271357538414421887"
+      },
+      {
+        "file": "spartan-tailwind.config.js",
+        "hash": "15207383669029442401"
+      },
+      {
+        "file": "specs/.gitkeep",
+        "hash": "3244421341483603138"
+      },
+      {
+        "file": "supabase/.gitignore",
+        "hash": "7092817041527129937"
+      },
+      {
+        "file": "supabase/config.toml",
+        "hash": "14166879264558290045"
+      },
+      {
+        "file": "supabase/migrations/0001_create_events.sql",
+        "hash": "16679128139852108927"
+      },
+      {
+        "file": "supabase/migrations/0002_create_participants.sql",
+        "hash": "15405656126695896626"
+      },
+      {
+        "file": "supabase/migrations/0003_add_drawn_participant.sql",
+        "hash": "686591708471192659"
+      },
+      {
+        "file": "supabase/migrations/0004_add_event_details.sql",
+        "hash": "15728437615232567959"
+      },
+      {
+        "file": "supabase/migrations/0005_event_participant_read_policy.sql",
+        "hash": "14289412368326673574"
+      },
+      {
+        "file": "supabase/migrations/0006_fix_rls_recursion.sql",
+        "hash": "2217145115704066793"
+      },
+      {
+        "file": "tsconfig.json",
+        "hash": "11621788299495533579"
+      }
+    ]
+  },
+  "externalNodesHash": "15535335712823138411"
+}

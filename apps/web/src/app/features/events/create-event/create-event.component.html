@@ -90,6 +90,38 @@
           </div>
         </div>
 
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <!-- Organizador -->
+          <div class="space-y-2">
+            <label for="organizer_name" class="font-headline font-bold uppercase text-sm flex items-center gap-2">
+              👤 Organizador
+            </label>
+            <input
+              id="organizer_name"
+              type="text"
+              formControlName="organizer_name"
+              placeholder="ex: João Silva"
+              class="w-full border-4 border-black p-4 text-xl font-bold focus:ring-0 focus:bg-primary focus:outline-none transition-colors neo-inset"
+            />
+            <p class="text-xs font-bold text-muted-foreground uppercase">Quem está organizando?</p>
+          </div>
+
+          <!-- Local -->
+          <div class="space-y-2">
+            <label for="location" class="font-headline font-bold uppercase text-sm flex items-center gap-2">
+              📍 Local
+            </label>
+            <input
+              id="location"
+              type="text"
+              formControlName="location"
+              placeholder="ex: Casa da Ana"
+              class="w-full border-4 border-black p-4 text-xl font-bold focus:ring-0 focus:bg-secondary focus:outline-none transition-colors neo-inset"
+            />
+            <p class="text-xs font-bold text-muted-foreground uppercase">Onde vai acontecer?</p>
+          </div>
+        </div>
+
         @if (errorMessage()) {
           <div class="border-4 border-black bg-destructive/10 p-4 font-bold text-destructive">
             {{ errorMessage() }}

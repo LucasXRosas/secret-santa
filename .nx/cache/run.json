@@ -1,0 +1,21 @@
+{
+  "run": {
+    "command": "nx run web:build",
+    "startTime": "2026-06-26T01:51:58.667Z",
+    "endTime": "2026-06-26T01:52:04.668Z",
+    "inner": false
+  },
+  "tasks": [
+    {
+      "taskId": "@secret-santa/web:build",
+      "target": "build",
+      "projectName": "@secret-santa/web",
+      "hash": "16005081038324921282",
+      "startTime": "2026-06-26T01:51:58.684Z",
+      "endTime": "2026-06-26T01:52:04.666Z",
+      "params": "",
+      "cacheStatus": "cache-miss",
+      "status": 0
+    }
+  ]
+}
