@@ -8,11 +8,7 @@ import {
   ValidationErrors,
   ValidatorFn,
 } from '@angular/forms';
-import { toSignal, toObservable } from '@angular/core/rxjs-interop';
-import { distinctUntilChanged } from 'rxjs';
-import { HeaderComponent } from '../../../components/header/header.component';
-import { FooterComponent } from '../../../components/footer/footer.component';
-import { SidenavComponent } from '../../../components/sidenav/sidenav.component';
+import { toSignal } from '@angular/core/rxjs-interop';
 import { EventService } from '../../../core/services/event.service';
 
 /** Validador customizado para não permitir datas no passado */
@@ -36,15 +32,13 @@ export function futureDateValidator(): ValidatorFn {
 @Component({
   selector: 'app-create-event',
   standalone: true,
-  imports: [ReactiveFormsModule, HeaderComponent, FooterComponent, SidenavComponent],
+  imports: [ReactiveFormsModule],
   templateUrl: './create-event.component.html',
 })
 export class CreateEventComponent {
   private fb = inject(FormBuilder);
   private eventService = inject(EventService);
   private router = inject(Router);
-
-  sidenavOpen = signal(false);
 
   saving = signal(false);
   errorMessage = signal<string | null>(null);
@@ -61,16 +55,6 @@ export class CreateEventComponent {
 
   // [ID25] toSignal: Transforma Observable (valueChanges) em um Signal reativo
   formValues = toSignal(this.form.valueChanges, { initialValue: this.form.value });
-
-  // [ID25] toObservable: Transforma Signal em Observable para usar operadores RxJS
-  sidenavState$ = toObservable(this.sidenavOpen).pipe(distinctUntilChanged());
-
-  constructor() {
-    // Apenas para demonstrar a reatividade RxJS <-> Sinais
-    this.sidenavState$.subscribe((isOpen) => {
-      console.log('[RxJS] Menu lateral alterado:', isOpen);
-    });
-  }
 
   async onSubmit() {
     if (this.form.invalid) {

@@ -1,145 +1,137 @@
-<div class="min-h-screen flex flex-col bg-background">
-  <!-- [ID12] two-way binding via model(): [(isOpen)] sincroniza sidenavOpen bidireccionalmente -->
-  <app-sidenav [(isOpen)]="sidenavOpen"></app-sidenav>
-  <app-header (toggleSidenav)="sidenavOpen.set(!sidenavOpen())"></app-header>
+<main class="w-full max-w-3xl mx-auto px-6 py-12">
+  <div class="bg-white border-4 border-black p-8 neo-shadow-lg relative overflow-hidden">
+    <!-- Etiqueta decorativa de canto -->
+    <div
+      class="absolute top-0 right-0 bg-secondary border-l-4 border-b-4 border-black px-4 py-1 font-headline font-black text-xs uppercase"
+    >
+      Novo Sorteio
+    </div>
 
-  <main class="flex-1 w-full max-w-3xl mx-auto px-6 py-12">
-    <div class="bg-white border-4 border-black p-8 neo-shadow-lg relative overflow-hidden">
-      <!-- Etiqueta decorativa de canto -->
-      <div
-        class="absolute top-0 right-0 bg-secondary border-l-4 border-b-4 border-black px-4 py-1 font-headline font-black text-xs uppercase"
-      >
-        Novo Sorteio
+    <h1 class="font-headline font-black text-4xl mb-8 uppercase tracking-tighter leading-none">
+      Crie seu <br /><span class="text-[#635388]">Amigo Secreto</span>
+    </h1>
+
+    <form [formGroup]="form" (ngSubmit)="onSubmit()" class="space-y-8">
+      <!-- Nome do Sorteio -->
+      <div class="space-y-2">
+        <label for="name" class="font-headline font-bold uppercase text-sm flex items-center gap-2">
+          🎁 Nome do Sorteio
+        </label>
+        <input
+          id="name"
+          type="text"
+          formControlName="name"
+          placeholder="ex: Amigo da Firma"
+          class="w-full border-4 border-black p-4 text-xl font-bold focus:ring-0 focus:bg-primary focus:outline-none transition-colors neo-inset"
+        />
+        @if (form.controls.name.touched && form.controls.name.invalid) {
+          @if (form.controls.name.hasError('required')) {
+            <p class="text-xs font-bold text-destructive uppercase">Dê um nome para o seu sorteio.</p>
+          }
+          @if (form.controls.name.hasError('minlength')) {
+            <p class="text-xs font-bold text-destructive uppercase">O nome precisa ter pelo menos 3 caracteres.</p>
+          }
+        } @else {
+          <p class="text-xs font-bold text-muted-foreground uppercase">Dê um nome legal para o seu grupo</p>
+        }
       </div>
 
-      <h1 class="font-headline font-black text-4xl mb-8 uppercase tracking-tighter leading-none">
-        Crie seu <br /><span class="text-[#635388]">Amigo Secreto</span>
-      </h1>
-
-      <form [formGroup]="form" (ngSubmit)="onSubmit()" class="space-y-8">
-        <!-- Nome do Sorteio -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <!-- Limite de Orçamento -->
         <div class="space-y-2">
-          <label for="name" class="font-headline font-bold uppercase text-sm flex items-center gap-2">
-            🎁 Nome do Sorteio
+          <label for="budget" class="font-headline font-bold uppercase text-sm flex items-center gap-2">
+            💰 Limite de Orçamento
           </label>
-          <input
-            id="name"
-            type="text"
-            formControlName="name"
-            placeholder="ex: Amigo da Firma"
-            class="w-full border-4 border-black p-4 text-xl font-bold focus:ring-0 focus:bg-primary focus:outline-none transition-colors neo-inset"
-          />
-          @if (form.controls.name.touched && form.controls.name.invalid) {
-            @if (form.controls.name.hasError('required')) {
-              <p class="text-xs font-bold text-destructive uppercase">Dê um nome para o seu sorteio.</p>
-            }
-            @if (form.controls.name.hasError('minlength')) {
-              <p class="text-xs font-bold text-destructive uppercase">O nome precisa ter pelo menos 3 caracteres.</p>
-            }
+          <div class="relative">
+            <span class="absolute left-4 top-1/2 -translate-y-1/2 font-black text-xl">R$</span>
+            <input
+              id="budget"
+              type="number"
+              min="0"
+              formControlName="budget"
+              placeholder="50"
+              class="w-full border-4 border-black p-4 pl-12 text-xl font-bold focus:ring-0 focus:bg-accent focus:outline-none transition-colors neo-inset"
+            />
+          </div>
+          @if (form.controls.budget.touched && form.controls.budget.invalid) {
+            <p class="text-xs font-bold text-destructive uppercase">Orçamento inválido (mínimo 0).</p>
           } @else {
-            <p class="text-xs font-bold text-muted-foreground uppercase">Dê um nome legal para o seu grupo</p>
+            <p class="text-xs font-bold text-muted-foreground uppercase">Gasto máximo por pessoa</p>
           }
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-          <!-- Limite de Orçamento -->
-          <div class="space-y-2">
-            <label for="budget" class="font-headline font-bold uppercase text-sm flex items-center gap-2">
-              💰 Limite de Orçamento
-            </label>
-            <div class="relative">
-              <span class="absolute left-4 top-1/2 -translate-y-1/2 font-black text-xl">R$</span>
-              <input
-                id="budget"
-                type="number"
-                min="0"
-                formControlName="budget"
-                placeholder="50"
-                class="w-full border-4 border-black p-4 pl-12 text-xl font-bold focus:ring-0 focus:bg-accent focus:outline-none transition-colors neo-inset"
-              />
-            </div>
-            @if (form.controls.budget.touched && form.controls.budget.invalid) {
-              <p class="text-xs font-bold text-destructive uppercase">Orçamento inválido (mínimo 0).</p>
-            } @else {
-              <p class="text-xs font-bold text-muted-foreground uppercase">Gasto máximo por pessoa</p>
+        <!-- Data do Sorteio -->
+        <div class="space-y-2">
+          <label for="draw_date" class="font-headline font-bold uppercase text-sm flex items-center gap-2">
+            📅 Data do Sorteio
+          </label>
+          <input
+            id="draw_date"
+            type="date"
+            [min]="todayDate"
+            formControlName="draw_date"
+            class="w-full border-4 border-black p-4 text-xl font-bold focus:ring-0 focus:bg-secondary focus:outline-none transition-colors neo-inset"
+          />
+          @if (form.controls.draw_date.touched && form.controls.draw_date.invalid) {
+            @if (form.controls.draw_date.hasError('required')) {
+              <p class="text-xs font-bold text-destructive uppercase">Data do sorteio é obrigatória.</p>
             }
-          </div>
-
-          <!-- Data do Sorteio -->
-          <div class="space-y-2">
-            <label for="draw_date" class="font-headline font-bold uppercase text-sm flex items-center gap-2">
-              📅 Data do Sorteio
-            </label>
-            <input
-              id="draw_date"
-              type="date"
-              [min]="todayDate"
-              formControlName="draw_date"
-              class="w-full border-4 border-black p-4 text-xl font-bold focus:ring-0 focus:bg-secondary focus:outline-none transition-colors neo-inset"
-            />
-            @if (form.controls.draw_date.touched && form.controls.draw_date.invalid) {
-              @if (form.controls.draw_date.hasError('required')) {
-                <p class="text-xs font-bold text-destructive uppercase">Data do sorteio é obrigatória.</p>
-              }
-              @if (form.controls.draw_date.hasError('pastDate')) {
-                <p class="text-xs font-bold text-destructive uppercase">A data não pode estar no passado.</p>
-              }
-            } @else {
-              <p class="text-xs font-bold text-muted-foreground uppercase">Quando vamos trocar os presentes?</p>
+            @if (form.controls.draw_date.hasError('pastDate')) {
+              <p class="text-xs font-bold text-destructive uppercase">A data não pode estar no passado.</p>
             }
-          </div>
+          } @else {
+            <p class="text-xs font-bold text-muted-foreground uppercase">Quando vamos trocar os presentes?</p>
+          }
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <!-- Organizador -->
+        <div class="space-y-2">
+          <label for="organizer_name" class="font-headline font-bold uppercase text-sm flex items-center gap-2">
+            👤 Organizador
+          </label>
+          <input
+            id="organizer_name"
+            type="text"
+            formControlName="organizer_name"
+            placeholder="ex: João Silva"
+            class="w-full border-4 border-black p-4 text-xl font-bold focus:ring-0 focus:bg-primary focus:outline-none transition-colors neo-inset"
+          />
+          <p class="text-xs font-bold text-muted-foreground uppercase">Quem está organizando?</p>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-          <!-- Organizador -->
-          <div class="space-y-2">
-            <label for="organizer_name" class="font-headline font-bold uppercase text-sm flex items-center gap-2">
-              👤 Organizador
-            </label>
-            <input
-              id="organizer_name"
-              type="text"
-              formControlName="organizer_name"
-              placeholder="ex: João Silva"
-              class="w-full border-4 border-black p-4 text-xl font-bold focus:ring-0 focus:bg-primary focus:outline-none transition-colors neo-inset"
-            />
-            <p class="text-xs font-bold text-muted-foreground uppercase">Quem está organizando?</p>
-          </div>
-
-          <!-- Local -->
-          <div class="space-y-2">
-            <label for="location" class="font-headline font-bold uppercase text-sm flex items-center gap-2">
-              📍 Local
-            </label>
-            <input
-              id="location"
-              type="text"
-              formControlName="location"
-              placeholder="ex: Casa da Ana"
-              class="w-full border-4 border-black p-4 text-xl font-bold focus:ring-0 focus:bg-secondary focus:outline-none transition-colors neo-inset"
-            />
-            <p class="text-xs font-bold text-muted-foreground uppercase">Onde vai acontecer?</p>
-          </div>
+        <!-- Local -->
+        <div class="space-y-2">
+          <label for="location" class="font-headline font-bold uppercase text-sm flex items-center gap-2">
+            📍 Local
+          </label>
+          <input
+            id="location"
+            type="text"
+            formControlName="location"
+            placeholder="ex: Casa da Ana"
+            class="w-full border-4 border-black p-4 text-xl font-bold focus:ring-0 focus:bg-secondary focus:outline-none transition-colors neo-inset"
+          />
+          <p class="text-xs font-bold text-muted-foreground uppercase">Onde vai acontecer?</p>
         </div>
+      </div>
 
-        @if (errorMessage()) {
-          <div class="border-4 border-black bg-destructive/10 p-4 font-bold text-destructive">
-            {{ errorMessage() }}
-          </div>
-        }
-
-        <div class="pt-4">
-          <button
-            type="submit"
-            [disabled]="saving() || form.invalid"
-            class="w-full bg-primary border-4 border-black py-6 px-8 text-2xl font-black uppercase tracking-tighter neo-shadow hover:bg-accent active:translate-x-1 active:translate-y-1 active:shadow-none transition-all flex justify-center items-center gap-4 disabled:opacity-60 disabled:cursor-not-allowed"
-          >
-            {{ saving() ? 'Salvando...' : 'Criar Sorteio' }}
-          </button>
+      @if (errorMessage()) {
+        <div class="border-4 border-black bg-destructive/10 p-4 font-bold text-destructive">
+          {{ errorMessage() }}
         </div>
-      </form>
-    </div>
-  </main>
+      }
 
-  <app-footer></app-footer>
-</div>
+      <div class="pt-4">
+        <button
+          type="submit"
+          [disabled]="saving() || form.invalid"
+          class="w-full bg-primary border-4 border-black py-6 px-8 text-2xl font-black uppercase tracking-tighter neo-shadow hover:bg-accent active:translate-x-1 active:translate-y-1 active:shadow-none transition-all flex justify-center items-center gap-4 disabled:opacity-60 disabled:cursor-not-allowed"
+        >
+          {{ saving() ? 'Salvando...' : 'Criar Sorteio' }}
+        </button>
+      </div>
+    </form>
+  </div>
+</main>
