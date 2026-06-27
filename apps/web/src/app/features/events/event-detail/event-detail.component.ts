@@ -202,7 +202,7 @@ export class EventDetailComponent {
       alert('É necessário ter pelo menos 3 participantes para realizar o sorteio.');
       return;
     }
-    
+
     if (!confirm('Deseja realmente realizar o sorteio? Após realizado, você não poderá editar o evento e adicionar ou remover participantes.')) {
       return;
     }
