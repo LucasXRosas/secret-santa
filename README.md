@@ -1,5 +1,7 @@
 # Wish Draw
 
+[![CI](https://github.com/LucasXRosas/secret-santa/actions/workflows/ci.yml/badge.svg)](https://github.com/LucasXRosas/secret-santa/actions/workflows/ci.yml)
+
 **Status do Sistema:**
 [![CI - Develop (Laboratório](https://img.shields.io/badge/status-%F0%9F%9F%A1%20Em%20Desenvolvimento-yellow)](https://github.com/LucasXRosas/secret-santa/blob/develop)
 [![CI - Main (Produção)](https://img.shields.io/badge/version-1.0.0-blue)]()
